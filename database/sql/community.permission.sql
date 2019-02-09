@@ -1,0 +1,3 @@
+INSERT INTO `admin_permissions` (`id`, `name`, `label`, `description`, `cid`, `icon`, `created_at`, `updated_at`) VALUES (35, 'admin.community', '社区管理', '社区管理', 0, 'fa-recycle', '2017-05-02 21:54:27', '2017-05-02 21:54:27');
+INSERT INTO `admin_permissions` (`id`, `name`, `label`, `description`, `cid`, `icon`, `created_at`, `updated_at`) VALUES (36, 'admin.community.index', '发帖列表', '发帖列表', 35, '', '2017-05-02 21:55:19', '2017-05-02 21:55:19');
+INSERT INTO `admin_permissions` (`id`, `name`, `label`, `description`, `cid`, `icon`, `created_at`, `updated_at`) VALUES (37, 'admin.community.update', '查看帖子', '查看帖子', 35, '', '2017-05-02 22:21:15', '2017-05-02 22:21:15');

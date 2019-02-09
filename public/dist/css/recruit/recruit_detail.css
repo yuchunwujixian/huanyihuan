@@ -1,0 +1,233 @@
+/*recruit-banner area*/
+.recruit-banner{
+	width: 100%;
+	height: 260px;
+    max-height: 260px;
+}
+
+/*search-list area*/
+.search-item-wrapper{
+	width: 1064px;
+	margin: 100px auto;
+	position: relative;
+	background-color: #ededed;
+	transform: rotate(2deg);
+	-ms-transform: rotate(2deg);
+	-moz-transform: rotate(2deg);
+	-webkit-transform: rotate(2deg);
+	-o-transform: rotate(2deg);
+}
+.search-item-wrapper .search-item{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	background-color: #fff;
+	transform: rotate(-2deg);
+	-ms-transform: rotate(-2deg);
+	-moz-transform: rotate(-2deg);
+	-webkit-transform: rotate(-2deg);
+	-o-transform: rotate(-2deg);
+	border: 1px solid #ededed;
+	box-sizing: border-box;
+}
+.item-detail{
+	width: 100%;
+	height: 180px;
+	display: flex;
+	justify-content: space-around;
+}
+.item-detail .job-detail{
+	width: 45%;
+	height: 106px;
+	margin: auto 0;
+}
+.item-detail .job-detail .job-detail-title{
+	height: 48px;
+	font-size: 18px;
+}
+.item-detail .job-detail .job-detail-title span{
+	display: block;
+}
+.item-detail .job-detail .job-detail-title .title1{
+	height: 24px;
+	line-height: 18px;
+	color: #000;
+}
+.item-detail .job-detail .job-detail-title .title2{
+	font-size: 12px;
+	height: 12px;
+	line-height: 12px;
+	color: #9e9e9e;
+}
+.item-detail .job-detail .job-detail-requirement{
+	height: 24px;
+}
+.item-detail .job-detail .job-detail-requirement span{
+	display: block;
+	float: left;
+}
+.item-detail .job-detail .job-detail-requirement .job-salary{
+	height: 24px;
+	line-height: 24px;
+	margin-right: 20px;
+	color: #1466ba;
+	font-size: 16px;
+}
+.job-detail-requirement .job-year,
+.job-detail-requirement .job-publish-time,
+.job-detail-requirement .job-add{
+	height: 24px;
+	line-height: 24px;
+	margin:0 10px;
+	color: #9e9e9e;
+	font-size: 14px;
+}
+.item-detail .job-detail .job-detail-welfare{
+	height: auto;
+	display: flex;
+	justify-content: flex-start;
+	margin: 10px 0;
+}
+.item-detail .job-detail .job-detail-welfare .welfare-item{
+	width: 66px;
+	height: 20px;
+	line-height: 18px;
+	text-align: center;
+	border: 1px solid #3687c8;
+	box-sizing: border-box;
+	margin-right: 10px;
+	font-size: 12px;
+	color: #3687c8;
+}
+.item-detail .company-detail{
+	width: 45%;
+	height: 106px;
+	margin: auto 0;
+}
+.item-detail .company-detail h2{
+	width: 100%;
+	height: 24px;
+	line-height: 24px;
+}
+.item-detail .company-detail p{
+	width: 100%;
+	height: 24px;
+	line-height: 24px;
+	font-size: 12px;
+	color: #9e9e9e;
+}
+.content-other{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-around;
+}
+.content-wrapper{
+	width: 45%;
+}
+.job-content{
+	margin: 15px auto;	
+}
+.job-content h2{
+	height: 14px;
+	line-height: 14px;
+	font-size: 14px;
+	color: #4d4d4d;
+	margin-bottom: 12px;
+}
+.job-content li{
+	height: 24px;
+	line-height: 24px;
+	font-size: 12px;
+	color: #666;
+}
+.other-job{
+	width: 45%;
+	padding-top: 15px; 
+}
+.other-job h2{
+	height: 14px;
+	line-height: 14px;
+	font-size: 14px;
+	color: #4d4d4d;
+	margin-bottom: 12px;
+}
+.other-job li{
+	height: 24px;
+	line-height: 24px;
+	font-size: 12px;
+}
+.other-job li a{
+	color: #666;
+}
+
+/* 公司环境 */
+.company-enviroment{
+    width: 800px;
+    margin: 0 auto;
+}
+.company-enviroment .swiper-container {
+    width: 585px;
+    margin: 0 auto; 
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.company-enviroment .swiper-wrapper{
+    width: 600px;
+    margin: 0 auto;
+}
+.company-enviroment .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+}
+.company-enviroment .swiper-slide img{
+    width: 198px;
+    height: 198px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px #bbb;
+}
+
+.company-basic-info{
+	border: 1px solid #eaeaea;
+	padding: 13px 10px;
+	margin-bottom: 35px;
+}
+.company-basic-content{
+	background-color: #ededed;
+	height: 170px;
+	width: 100%;
+}
+.company-logo-left{
+    width: 43%;
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
+}
+.company-logo{
+	padding: 5px;
+	border: 1px solid #ddd;
+	margin: 21px auto 0;
+	width: 120px;
+	height: 120px;
+}
+.company-logo img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.company-info{
+	width: 57%;
+	padding-top: 41px;
+	float: right;
+	color: #202020;
+}
+.company-info p{
+	height: 22px;
+	line-height: 22px;
+	margin: 0;
+}

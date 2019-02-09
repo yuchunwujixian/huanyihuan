@@ -1,0 +1,161 @@
+.input-content{
+    padding: 18px 72px 12px 26px;
+    border-bottom: 1px solid #ddd;
+}
+.form-item{
+    line-height: 30px;
+    margin-bottom: 4px;
+}
+.left-form{
+    width: 17%;
+    display: inline-block;
+    vertical-align: top;
+    color: #373737;
+}
+.right-form{
+    width: 81%;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+.right-form input{
+    text-indent: 32px;
+    width: 100%;
+    height: 26px;
+    line-height: 26px;
+    color: #686868;
+    background-color: #ededed;
+    border: 0; 
+}
+.right-form .user-phone{
+    background: #fff;
+    border: 0;
+}
+.right-form textarea{
+    width: 100%;
+    text-indent: 32px;
+    height: 82px;
+    line-height: 30px;
+    color: #686868;
+    background-color: #ededed;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    resize:none;
+}
+
+.user-optional-info{
+    padding: 0 72px 0 21px;
+}
+.user-item-title{
+    height: 18px;
+    font-size: 14px;
+    line-height: 18px;
+    margin-top: 20px;
+    color: #373737;
+}
+.option-info-content{
+    margin-top: 11px;
+
+}
+.option-info-content{
+    margin-top: 5px;
+    line-height: 30px;
+}
+.option-info-content .left-form{
+    text-indent: 6px;   
+}
+.option-info-content .right-form textarea{
+    height: 51px;
+}
+
+.user-social-account{
+    margin-left: 17%;
+    height: 76px;
+}
+.social-content-item{
+    color: #373737;
+    height: 38px;
+    line-height: 38px;
+    font-size: 12px;
+}
+.account-type{
+    width: 106px;
+    display: inline-block;
+    vertical-align: top;
+}
+.account-name{
+    display: inline-block;
+    vertical-align: top;
+}
+.account-btn{
+    cursor: pointer;
+    float: right;
+    width: 65px;
+    height:22px;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 10px;
+    border: 0;
+    outline: 0;
+    padding: 0;
+}
+
+.account-type .QQ{
+    margin-right: 9px;
+    color: #0064bc;
+}
+.account-type .wechat{
+    margin-right: 9px;
+    color: #51be56;
+}
+.account-relieve{
+    background: #b4b4b4;
+}
+.account-bind{
+    background: #67bf6b;
+}
+.left-nav{
+    height: 658px;
+}
+.right-content{
+    height: 658px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.save-btn{
+    display: block;
+    margin: 54px auto 0;
+    width: 160px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background-color: #0269b8;
+    color: #fff;
+}
+
+.error{
+    height: 26px;
+    line-height: 26px;
+    position: absolute;
+	color:#00b4bc;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}

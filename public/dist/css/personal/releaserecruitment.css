@@ -1,0 +1,117 @@
+/* 选择方块样式 */
+.square-o:before{
+    content: '';
+    display: inline-block;
+    vertical-align: top;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin: 11px 8px 0 0;
+}
+.square:before{
+    content: '';
+    display: inline-block;
+    vertical-align: top;
+    width: 10px;
+    height: 10px;
+    background: #0064bc;
+    border-radius: 2px;
+    margin: 11px 8px 0 0;
+}
+
+/* 内容部分 */
+#releaserecruitment-wrapper{
+    margin: 19px 70px 0 27px;
+}
+.one-info{
+    width: 568px;
+    line-height: 30px;
+    margin-top: 5px;
+    color: #373737;
+    position: relative;
+}
+.one-info span{
+    width: 60px;
+} 
+.one-info input{
+    width: 476px;
+    padding-left: 32px;
+    height: 30px;
+    background-color: #ededed;
+}
+.one-info select{
+    height: 30px;
+    text-indent: 32px;
+    border: 0;
+    outline: 0;
+    background-color: #ededed;
+    color: #373737;
+}
+#positionType, #positionProperty{
+    width: 508px;
+}
+#experience, #education{
+    width: 150px;
+}
+.one-info select option{
+    color: #373737;
+}
+.one-info select option:first-child{
+    color: #a9a9a9;
+}
+.error{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 30px;
+    line-height: 30px;
+    color: #f00;
+    display: none;
+}
+.one-info i{
+    width: 508px;
+    font-style: normal;
+}
+.one-info i input{
+    width: 60px;
+}
+.one-info i span{
+    display: inline-block;
+    vertical-align: top;
+    height: 30px;
+    line-height: 30px;
+    width: 85px;
+    cursor: pointer;
+}
+.one-info textarea{
+    resize: none;
+    min-height: 70px;
+    line-height: 30px;
+    width: 504px;
+    text-indent: 32px;
+    border: 0;
+    outline: 0;
+    background-color: #ededed;
+}
+
+#submit-form{
+    display: block;
+    width: 160px;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+    background: #0269b8;
+    margin: 68px auto 48px;
+}
+
+
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0; 
+}
+input[type="number"]{-moz-appearance:textfield;}

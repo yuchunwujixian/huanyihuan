@@ -1,0 +1,16 @@
+.one-search-item span{
+    display: inline-block;
+    vertical-align: top;
+    width: 18%;
+    text-align: center;
+    border-right: 1px solid #ddd;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.one-search-item span:nth-child(1), .one-search-item span:nth-child(2){
+    width: 22%;
+}
+.one-search-item span:last-child{
+    border: 0;
+}

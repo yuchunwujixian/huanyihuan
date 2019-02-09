@@ -1,0 +1,223 @@
+/* banner */
+.banner{
+    position: relative;
+    width: 100%;
+    min-width: 1024px;
+}
+.banner img{
+    width: 100%;
+    display: block;
+    height: 260px;
+    max-height: 260px;
+}
+.search-wrapper{
+    position: absolute;
+    bottom: 36%;
+    left: 50%;
+    margin-left: -250px;
+    width: 500px;
+    height: 50px;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000',endColorstr='#3f000000');  
+    background-color:rgba(0, 0, 0, 0.3);
+    border-radius: 4px; 
+    z-index: 1;
+}
+.search-wrapper input{
+    display: block;
+    float: left;
+    font-size: 14px;
+    width: 377px;
+    height:42px;
+    margin: 4px 0 0 4px;
+    padding-left: 30px;
+    border: none;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000',endColorstr='#3f000000');  
+    background-color:rgba(255, 255, 255, 0.8);
+}
+.search{
+    display: block;
+    float: left;
+    width: 85px;
+    height: 42px;
+    margin-top: 4px;
+    background-color: #0063bc;
+    cursor: pointer;
+}
+.search .search-icon{
+    display: block;
+    margin: 6px auto 0;
+    width: 30px;
+    height: 30px;
+}
+
+.container{
+    min-height: 700px;
+}
+
+/* content */
+.content{
+    padding-top: 8px;
+}
+.one-select{
+    line-height: 32px;
+    font-size: 14px;
+    color: #4d4d4d;
+}
+.one-select span {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 22px;
+    cursor: pointer;
+}
+#projct-children{
+    line-height: 32px;
+    font-size: 12px;
+    color: #4d4d4d;
+    padding-left: 44px;
+}
+#projct-children div span{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 22px;
+    cursor: pointer;
+}
+.one-select>span:first-child{
+    margin: 0;
+}
+.active{
+    color: #0064bc;
+}
+
+/* 更多地区 */
+.gametype-more{
+    padding: 0 10px;
+}
+.gametype-more-show{
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    display: none;
+    line-height: 32px;
+}
+.gametype-more-show span {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 22px;
+    margin-left: 0;
+}
+.one-parameter{
+    cursor: pointer;
+}
+.gametype-more-show span:last-child{
+    margin: 0;
+}
+
+/* parameter-show 已选参数显示 */
+#parameter-show{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #4d4d4d;
+    line-height: 24px;
+}
+.parameter-show{
+    height: 24px;
+}
+.parameter-show span{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 4px;
+    padding: 0 6px;
+    background: #0064bc;
+    border-radius: 4px;
+    color: #fff;
+}
+.parameter-show span i{
+    font-style: normal;
+    cursor: pointer;
+}
+.parameter-show span:first-child{
+    background: inherit;
+    color: inherit;
+    cursor: inherit;
+}
+
+/* 搜索结果显示 */
+#search-show{
+    width: 100%;
+    margin-top: 10px;
+    color: #747474;
+}
+.one-search-item{
+    height: 34px;
+    line-height: 34px;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+}
+.one-search-item span{
+    font-size: 14px;
+}
+.one-search-item a:hover{
+    color: #0064bc;
+}
+.search-title{
+    background: #ededed;
+    border-top: 1px solid #ddd;
+}
+.one-search-item span{
+    display: inline-block;
+    vertical-align: top;
+    width: 13%;
+    text-align: center;
+    border-right: 1px solid #ddd;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.one-search-item span:first-child{
+    width: 23.5%;
+    border: 1px solid #ddd;
+}
+.one-search-item span:nth-child(3){
+    width: 23.5%;
+}
+.one-search-item span:last-child{
+    border: 0;
+}
+
+/*分页插件*/
+.holder {
+	width: 700px;
+	height: 20px;
+	margin: 40px auto;
+}
+.holder a {
+	display: inline-block;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	cursor: pointer;
+	margin: 0 5px;
+	color: #333;
+	border: 1px solid #ddd;
+	box-sizing: border-box;
+	text-align: center;
+}
+.holder a:hover {
+	background-color: #222;
+	color: #fff;
+}
+/*.holder a.jp-previous { margin-right: 15px; }
+.holder a.jp-next { margin-left: 15px; }*/
+
+.holder a.jp-current, a.jp-current:hover { 
+	color: #FF4242;
+	font-weight: bold;
+}
+.holder a.jp-disabled, a.jp-disabled:hover {
+	color: #bbb;
+}
+.holder a.jp-current, a.jp-current:hover,
+.holder a.jp-disabled, a.jp-disabled:hover {
+	cursor: default; 
+	background: none;
+}

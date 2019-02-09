@@ -1,0 +1,52 @@
+.title{
+    margin-top: 7px;
+    margin-left: 5px;
+    height: 32px;
+    line-height: 32px;
+    color: #4a4a4a;
+}
+#results{
+    margin-bottom: 50px;
+    border-top: 1px solid #ddd;
+    color: #4a4a4a;
+}
+.one-item, .one-title{
+    width: 1024px;
+    overflow: hidden;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.one-title{
+     background: #ededed;
+ }
+.one-title span{
+    float: left;
+    min-height: 36px;
+    line-height: 36px;
+    width: 127px;
+    border-right: 1px solid #ddd;
+    text-align: center;
+}
+.one-item span{
+    display: table-cell;
+    height: 36px;
+    width: 127px;
+    border-right: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

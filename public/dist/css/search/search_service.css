@@ -1,0 +1,152 @@
+.title{
+    margin-top: 7px;
+    margin-left: 5px;
+    height: 32px;
+    line-height: 32px;
+    color: #4a4a4a;
+}
+#results{
+    margin-bottom: 50px;
+}
+
+.one-result{
+    padding: 0 10px 60px 10px;
+    border: 1px solid #ddd;   
+}
+.result-title{
+    margin: 21px 0 13px 10px;
+    padding-left: 7px;
+    height: 24px;
+    line-height: 24px;
+    border-left: 3px solid #0269b8;
+    display: inline-block;
+}
+.version-content{
+    border: 1px solid #ddd;
+}
+.game-title{
+    height: 70px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #ededed;
+    border-bottom: 1px solkid #ddd;
+}
+.game-title img{
+    width: 70px;
+    height: 70px;
+    margin-left: 70px;
+}
+.game-title a > div{
+    padding-left: 30px;
+    height: 70px;
+    line-height: 20px;
+    color: #202020;
+    font-size: 14px;
+    display: inline-block;
+    font-size: 10px;
+
+}
+.game-title div div{
+    display: block;
+    height: 20px;
+    line-height: 20px;
+}
+
+/* 一条结果显示区域 */
+/*.game-content{
+    padding-left: 120px;
+    padding-top: 12px;
+    padding-right: 140px;
+    padding-bottom: 17px;
+}
+
+.one-data{
+    height: 26px;
+    line-height: 26px;
+    color: #202020;
+    border-bottom: 1px solid #ddd;
+}
+.one-data:last-child{
+    border: 0;
+}
+.one-data span{
+    display: inline-block;
+    vertical-align: top;
+    height: 26px;
+    line-height: 26px;
+    width: 77.4%;
+    text-align: center;
+}
+.one-data span:first-child{
+    width: 15.4%;
+    padding-left: 7%;
+    border-right: 1px solid #ddd;
+    text-align: left;
+}*/
+.see-more{
+    float: right;
+    width: 66px;
+    margin: 21px 40px 13px 0;
+    height: 24px;
+    line-height: 24px;
+    cursor: pointer;
+    color: #656565;
+}
+.see-more:hover{
+    color: #222;
+}
+.see-more span{
+    font-size: 12px;
+    display: inline-block;
+    vertical-align: top;
+}
+.see-more span:last-child{
+    margin-top: -3px;
+}
+
+/* 其他产品 */
+.other-products{
+    padding: 0 30px;
+}
+.other-products .one-item{
+    display: inline-block;
+    vertical-align: top;
+    width: 43%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px #aaa;
+    margin-bottom: 20px;
+}
+.other-products .one-item:nth-child(2n+1) {
+    margin-right: 8%;
+}
+
+.other-products .product-avatar{
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 2px #aaa;
+    width: 84px;
+    height: 84px;
+}
+.product-avatar img{
+    width: 82px;
+    height: 82px;
+    display: block;
+    border: 1px solid #aaa;
+}
+.product-content{
+    margin-left: 70px;
+    margin-top: 6px;
+}
+.product-content .product-title{
+    height: 22px;
+    line-height: 22px;
+    font-size: 16px;
+    color: #202020;
+}
+.product-content p{
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    color: #717171;
+}
