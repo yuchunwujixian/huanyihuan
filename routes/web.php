@@ -95,6 +95,9 @@ Route::post('/login/login','LoginBandController@login')->name('login.login');
 //---------------用户中心-----------------
 Route::group(['namespace' => 'Member', 'prefix' => 'member', 'middleware' => ['auth']], function () {
 
+    Route::get('/', function(){
+    return redirect('/member/info/index');
+})->name('member.index.index');
     //---------------招聘-----------------
     Route::get('job/index', 'JobController@index')->name('member.job.index');
     Route::get('job/create', 'JobController@create')->name('member.job.create');
