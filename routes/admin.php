@@ -27,7 +27,7 @@ Route::get('/', 'IndexController@index');
 Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () {
     //系统管理
     Route::get('index', ['as' => 'admin.index.index', 'uses' => 'IndexController@index']);
-    Route::get('logs', ['as' => 'admin.index.index', 'uses' => 'IndexController@index']);
+//    Route::get('logs', ['as' => 'admin.index.index', 'uses' => 'IndexController@index']);
 
     //权限管理路由
     Route::get('permission/{cid}/create', ['as' => 'admin.permission.create', 'uses' => 'PermissionController@create']);

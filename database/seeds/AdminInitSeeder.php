@@ -37,6 +37,7 @@ SQL
         $admin->name = 'root';
         $admin->email = 'root@admin.com';
         $admin->password = bcrypt('root123456');
+        $admin->is_super_admin = 1;
         $admin->save();
     }
 }

@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Middleware\Authenticate as old_authe;
 
-class Authenticate
+class Authenticate extends old_authe
 {
     /**
      * Handle an incoming request.
@@ -15,8 +16,10 @@ class Authenticate
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, ...$guards)
     {
+        //$guards是数组 取第一个
+        $guard = $guards[0];
         if (Auth::guard($guard)->guest()) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
@@ -28,7 +31,7 @@ class Authenticate
 				}
             }
         }
-
+        $this->authenticate($guards);
         return $next($request);
     }
 }

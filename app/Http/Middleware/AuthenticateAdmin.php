@@ -10,6 +10,10 @@ class AuthenticateAdmin
 
     protected $except = [
         'admin/index',
+        'admin.index.index',
+    ];
+    protected $allow = [
+        'admin.index.index',
     ];
 
     /**
@@ -20,13 +24,16 @@ class AuthenticateAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard('admin')->user()->id === 1) {
+        $routeName = starts_with(Route::currentRouteName(), 'admin.') ? Route::currentRouteName() : 'admin.' . Route::currentRouteName();
+        //超级管理员
+        if (Auth::guard('admin')->user()->is_super_admin === 1 || in_array($routeName,$this->allow)) {
             return $next($request);
         }
 
         $previousUrl = URL::previous();
-        $routeName = starts_with(Route::currentRouteName(), 'admin.') ? Route::currentRouteName() : 'admin.' . Route::currentRouteName();
-        if (!\Gate::check($routeName)) {
+//        if (!\Gate::check($routeName)) {
+        //权限判断
+        if (!Auth::guard('admin')->user()->hasPermission($routeName)) {
             if ($request->ajax() && ($request->getMethod() != 'GET')) {
                 return response()->json([
                     'status' => -1,

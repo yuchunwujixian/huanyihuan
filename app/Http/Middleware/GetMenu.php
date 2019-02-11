@@ -43,27 +43,25 @@ class GetMenu
                 ->orWhere('cid', '==', 0)
                 ->get();
         });
+        $user = Auth::guard('admin')->user();
         foreach ($table as $v) {
-//            if ($v->cid == 0 || \Gate::check($v->name)) {
-//                if ($v->name == $urlPath) {
-//                    $openArr[] = $v->id;
-//                    $openArr[] = $v->cid;
-//                }
-//                $data[$v->cid][] = $v->toarray();
-//            }
-            if ($v->name == $urlPath) {
-                $openArr[] = $v->id;
-                $openArr[] = $v->cid;
+            if ($v->cid == 0 || ($user && $user->hasPermission($v->name))) {
+                if ($v->name == $urlPath) {
+                    $openArr[] = $v->id;
+                    $openArr[] = $v->cid;
+                }
+                $data[$v->cid][] = $v->toarray();
             }
-            $data[$v->cid][] = $v->toarray();
 
         }
-        foreach ($data[0] as $v) {
-            if (isset($data[$v['id']]) && is_array($data[$v['id']]) && count($data[$v['id']]) > 0) {
-                $data['top'][] = $v;
+        if (isset($data[0])){
+            foreach ($data[0] as $v) {
+                if (isset($data[$v['id']]) && is_array($data[$v['id']]) && count($data[$v['id']]) > 0) {
+                    $data['top'][] = $v;
+                }
             }
+            unset($data[0]);
         }
-        unset($data[0]);
         //ation open 可以在函数中计算给他
         $data['openarr'] = array_unique($openArr);
         return $data;

@@ -42,6 +42,10 @@ class AdminUser extends Authenticatable
     // 判断用户是否具有某权限
     public function hasPermission($permission)
     {
+        //超级管理员除外
+        if ($this->is_super_admin === 1){
+            return true;
+        }
         if (is_string($permission)) {
             $permission = Permission::where('name',$permission)->first();
             if (!$permission) return false;
