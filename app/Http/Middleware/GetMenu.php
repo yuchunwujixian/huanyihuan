@@ -44,13 +44,19 @@ class GetMenu
                 ->get();
         });
         foreach ($table as $v) {
-            if ($v->cid == 0 || \Gate::check($v->name)) {
-                if ($v->name == $urlPath) {
-                    $openArr[] = $v->id;
-                    $openArr[] = $v->cid;
-                }
-                $data[$v->cid][] = $v->toarray();
+//            if ($v->cid == 0 || \Gate::check($v->name)) {
+//                if ($v->name == $urlPath) {
+//                    $openArr[] = $v->id;
+//                    $openArr[] = $v->cid;
+//                }
+//                $data[$v->cid][] = $v->toarray();
+//            }
+            if ($v->name == $urlPath) {
+                $openArr[] = $v->id;
+                $openArr[] = $v->cid;
             }
+            $data[$v->cid][] = $v->toarray();
+
         }
         foreach ($data[0] as $v) {
             if (isset($data[$v['id']]) && is_array($data[$v['id']]) && count($data[$v['id']]) > 0) {
