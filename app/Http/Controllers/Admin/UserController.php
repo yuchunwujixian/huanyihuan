@@ -32,23 +32,23 @@ class UserController extends Controller
             $order = $request->get('order');
             $columns = $request->get('columns');
             $search = $request->get('search');
-            $data['recordsTotal'] = User::count();
+            $data['recordsTotal'] = User::where('is_super_admin', '!=', 1)->count();
             if (strlen($search['value']) > 0) {
                 $data['recordsFiltered'] = User::where(function ($query) use ($search) {
                     $query->where('name', 'LIKE', '%' . $search['value'] . '%')
                         ->orWhere('email', 'like', '%' . $search['value'] . '%');
-                })->count();
+                })->where('is_super_admin', '!=', 1)->count();
                 $data['data'] = User::where(function ($query) use ($search) {
                     $query->where('name', 'LIKE', '%' . $search['value'] . '%')
                         ->orWhere('email', 'like', '%' . $search['value'] . '%');
-                })
+                })->where('is_super_admin', '!=', 1)
                     ->skip($start)->take($length)
                     ->orderBy($columns[$order[0]['column']]['data'], $order[0]['dir'])
                     ->get();
             } else {
-                $data['recordsFiltered'] = User::count();
+                $data['recordsFiltered'] = User::where('is_super_admin', '!=', 1)->count();
                 $data['data'] = User::
-                skip($start)->take($length)
+                skip($start)->take($length)->where('is_super_admin', '!=', 1)
                     ->orderBy($columns[$order[0]['column']]['data'], $order[0]['dir'])
                     ->get();
             }
