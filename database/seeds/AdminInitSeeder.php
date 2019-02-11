@@ -15,7 +15,7 @@ class AdminInitSeeder extends Seeder
         \App\Models\Admin\Permission::truncate();
         \DB::select(
             <<<SQL
-                INSERT INTO `admin_permissions` (`id`, `name`, `label`, `description`, `cid`, `icon`, `created_at`, `updated_at`)
+                INSERT INTO `hyh_admin_permissions` (`id`, `name`, `label`, `description`, `cid`, `icon`, `created_at`, `updated_at`)
 VALUES
 	(1, 'admin.permission', '权限管理', '', 0, 'fa-users', '2016-05-21 10:06:50', '2016-06-22 13:49:09'),
 	(2, 'admin.permission.index', '权限列表', '', 1, '', '2016-05-21 10:08:04', '2016-05-21 10:08:04'),
