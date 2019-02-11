@@ -1,11 +1,11 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="/" class="logo">
+    <a href="/" class="logo" target="_blank">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>炯米</b></span>
+      <span class="logo-mini"><b>换一换</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">炯米游戏网后台</span>
+      <span class="logo-lg">换一换管理后台</span>
     </a>
 
     <!-- Header Navbar -->

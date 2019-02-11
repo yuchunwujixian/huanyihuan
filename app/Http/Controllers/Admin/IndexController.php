@@ -33,7 +33,7 @@ class IndexController extends Controller
     public function index()
     {
 //        dd(\Auth::guest());
-        return view('admin.index.index');
+        return view('admin.index.index', ['title' => '控制面板']);
     }
 
 
