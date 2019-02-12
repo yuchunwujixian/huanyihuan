@@ -1,17 +1,17 @@
 
-CREATE TABLE IF NOT EXISTS `area` (
+CREATE TABLE IF NOT EXISTS `hyh_area` (
   `id` int(11) NOT NULL auto_increment,
   `code` varchar(6) NOT NULL,
   `name` varchar(20) NOT NULL,
   `citycode` varchar(6) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3145 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 导出表中的数据 `area`
 --
 
-INSERT INTO `area` (`id`, `code`, `name`, `citycode`) VALUES
+INSERT INTO `hyh_area` (`id`, `code`, `name`, `citycode`) VALUES
 (1, '110101', '东城区', '110100'),
 (2, '110102', '西城区', '110100'),
 (3, '110103', '崇文区', '110100'),
@@ -1298,7 +1298,7 @@ INSERT INTO `area` (`id`, `code`, `name`, `citycode`) VALUES
 (1284, '360724', '上犹县', '360700'),
 (1285, '360725', '崇义县', '360700'),
 (1286, '360726', '安远县', '360700');
-INSERT INTO `area` (`id`, `code`, `name`, `citycode`) VALUES
+INSERT INTO `hyh_area` (`id`, `code`, `name`, `citycode`) VALUES
 (1287, '360727', '龙南县', '360700'),
 (1288, '360728', '定南县', '360700'),
 (1289, '360729', '全南县', '360700'),
@@ -2557,7 +2557,7 @@ INSERT INTO `area` (`id`, `code`, `name`, `citycode`) VALUES
 (2542, '522727', '平塘县', '522700'),
 (2543, '522728', '罗甸县', '522700'),
 (2544, '522729', '长顺县', '522700');
-INSERT INTO `area` (`id`, `code`, `name`, `citycode`) VALUES
+INSERT INTO `hyh_area` (`id`, `code`, `name`, `citycode`) VALUES
 (2545, '522730', '龙里县', '522700'),
 (2546, '522731', '惠水县', '522700'),
 (2547, '522732', '三都水族自治县', '522700'),
@@ -3165,19 +3165,19 @@ INSERT INTO `area` (`id`, `code`, `name`, `citycode`) VALUES
 -- 表的结构 `city`
 --
 
-CREATE TABLE IF NOT EXISTS `city` (
+CREATE TABLE IF NOT EXISTS `hyh_city` (
   `id` int(11) NOT NULL auto_increment,
   `code` varchar(6) NOT NULL,
   `name` varchar(20) NOT NULL,
   `provincecode` varchar(6) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=343 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 导出表中的数据 `city`
 --
 
-INSERT INTO `city` (`id`, `code`, `name`, `provincecode`) VALUES
+INSERT INTO `hyh_city` (`id`, `code`, `name`, `provincecode`) VALUES
 (1, '110100', '北京市', '110000'),
 (2, '130100', '石家庄市', '130000'),
 (3, '130200', '唐山市', '130000'),
@@ -3527,18 +3527,18 @@ INSERT INTO `city` (`id`, `code`, `name`, `provincecode`) VALUES
 -- 表的结构 `province`
 --
 
-CREATE TABLE IF NOT EXISTS `province` (
+CREATE TABLE IF NOT EXISTS `hyh_province` (
   `id` int(11) NOT NULL auto_increment,
   `code` varchar(6) NOT NULL,
   `name` varchar(20) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 导出表中的数据 `province`
 --
 
-INSERT INTO `province` (`id`, `code`, `name`) VALUES
+INSERT INTO `hyh_province` (`id`, `code`, `name`) VALUES
 (1, '110000', '北京市'),
 (2, '120000', '天津市'),
 (3, '130000', '河北省'),
