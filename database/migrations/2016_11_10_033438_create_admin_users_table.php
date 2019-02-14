@@ -18,6 +18,7 @@ class CreateAdminUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->tinyInteger('is_super_admin')->default(0)->comment('是否超级管理员 1是 0否');
             $table->rememberToken();
             $table->timestamps();
         });

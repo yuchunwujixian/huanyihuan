@@ -1,12 +1,12 @@
 <?php
 /**
- * 首页主题
+ * 商品轮播图
  */
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTopicModulesTable extends Migration
+class CreateGoodsImgsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,12 +15,13 @@ class CreateTopicModulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('topic_modules', function (Blueprint $table) {
+        Schema::create('goods_imgs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->comment('主题名称');
-            $table->tinyInteger('status')->default(1)->comment('是否显示 0不显示1显示');
-            $table->tinyInteger('sort')->comment('排序');
+            $table->unsignedInteger('goods_id')->comment('商品id');
+            $table->string('img_url')->comment('商品图片地址');
+            $table->softDeletes();
             $table->timestamps();
+            $table->index('goods_id');
         });
     }
 
@@ -31,6 +32,6 @@ class CreateTopicModulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('topic_modules');
+        Schema::dropIfExists('goods_imgs');
     }
 }
