@@ -24,6 +24,7 @@ class CreateGoodsTable extends Migration
             $table->text('description')->comment('商品详情 编辑器编辑');
             $table->Integer('view_count')->default(0)->comment('查看数');
             $table->Integer('collect_count')->default(0)->comment('收藏数');
+            $table->smallInteger('num')->default(1)->comment('商品数量');
             $table->unsignedTinyInteger('status')->default(0)->comment('状态0禁用1可用2已完成');
             $table->softDeletes();
             $table->timestamps();
