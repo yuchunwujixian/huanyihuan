@@ -21,6 +21,7 @@ class CreateUserAddressTable extends Migration
             $table->string('province_code', 6)->comment('省');
             $table->string('city_code', 6)->comment('市');
             $table->string('area_code', 6)->comment('区');
+            $table->string('address')->comment('详细地址');
             $table->boolean('is_default')->default(0)->comment('是否默认地址0否 1是');
             $table->softDeletes();
             $table->timestamps();
