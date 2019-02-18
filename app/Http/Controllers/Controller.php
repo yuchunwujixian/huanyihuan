@@ -9,7 +9,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Auth;
 use Illuminate\Support\Facades\Redis;
-use App\Models\Welfare;
 use Route;
 
 class Controller extends BaseController
@@ -37,7 +36,6 @@ class Controller extends BaseController
         $this->province_config = json_decode(Redis::get('province_cache'), true);
         $this->city_config = json_decode(Redis::get('city_cache'), true);
         $this->area_config = json_decode(Redis::get('area_cache_part1'), true) + json_decode(Redis::get('area_cache_part2'), true);
-        $this->welfare_config = Welfare::where('status', 1)->get();
         //取当前路由名
         $route = Route::currentRouteName();
         $current_controller_array = explode('.', $route);

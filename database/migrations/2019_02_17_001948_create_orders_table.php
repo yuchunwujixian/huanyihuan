@@ -30,7 +30,7 @@ class CreateOrdersTable extends Migration
             $table->index('goods_id');
             $table->index('buy_id');
             $table->index('owner_id');
-            $table->index('user_id');
+            $table->index('address_id');
         });
     }
 

@@ -28,7 +28,6 @@ class CreateUsersTable extends Migration
             $table->boolean('status')->default(1)->comment('状态 0禁用 1正常');
             $table->rememberToken();
             $table->timestamps();
-            $table->index('mobile');
         });
     }
 

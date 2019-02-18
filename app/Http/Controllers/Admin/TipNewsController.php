@@ -1,18 +1,17 @@
 <?php
-/**
- * 福利控制器
- */
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Welfare;
+use App\Models\TipNews;
 
-class WelfareController extends Controller
+class TipNewsController extends Controller
 {
     protected $fields = [
         'title',
-        'status'
+        'url',
+        'status',
+        'sort',
     ];
 
     /**
@@ -24,8 +23,8 @@ class WelfareController extends Controller
      */
     public function index()
     {
-        $lists = Welfare::get();
-        return view('admin.welfare.index', ['lists' => $lists]);
+        $lists = TipNews::orderBy('sort', 'asc')->get();
+        return view('admin.tipnews.index', ['lists' => $lists]);
     }
 
 
@@ -38,7 +37,7 @@ class WelfareController extends Controller
      */
     public function create()
     {
-        return view('admin.welfare.create');
+        return view('admin.tipnews.create');
     }
 
 
@@ -56,24 +55,23 @@ class WelfareController extends Controller
             'title' => 'required|min:2',
         ]);
         $date['title'] = $request->input('title');
+        $date['url'] = $request->input('url');
+        $date['sort'] = $request->input('sort');
         $date['status'] = $request->input('status');
         if ($request->has('id')) {
             $date['id'] = $request->input('id');
-            $res = Welfare::where('id', $date['id'])->update($date);
+            $res = TipNews::where('id', $date['id'])->update($date);
             $messge = "修改";
 
         } else {
-            $welfare=new Welfare();
-            foreach (array_keys($this->fields) as $field) {
-                $welfare->$field = $request->input($field, $this->fields[$field]);
-            }
-            $res =  $welfare->save();
+            $welfare = new TipNews();
+            $res =  $welfare->fill($date)->save();
             $messge = "添加";
         }
         if ($res) {
-            return redirect()->route('admin.welfare.index')->withSuccess($messge . '成功！');
+            return redirect()->route('admin.tipnews.index')->withSuccess($messge . '成功！');
         } else {
-            return redirect()->route('admin.welfare.index')->withErrors($messge . '失败！');
+            return redirect()->route('admin.tipnews.index')->withErrors($messge . '失败！');
         }
 
     }
@@ -89,8 +87,8 @@ class WelfareController extends Controller
      */
     public function update($id)
     {
-        $data = Welfare::find($id);
-        return view('admin.welfare.update', ['data' => $data]);
+        $data = TipNews::find($id);
+        return view('admin.tipnews.update', ['data' => $data]);
     }
 
 
@@ -104,11 +102,11 @@ class WelfareController extends Controller
      */
     public function del($id)
     {
-        $res = Welfare::destroy($id);
+        $res = TipNews::destroy($id);
         if ($res) {
-            return redirect()->route('admin.welfare.index')->withSuccess( '删除成功！');
+            return redirect()->route('admin.tipnews.index')->withSuccess( '删除成功！');
         } else {
-            return redirect()->route('admin.welfare.index')->withErrors( '删除失败！');
+            return redirect()->route('admin.tipnews.index')->withErrors( '删除失败！');
         }
     }
 

@@ -138,6 +138,12 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     //短信验证
     Route::get('sms/log/index', ['as' => 'admin.sms.index', 'uses' => 'LaravelSmsController@index']);
 
+    //start
+    Route::get('tipnews/index', 'TipNewsController@index')->name('admin.tipnews.index');
+    Route::get('tipnews/{id}/update', 'TipNewsController@update')->name('admin.tipnews.update');
+    Route::post('tipnews/save', 'TipNewsController@save')->name('admin.tipnews.save');
+    Route::get('tipnews/create', 'TipNewsController@create')->name('admin.tipnews.create');
+    Route::get('tipnews/del/{id}', 'TipNewsController@del')->name('admin.tipnews.del');
 });
 
 // 获取city

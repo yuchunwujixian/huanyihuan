@@ -1,2 +1,0 @@
-INSERT INTO `admin_permissions` (`id`, `name`, `label`, `description`, `cid`, `icon`, `created_at`, `updated_at`) VALUES (33, 'admin.aboutus', '关于我们', '关于我们', 0, 'fa-soccer-ball-o', '2017-04-18 10:15:56', '2017-04-18 10:15:56');
-INSERT INTO `admin_permissions` (`id`, `name`, `label`, `description`, `cid`, `icon`, `created_at`, `updated_at`) VALUES (34, 'admin.aboutus.index', '关于我们', '关于我们', 33, '', '2017-04-18 10:16:34', '2017-04-18 10:16:34');
