@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+
+//获取tipnews
+Route::get('gettipnews', 'Api\ApiController@getTipNews')->name('api.gettipnews');
+Route::group(['namespace' => 'Api', 'prefix' => 'api', 'middleware' => ['auth']], function () {
+    //---------------招聘-----------------
+    Route::get('job/index', 'JobController@index')->name('member.job.index');
+    Route::get('job/create', 'JobController@create')->name('member.job.create');
+    Route::get('job/{id}/update/', 'JobController@update')->name('member.job.update');
+    Route::post('job/store', 'JobController@store')->name('member.job.store');
+    Route::get('job/{id}/destroy', 'JobController@destroy')->name('member.job.destroy');
+});
