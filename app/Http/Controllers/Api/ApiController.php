@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\TipNews;
 use Illuminate\Http\Request;
+use function MongoDB\BSON\toJSON;
 
 class ApiController extends Controller
 {
@@ -14,8 +15,8 @@ class ApiController extends Controller
     public function getTipNews()
     {
         $output = ['status' => 0, 'message' => ''];
-        $output['data'] = TipNews::where('status', 1)->orderBy('sort', 'asc')->get()->toArray();
         $output['status'] = 1;
-        return $output;
+        $output['data'] = TipNews::where('status', 1)->orderBy('sort', 'asc')->get()->toArray();
+        return $this->tojson($output);
     }
 }
