@@ -139,11 +139,27 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('sms/log/index', ['as' => 'admin.sms.index', 'uses' => 'LaravelSmsController@index']);
 
     //start
+    //提示消息
     Route::get('tipnews/index', 'TipNewsController@index')->name('admin.tipnews.index');
     Route::get('tipnews/{id}/update', 'TipNewsController@update')->name('admin.tipnews.update');
     Route::post('tipnews/save', 'TipNewsController@save')->name('admin.tipnews.save');
     Route::get('tipnews/create', 'TipNewsController@create')->name('admin.tipnews.create');
     Route::get('tipnews/del/{id}', 'TipNewsController@del')->name('admin.tipnews.del');
+    //专题
+    Route::get('topic/index', 'TopicController@index')->name('admin.topic.index');
+    Route::get('topic/{id}/update', 'TopicController@update')->name('admin.topic.update');
+    Route::post('topic/save', 'TopicController@save')->name('admin.topic.save');
+    Route::get('topic/create', 'TopicController@create')->name('admin.topic.create');
+    Route::get('topic/del/{id}', 'TopicController@del')->name('admin.topic.del');
+    //幻灯片
+    Route::get('sides/index', 'SidesController@index')->name('admin.sides.index');
+    Route::get('sides/{id}/update', 'SidesController@update')->name('admin.sides.update');
+    Route::post('sides/save', 'SidesController@save')->name('admin.sides.save');
+    Route::get('sides/create', 'SidesController@create')->name('admin.sides.create');
+    Route::get('sides/del/{id}', 'SidesController@del')->name('admin.sides.del');
+    Route::get('getsidestype', 'SidesController@getSidesType')->name('admin.sides.sides_type');
+
+
 });
 
 // 获取city

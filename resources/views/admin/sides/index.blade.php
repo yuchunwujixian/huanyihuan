@@ -6,7 +6,7 @@
 
     <div class="row" style="margin-bottom: 5px">
         <div class="col-md-6">
-            <a href="{{ route('admin.tipnews.create')}}" class="btn btn-success btn-md"><i class="fa fa-plus-circle"></i> 增加tipnews </a>
+            <a href="{{ route('admin.sides.create')}}" class="btn btn-success btn-md"><i class="fa fa-plus-circle"></i> 增加幻灯片 </a>
         </div>
     </div>
 
@@ -20,9 +20,11 @@
                         <thead>
                         <tr>
                             <th class="hidden-sm">ID</th>
-                            <th class="hidden-sm">消息主题</th>
+                            <th class="hidden-sm">幻灯片标题</th>
                             <th class="hidden-sm">跳转地址</th>
+                            <th class="hidden-sm">图片地址</th>
                             <th class="hidden-sm">排序</th>
+                            <th class="hidden-sm">类型</th>
                             <th class="hidden-sm">状态</th>
                             <th data-sortable="false">操作</th>
                         </tr>
@@ -32,12 +34,11 @@
                             <tr>
                                 <td>{{$v->id}}</td>
                                 <td>{{$v->title}}</td>
-                                <td>{{$v->url}}</td>
                                 <td>{{$v->sort}}</td>
                                 <td>@if($v->status)正常@else否@endif</td>
                                 <td>
-                                    <a style="margin:3px;"  href="{{ route('admin.tipnews.update', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-edit"></i>查看</a>
-                                    <a style="margin:3px;"  href="{{ route('admin.tipnews.del', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-times-circle"></i>删除</a>
+                                    <a style="margin:3px;"  href="{{ route('admin.topic.update', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-edit"></i>查看</a>
+                                    <a style="margin:3px;"  href="{{ route('admin.topic.del', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-times-circle"></i>删除</a>
                                 </td>
                             </tr>
                          @endforeach

@@ -38,6 +38,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     {{--loding--}}
     <link href="/dist/css/load/load.css" rel="stylesheet">
+    <link href="/plugins/bootstrap-select-1.13.2/dist/css/bootstrap-select.min.css" rel="stylesheet">
     @yield('css')
 </head>
 <!--
@@ -135,6 +136,7 @@ desired effect
 <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/plugins/datatables/dataTables.bootstrap.js"></script>
 <script src="/plugins/tokenfield/dist/bootstrap-tokenfield.min.js"></script>
+<script src="/plugins/bootstrap-select-1.13.2/dist/js/bootstrap-select.min.js"></script>
 <script src="/dist/js/common.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
@@ -151,6 +153,8 @@ desired effect
     loadFadeOut=function(){
         $("#loading").fadeOut(500);
     };
+    //select美化
+    $('.selectpicker').selectpicker();
 </script>
 </body>
 </html>

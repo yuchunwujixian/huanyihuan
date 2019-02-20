@@ -22,7 +22,7 @@ class CreateIndexSidesTable extends Migration
             $table->string('img_url')->comment('图片地址');
             $table->tinyInteger('status')->default(1)->comment('是否显示 0不显示1显示');
             $table->tinyInteger('sort')->comment('排序');
-            $table->tinyInteger('type')->default(0)->comment('类型0 首页 1为专题');
+            $table->tinyInteger('type')->default(0)->comment('类型0 首页 1为专题 从配置中取');
             $table->integer('p_id')->default(0)->comment('type为1时，对应模块id');
             $table->timestamps();
             $table->index('type');
