@@ -5,6 +5,7 @@ use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Sides;
+use Illuminate\Support\Facades\Storage;
 
 class SidesController extends Controller
 {
@@ -27,7 +28,8 @@ class SidesController extends Controller
     {
         $this->title = '幻灯片列表';
         $lists = Sides::orderBy('type', 'desc')->orderBy('sort', 'asc')->get();
-        return $this->view('admin.sides.index', ['lists' => $lists]);
+        $sides_type = $this->sides_type;
+        return $this->view('admin.sides.index', compact('lists', 'sides_type'));
     }
 
 
@@ -67,15 +69,20 @@ class SidesController extends Controller
         $date['status'] = $request->input('status');
         if ($request->has('id')) {
             $date['id'] = $request->input('id');
-            $res = Topic::where('id', $date['id'])->update($date);
+            if ($request->hasFile('file')) {//修改图片
+                $info = Sides::find($date['id']);
+                $old_img = $info['img_url'];
+                $date['img_url'] = $request->file('file')->store('sides/'.$date['type']);
+                Storage::delete($old_img);
+            }
+            $res = Sides::where('id', $date['id'])->update($date);
             $messge = "修改";
 
         } else {
             $this->validate($request, [
                 'file' => 'required|image',
             ]);
-            $date['img_url'] = $request->file('file')->store('sides');
-            dd($date['img_url']);
+            $date['img_url'] = $request->file('file')->store('sides/'.$date['type']);
             $tip = new Sides();
             $res =  $tip->fill($date)->save();
             $messge = "添加";
@@ -99,9 +106,14 @@ class SidesController extends Controller
      */
     public function update($id)
     {
-        $this->title = '编辑专题';
-        $data = Topic::find($id);
-        return $this->view('admin.topic.update', ['data' => $data]);
+        $this->title = '编辑幻灯片';
+        $data = Sides::find($id);
+        if (empty($data)){
+            return redirect()->route('admin.sides.index')->withErrors('参数错误');
+        }
+        $sides_type = $this->sides_type;
+        $p_ids = Sides::getData($data->type);
+        return $this->view('admin.sides.update', compact('data', 'sides_type', 'p_ids'));
     }
 
 
@@ -115,11 +127,14 @@ class SidesController extends Controller
      */
     public function del($id)
     {
-        $res = TipNews::destroy($id);
+        $info = Sides::find($id);
+        $old_img = $info['img_url'];
+        Storage::delete($old_img);
+        $res = $info->delete($id);
         if ($res) {
-            return redirect()->route('admin.tipnews.index')->withSuccess( '删除成功！');
+            return redirect()->route('admin.sides.index')->withSuccess( '删除成功！');
         } else {
-            return redirect()->route('admin.tipnews.index')->withErrors( '删除失败！');
+            return redirect()->route('admin.sides.index')->withErrors( '删除失败！');
         }
     }
 
@@ -130,12 +145,7 @@ class SidesController extends Controller
     {
         $output = ['status' => 1, 'message' => '', 'data' => []];
         $type = $request->input('type', 0);
-        switch ($type){
-            case 1://获取专题类型
-                $output['data'] = Topic::where('status', 1)->orderBy('sort', 'asc')->get(['id', 'title as name']);
-                break;
-            //TODO::可继续添加
-        }
+        $output['data'] = Sides::getData($type);
         return $this->tojson($output);
     }
 

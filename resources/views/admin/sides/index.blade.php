@@ -23,8 +23,8 @@
                             <th class="hidden-sm">幻灯片标题</th>
                             <th class="hidden-sm">跳转地址</th>
                             <th class="hidden-sm">图片地址</th>
-                            <th class="hidden-sm">排序</th>
                             <th class="hidden-sm">类型</th>
+                            <th class="hidden-sm">排序</th>
                             <th class="hidden-sm">状态</th>
                             <th data-sortable="false">操作</th>
                         </tr>
@@ -34,11 +34,14 @@
                             <tr>
                                 <td>{{$v->id}}</td>
                                 <td>{{$v->title}}</td>
+                                <td>{{$v->url}}</td>
+                                <td><img  src="{{asset('storage/'.$v->img_url)}}" class="img-rounded" ></td>
+                                <td>{{$sides_type[$v->type]}}</td>
                                 <td>{{$v->sort}}</td>
                                 <td>@if($v->status)正常@else否@endif</td>
                                 <td>
-                                    <a style="margin:3px;"  href="{{ route('admin.topic.update', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-edit"></i>查看</a>
-                                    <a style="margin:3px;"  href="{{ route('admin.topic.del', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-times-circle"></i>删除</a>
+                                    <a style="margin:3px;"  href="{{ route('admin.sides.update', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-edit"></i>查看</a>
+                                    <a style="margin:3px;"  href="{{ route('admin.sides.del', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-times-circle"></i>删除</a>
                                 </td>
                             </tr>
                          @endforeach

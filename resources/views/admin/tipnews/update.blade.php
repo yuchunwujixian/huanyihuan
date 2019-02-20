@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><a href="{{ route('admin.welfare.index') }}" style="color: #31708f">查看tipnews</a></h3>
+                        <h3 class="panel-title">{{ $title }}</h3>
                     </div>
                     <div class="panel-body">
                         @include('admin.partials.errors')
