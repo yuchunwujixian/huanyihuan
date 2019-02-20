@@ -7,12 +7,6 @@ use App\Models\TipNews;
 
 class TipNewsController extends Controller
 {
-    protected $fields = [
-        'title',
-        'url',
-        'status',
-        'sort',
-    ];
 
     /**
      * @name index
@@ -23,8 +17,9 @@ class TipNewsController extends Controller
      */
     public function index()
     {
+        $this->title = 'tipnews列表';
         $lists = TipNews::orderBy('sort', 'asc')->get();
-        return view('admin.tipnews.index', ['lists' => $lists]);
+        return $this->view('admin.tipnews.index', ['lists' => $lists]);
     }
 
 
@@ -37,7 +32,8 @@ class TipNewsController extends Controller
      */
     public function create()
     {
-        return view('admin.tipnews.create');
+        $this->title = '增加tipnews';
+        return $this->view('admin.tipnews.create');
     }
 
 
@@ -64,8 +60,8 @@ class TipNewsController extends Controller
             $messge = "修改";
 
         } else {
-            $welfare = new TipNews();
-            $res =  $welfare->fill($date)->save();
+            $tip = new TipNews();
+            $res =  $tip->fill($date)->save();
             $messge = "添加";
         }
         if ($res) {
@@ -87,8 +83,9 @@ class TipNewsController extends Controller
      */
     public function update($id)
     {
+        $this->title = '编辑tipnews';
         $data = TipNews::find($id);
-        return view('admin.tipnews.update', ['data' => $data]);
+        return $this->view('admin.tipnews.update', ['data' => $data]);
     }
 
 

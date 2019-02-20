@@ -1,6 +1,6 @@
 @extends('admin.layouts.base')
 
-@section('title', 'tipnews列表')
+@section('title', $title)
 
 @section('content')
 

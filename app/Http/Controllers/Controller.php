@@ -23,7 +23,7 @@ class Controller extends BaseController
 
     protected $area_config;
 
-    protected $welfare_config;
+    protected $title;
 
     protected $company_config;
 
@@ -55,5 +55,20 @@ class Controller extends BaseController
     public function tojson($data = [], $status = 200, array $headers = [], $options = 0)
     {
         return response()->json($data, $status, $headers, $options);
+    }
+
+    /**
+     * 页面渲染
+     * @date: 2019/2/20/020 8:51
+     * @author: 路人甲
+     * @param null $view
+     * @param array $data
+     * @param array $mergeData
+     */
+    public function view($view = null, $data = [], $mergeData = []){
+        if ($this->title){
+            $data = array_merge(['title' => $this->title], $data);
+        }
+        return view($view, $data, $mergeData);
     }
 }
