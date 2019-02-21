@@ -1,10 +1,6 @@
 @extends('admin.layouts.base')
 
-@section('title','关于我们')
-
-@section('pageHeader','关于我们')
-
-@section('pageDesc','DashBoard')
+@section('title', $title)
 
 @section('content')
     <div class="main animsition">
@@ -13,12 +9,12 @@
                 <div class="">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">编辑关于我们信息</h3>
+                            <h3 class="panel-title">编辑{{ $title }}信息</h3>
                         </div>
                         <div class="panel-body">
                             @include('admin.partials.errors')
                             @include('admin.partials.success')
-                            <form class="form-horizontal" role="form" method="POST" action="{{route('admin.aboutus.store')}}">
+                            <form class="form-horizontal" role="form" method="POST" action="{{route('admin.system.aboutus_store')}}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="id" value="{{ $about_us_info['id'] }}">
                                 <div class="form-group">

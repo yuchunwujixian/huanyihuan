@@ -1,6 +1,6 @@
 @extends('public.base')
 
-@section('title','游戏圈招聘')
+@section('title', $title)
 
 @section('css')
     <link rel="stylesheet" href="/dist/css/home.css">

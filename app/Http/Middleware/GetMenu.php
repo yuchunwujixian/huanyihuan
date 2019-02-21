@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth, Cache;
+use Auth, Cache, Route;
 
 class GetMenu
 {
@@ -31,12 +31,7 @@ class GetMenu
         $data = [];
         $data['top'] = [];
         //查找并拼接出地址的别名值
-        $path_arr = explode('/', \URL::getRequest()->path());
-        if (isset($path_arr[1])) {
-            $urlPath = $path_arr[0] . '.' . $path_arr[1] . '.index';
-        } else {
-            $urlPath = $path_arr[0] . '.index';
-        }
+        $urlPath = Route::currentRouteName();
         //查找出所有的地址
         $table = Cache::store('file')->rememberForever('menus', function () {
             return \App\Models\Admin\Permission::where('name', 'LIKE', '%index')

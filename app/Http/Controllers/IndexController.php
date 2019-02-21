@@ -13,6 +13,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('index.index');
+        $this->title = '首页';
+        return $this->view('index.index');
     }
 }

@@ -86,9 +86,6 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('game/edit/{id}', ['as' => 'admin.game.edit', 'uses' => 'GameController@edit']);
     Route::put('game/update', ['as' => 'admin.game.update', 'uses' => 'GameController@update']);
 
-    //联系我们
-    Route::get('aboutus/index', ['as' => 'admin.aboutus.index', 'uses' => 'AboutUsController@index']);
-    Route::post('aboutus/store', ['as' => 'admin.aboutus.store', 'uses' => 'AboutUsController@store']);
 
     //社区管理
     Route::get('community/index', ['as' => 'admin.community.index', 'uses' => 'CommunityController@index']);
@@ -159,6 +156,10 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('sides/del/{id}', 'SidesController@del')->name('admin.sides.del');
     Route::get('getsidestype', 'SidesController@getSidesType')->name('admin.sides.sides_type');
 
+    //杂项
+    //联系我们
+    Route::get('aboutus/index', ['as' => 'admin.system.aboutus_index', 'uses' => 'SystemController@aboutUsIndex']);
+    Route::post('aboutus/store', ['as' => 'admin.system.aboutus_store', 'uses' => 'SystemController@aboutUsStore']);
 
 });
 

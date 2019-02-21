@@ -29,7 +29,7 @@ Route::get('/test/node/info', 'TestController@info');
 
 
 //---------------首页-------------
-Route::get('/', 'CompanyController@index')->name('index.index');
+Route::get('/', 'IndexController@index')->name('index.index');
 Route::match(['get', 'post'],'/search/index', 'SearchController@index')->name('search.index');
 Route::get('/search/no/result', 'SearchController@noresult')->name('search.noresult');
 

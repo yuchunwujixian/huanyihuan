@@ -27,7 +27,7 @@ class AboutusController extends Controller
     public function index()
     {
         $aboutus = AboutUs::first();
-        $games = DB::table('jiongmi_site.games')->where('status', 1)->get();
+        $games = DB::table('games')->where('status', 1)->get();
         //提供服务-切为数组
         if (isset($aboutus->service)) {
             $services = explode("\n",$aboutus->service);
