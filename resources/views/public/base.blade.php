@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title') | 换一换</title>
-    <meta name=keywords content="炯米互联,囧米互联,手机游戏行业,手游圈内人,游戏圈,游戏茶馆,上方网,上道,游戏葡萄,游戏陀螺,游资网,白鲸社区,手游那点事儿,游戏行业媒体,游戏产业网,手游新闻平台,
-    手游业内通讯,手游渠道合作,找CP,找发行,找渠道,手游CP,手游发行,手游渠道,手游外包,投资商,IP授权商,H5平台,H5渠道,手机游戏开发商,天眼查">
-    <meta name=description content="手游行业产品对接平台,专注于为发行以及CP研发提供优质的对接平台,关注全球移动游戏产业。提供手游排行榜,手游产品大全,手游企业,手游公司,移动游戏产品,手游行业新闻,
-    行业大会,手游最新活动">
+    <meta name=keywords content="{{ $base_config->meta_keywords }}">
+    <meta name=description content="{{ $base_config->meta_description }}">
     <meta name=robots content=all>
     <meta name=googlebot content=all>
     <meta name=baiduspider content=all>
@@ -17,8 +15,8 @@
     <link href="https://cdn.bootcss.com/toastr.js/latest/toastr.min.css" rel="stylesheet">
     @yield('css')
 <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="/libs/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>

@@ -18,7 +18,6 @@ class CreateAboutUsTable extends Migration
             $table->string('meta_keywords')->comment('meta关键字');
             $table->string('meta_description')->comment('meta描述');
             $table->text('description')->comment('企业介绍');
-            $table->text('service')->comment('提供服务');
             $table->timestamps();
         });
     }

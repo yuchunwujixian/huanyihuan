@@ -37,12 +37,14 @@ class SystemController extends Controller
     {
         $this->validate($request, [
             'description' => 'required',
-            'service' => 'required',
+            'meta_keywords' => 'required',
+            'meta_description' => 'required',
         ]);
 
         $date = array();
-        $date['description'] = htmlspecialchars($request->input('description'));
-        $date['service'] = htmlspecialchars($request->input('service'));
+        $date['description'] = $request->input('description');
+        $date['meta_keywords'] = $request->input('meta_keywords');
+        $date['meta_description'] = $request->input('meta_description');
        if ($request->input('id')) {
            $date['id'] = intval($request->input('id'));
            $res = AboutUs::where('id', $date['id'])->update($date);
@@ -50,7 +52,8 @@ class SystemController extends Controller
        } else {
            $aboutus=new AboutUs();
            $aboutus->description = $date['description'];
-           $aboutus->service = $date['service'];
+           $aboutus->meta_keywords = $date['meta_keywords'];
+           $aboutus->meta_description = $date['meta_description'];
            $res =  $aboutus->save();
            $messge = "添加";
        }
@@ -62,5 +65,15 @@ class SystemController extends Controller
 
     }
 
+    /**
+     * 上传文件
+     */
+    public function upload(Request $request)
+    {
+        $path = $request->file('imgFile')->store($request->input('img_path'));
+        $path = $request->getSchemeAndHttpHost().'/storage/'.$path;
+        $output = array('error' => 0, 'url' => $path);
+        return $this->tojson($output);
+    }
 
 }

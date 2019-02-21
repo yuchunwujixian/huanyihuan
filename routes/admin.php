@@ -160,6 +160,8 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     //联系我们
     Route::get('aboutus/index', ['as' => 'admin.system.aboutus_index', 'uses' => 'SystemController@aboutUsIndex']);
     Route::post('aboutus/store', ['as' => 'admin.system.aboutus_store', 'uses' => 'SystemController@aboutUsStore']);
+    //图片上传地址
+    Route::post('system/upload', ['as' => 'admin.system.upload', 'uses' => 'SystemController@upload']);
 
 });
 

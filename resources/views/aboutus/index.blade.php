@@ -19,7 +19,8 @@
             <span>企业介绍</span>
         </div>
         <div class="item-content company-profile">
-            <textarea rows="10" style="border: 0;width:90%;;overflow-y:hidden;overflow-x:hidden;resize: none;background-color: white" disabled="true">@if(isset($aboutus->description)){{$aboutus->description}}@else 暂无数据@endif</textarea>
+            @if(isset($aboutus->description)){!! $aboutus->description !!}@else 暂无数据@endif
+            <p>aaa</p>
         </div>
     </div>
     <div class="about-item">

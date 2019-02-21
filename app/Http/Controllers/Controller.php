@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutUs;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -15,7 +16,9 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected $job_config;
+    protected $title;
+
+    protected $base_config;
 
     protected $province_config;
 
@@ -23,15 +26,13 @@ class Controller extends BaseController
 
     protected $area_config;
 
-    protected $title;
-
     protected $company_config;
 
     protected $product_config;
 
     public function __construct()
     {
-        $this->job_config = config('job');
+        $this->base_config = AboutUs::first();
         $this->product_config = config('product');
         $this->province_config = json_decode(Redis::get('province_cache'), true);
         $this->city_config = json_decode(Redis::get('city_cache'), true);
@@ -40,6 +41,7 @@ class Controller extends BaseController
         $route = Route::currentRouteName();
         $current_controller_array = explode('.', $route);
         \View::share('current_controller_array', $current_controller_array);
+        \View::share('base_config', $this->base_config);
     }
 
     /**
