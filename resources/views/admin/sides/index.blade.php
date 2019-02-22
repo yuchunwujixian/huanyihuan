@@ -35,7 +35,7 @@
                                 <td>{{$v->id}}</td>
                                 <td>{{$v->title}}</td>
                                 <td>{{$v->url}}</td>
-                                <td><img  src="{{asset('storage/'.$v->img_url)}}" class="img-rounded" ></td>
+                                <td><img  src="{{asset('storage/'.$v->img_url)}}" class="img-rounded" style="max-width: 100px;max-height: 100px;"></td>
                                 <td>{{$sides_type[$v->type]}}</td>
                                 <td>{{$v->sort}}</td>
                                 <td>@if($v->status)正常@else否@endif</td>
@@ -47,6 +47,9 @@
                          @endforeach
                         </tbody>
                     </table>
+                    <div class="page text-right">
+                        {{ $lists->links() }}
+                    </div>
                 </div>
             </div>
         </div>

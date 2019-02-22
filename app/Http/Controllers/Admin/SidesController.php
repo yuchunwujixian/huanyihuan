@@ -27,7 +27,7 @@ class SidesController extends Controller
     public function index()
     {
         $this->title = '幻灯片列表';
-        $lists = Sides::orderBy('type', 'desc')->orderBy('sort', 'asc')->get();
+        $lists = Sides::orderBy('type', 'desc')->orderBy('sort', 'asc')->paginate(30);
         $sides_type = $this->sides_type;
         return $this->view('admin.sides.index', compact('lists', 'sides_type'));
     }

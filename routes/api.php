@@ -16,6 +16,13 @@ use Illuminate\Http\Request;
 
 //获取tipnews
 Route::get('gettipnews', 'Api\ApiController@getTipNews')->name('api.gettipnews');
+//获取幻灯片
+Route::get('getsides', 'Api\ApiController@getSides')->name('api.getsides');
+//获取专题
+Route::get('getsides', 'Api\ApiController@getSides')->name('api.getsides');
+
+
+
 Route::group(['namespace' => 'Api', 'prefix' => 'api', 'middleware' => ['auth']], function () {
     //---------------招聘-----------------
     Route::get('job/index', 'JobController@index')->name('member.job.index');
