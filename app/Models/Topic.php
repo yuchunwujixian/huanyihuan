@@ -11,4 +11,9 @@ class Topic extends Model
         'status',
         'sort',
     ];
+
+    public function goods()
+    {
+        return $this->belongsToMany('App\Models\Goods', 'topic_goods', 'topic_id', 'goods_id');
+    }
 }

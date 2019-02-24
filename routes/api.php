@@ -19,7 +19,7 @@ Route::get('gettipnews', 'Api\ApiController@getTipNews')->name('api.gettipnews')
 //获取幻灯片
 Route::get('getsides', 'Api\ApiController@getSides')->name('api.getsides');
 //获取专题
-Route::get('getsides', 'Api\ApiController@getSides')->name('api.getsides');
+Route::get('gettopic', 'Api\ApiController@getTopic')->name('api.gettopic');
 
 
 

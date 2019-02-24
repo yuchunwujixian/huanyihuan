@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Sides;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Models\TipNews;
 
@@ -45,7 +46,7 @@ class ApiController extends Controller
         //图片处理
         if ($query){
             foreach ($query as &$v){
-                $v->img_url = $request->getSchemeAndHttpHost().'/storage/'.$v->img_url;
+                $v->img_url = env('APP_URL').'/storage/'.$v->img_url;
             }
         }
         $output['status'] = 1;
@@ -54,10 +55,15 @@ class ApiController extends Controller
     }
 
     /**
-     * 获取首页专题及旗下商品
+     * 获取首页专题及旗下商品,旗下幻灯片
      */
     public function getTopic()
     {
-
+        $output = ['status' => 0, 'message' => ''];
+        $output['status'] = 1;
+        $output['data'] = Topic::with(['goods' => function ($query) {
+            $query->where('status', 1)->limit(3);
+        }])->where('status', 1)->orderBy('sort', 'asc')->limit(5)->get()->toArray();
+        return $this->tojson($output);
     }
 }
