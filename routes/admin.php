@@ -155,10 +155,8 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::post('system/upload', ['as' => 'admin.system.upload', 'uses' => 'SystemController@upload']);
     //商品管理
     Route::get('goods/index', ['as' => 'admin.goods.index', 'uses' => 'GoodsController@index']);
-    Route::get('welfare/{id}/update', ['as' => 'admin.welfare.update', 'uses' => 'WelfareController@update']);
-    Route::post('welfare/save', ['as' => 'admin.welfare.save', 'uses' => 'WelfareController@save']);
-    Route::get('welfare/create', ['as' => 'admin.welfare.create', 'uses' => 'WelfareController@create']);
-    Route::get('welfare/del/{id}', ['as' => 'admin.welfare.del', 'uses' => 'WelfareController@del']);
+    Route::get('goods/{id}/update', ['as' => 'admin.goods.update', 'uses' => 'GoodsController@update']);
+    Route::post('goods/save', ['as' => 'admin.goods.save', 'uses' => 'GoodsController@save']);
 });
 
 // 获取city

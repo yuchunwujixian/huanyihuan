@@ -4,13 +4,12 @@
  */
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Baum\Node;
 
-class JobCategory extends Node
+class GoodsCategory extends Node
 {
 
-    protected $table ='job_categories';
+    protected $table ='goods_categories';
 
     /**
      * 该分类下的职位
@@ -20,6 +19,6 @@ class JobCategory extends Node
      */
     public function jobs()
     {
-        return $this->hasMany('App\Models\Job', 'job_category_id', 'id');
+        return $this->hasMany('App\Models\Job', 'category_id', 'id');
     }
 }

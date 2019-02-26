@@ -154,7 +154,9 @@ desired effect
         $("#loading").fadeOut(500);
     };
     //select美化
-    $('.selectpicker').selectpicker();
+    $('.selectpicker').selectpicker({
+        width : 'auto'
+    });
 </script>
 </body>
 </html>

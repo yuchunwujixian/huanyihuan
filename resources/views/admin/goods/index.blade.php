@@ -4,9 +4,29 @@
 
 @section('content')
 
-    <div class="row" style="margin-bottom: 5px">
-        <div class="col-md-6">
-            <a href="{{ route('admin.sides.create')}}" class="btn btn-success btn-md"><i class="fa fa-plus-circle"></i> 增加幻灯片 </a>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box">
+                <div class="box-body">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label>商品状态</label>
+                            <select class="selectpicker form-control"  name="status">
+                                @foreach($goods_status as $key => $v)
+                                    <option value="{{ $key }}" @if(app('request')->get('status') == $key) selected @endif>{{ $v }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        &nbsp;&nbsp;
+                        <div class="form-group">
+                            <label>商品名称</label>
+                            <input type="text" class="form-control" name="search_title" value="{{ app('request')->get('search_title') }}" placeholder="商品名称，模糊查询">
+                        </div>
+                        &nbsp;&nbsp;
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -19,14 +39,14 @@
                     <table id="tags-table" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th class="hidden-sm">ID</th>
-                            <th class="hidden-sm">幻灯片标题</th>
-                            <th class="hidden-sm">跳转地址</th>
-                            <th class="hidden-sm">图片地址</th>
-                            <th class="hidden-sm">类型</th>
-                            <th class="hidden-sm">排序</th>
-                            <th class="hidden-sm">状态</th>
-                            <th data-sortable="false">操作</th>
+                            <th>ID</th>
+                            <th>商品名称</th>
+                            <th>添加人</th>
+                            <th>所属分类</th>
+                            <th>商品数量</th>
+                            <th>图片地址</th>
+                            <th>状态</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -34,14 +54,13 @@
                             <tr>
                                 <td>{{$v->id}}</td>
                                 <td>{{$v->title}}</td>
-                                <td>{{$v->url}}</td>
+                                <td>{{$v->user->name}}</td>
+                                <td>{{$v->category->title}}</td>
+                                <td>{{$v->num}}</td>
                                 <td><img  src="{{asset('storage/'.$v->img_url)}}" class="img-rounded" style="max-width: 100px;max-height: 100px;"></td>
-                                <td>{{$sides_type[$v->type]}}</td>
-                                <td>{{$v->sort}}</td>
-                                <td>@if($v->status)正常@else否@endif</td>
+                                <td>{{$goods_status[$v->status]}}</td>
                                 <td>
-                                    <a style="margin:3px;"  href="{{ route('admin.sides.update', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-edit"></i>查看</a>
-                                    <a style="margin:3px;"  href="{{ route('admin.sides.del', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-times-circle"></i>删除</a>
+                                    <a style="margin:3px;"  href="{{ route('admin.goods.update', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-edit"></i>修改</a>
                                 </td>
                             </tr>
                          @endforeach

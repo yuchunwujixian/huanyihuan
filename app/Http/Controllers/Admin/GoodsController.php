@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Request;
+use Illuminate\Http\Request;
 use App\Models\Goods;
 
 class GoodsController extends Controller
@@ -25,6 +25,7 @@ class GoodsController extends Controller
     public function index(Request $request)
     {
         $status = $request->input('status', 0);
+        $search = $request->input('search_title');
         if ($status == 0){
             $this->title = '待审核商品列表';
         }elseif ($status == 1){
@@ -36,9 +37,13 @@ class GoodsController extends Controller
         }elseif ($status == -1){
             $this->title = '被禁止商品列表';
         }
-        $lists = Goods::where('status', $status)->orderBy('id', 'asc')->paginate(30);
+        $lists = Goods::withTrashed()->where('status', $status);
+        if ($search){
+            $lists = $lists->where('title', 'like', '%'.$search.'%')->orWhere('long_title', 'like', '%'.$search.'%');
+        }
+        $lists = $lists->orderBy('id', 'asc')->paginate(30);
         $goods_status = $this->goods_status;
-        return $this->view('admin.sides.index', compact('lists', 'goods_status'));
+        return $this->view('admin.goods.index', compact('lists', 'goods_status'));
     }
 
 
