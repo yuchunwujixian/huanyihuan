@@ -21,6 +21,12 @@
         <label><input type="radio"  class="radio-inline" name="is_menu" @if($is_menu == 1)checked @endif value="1">是</label>
     </div>
 </div>
+<div class="form-group">
+    <label class="col-md-3 control-label">附加参数</label>
+    <div class="col-md-6">
+        <input type="text" class="form-control" name="params" value="{{ $params }}" autofocus placeholder="字符串形式">
+    </div>
+</div>
 @if($cid == 0 )
 {{--图标修改--}}
     <link rel="stylesheet" href="/plugins/bootstrap-iconpicker/icon-fonts/font-awesome-4.2.0/css/font-awesome.min.css"/>

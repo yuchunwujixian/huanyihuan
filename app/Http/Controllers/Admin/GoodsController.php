@@ -2,10 +2,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Request;
 use App\Models\Goods;
 
 class GoodsController extends Controller
 {
+    private $goods_status;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->goods_status = config('config_base.goods_status');
+    }
 
     /**
      * @name index
@@ -14,12 +22,23 @@ class GoodsController extends Controller
      * @since  2017/03/18
      * @update 2017/03/18
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->title = '商品列表';
-        $lists = Goods::orderBy('type', 'desc')->orderBy('sort', 'asc')->paginate(30);
-        $sides_type = $this->sides_type;
-        return $this->view('admin.sides.index', compact('lists', 'sides_type'));
+        $status = $request->input('status', 0);
+        if ($status == 0){
+            $this->title = '待审核商品列表';
+        }elseif ($status == 1){
+            $this->title = '已审核商品列表';
+        }elseif ($status == 2){
+            $this->title = '已完成商品列表';
+        }elseif ($status == -2){
+            $this->title = '已删除商品列表';
+        }elseif ($status == -1){
+            $this->title = '被禁止商品列表';
+        }
+        $lists = Goods::where('status', $status)->orderBy('id', 'asc')->paginate(30);
+        $goods_status = $this->goods_status;
+        return $this->view('admin.sides.index', compact('lists', 'goods_status'));
     }
 
 

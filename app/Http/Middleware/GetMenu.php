@@ -32,6 +32,10 @@ class GetMenu
         $data['top'] = [];
         //查找并拼接出地址的别名值
         $urlPath = Route::currentRouteName();
+        if (strpos($urlPath,'admin') === false){
+            $urlPath = 'admin.'.$urlPath;
+        }
+        $urlPath = explode('.', $urlPath);
         //查找出所有的地址
         $table = Cache::store('file')->rememberForever('menus', function () {
             return \App\Models\Admin\Permission::where('is_menu', 1)
@@ -40,7 +44,7 @@ class GetMenu
         $user = Auth::guard('admin')->user();
         foreach ($table as $v) {
             if ($v->cid == 0 || ($user && $user->hasPermission($v))) {
-                if ($v->name == $urlPath) {
+                if (explode('.', $v->name)[1] == $urlPath[1]) {
                     $openArr[] = $v->id;
                     $openArr[] = $v->cid;
                 }

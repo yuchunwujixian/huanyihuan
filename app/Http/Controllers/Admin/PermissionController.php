@@ -21,6 +21,7 @@ class PermissionController extends Controller
         'cid'         => 0,
         'icon'        => '',
         'is_menu'        => 0,
+        'params'        => '',
     ];
 
 
