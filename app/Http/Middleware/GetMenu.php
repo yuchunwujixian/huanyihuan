@@ -34,8 +34,7 @@ class GetMenu
         $urlPath = Route::currentRouteName();
         //查找出所有的地址
         $table = Cache::store('file')->rememberForever('menus', function () {
-            return \App\Models\Admin\Permission::where('name', 'LIKE', '%index')
-                ->orWhere('cid', '==', 0)
+            return \App\Models\Admin\Permission::where('is_menu', 1)
                 ->get();
         });
         $user = Auth::guard('admin')->user();

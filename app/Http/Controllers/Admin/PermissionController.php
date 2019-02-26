@@ -20,6 +20,7 @@ class PermissionController extends Controller
         'description' => '',
         'cid'         => 0,
         'icon'        => '',
+        'is_menu'        => 0,
     ];
 
 

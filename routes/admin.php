@@ -56,15 +56,6 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::post('jobcategory/save', ['as' => 'admin.job.category.save', 'uses' => 'JobCategoryController@save']);
     Route::get('jobcategory/{id}/destroy', ['as' => 'admin.job.category.destroy', 'uses' => 'JobCategoryController@destroy']);
 
-
-
-    //福利管理路由
-    Route::get('welfare/index', ['as' => 'admin.welfare.index', 'uses' => 'WelfareController@index']);
-    Route::get('welfare/{id}/update', ['as' => 'admin.welfare.update', 'uses' => 'WelfareController@update']);
-    Route::post('welfare/save', ['as' => 'admin.welfare.save', 'uses' => 'WelfareController@save']);
-    Route::get('welfare/create', ['as' => 'admin.welfare.create', 'uses' => 'WelfareController@create']);
-    Route::get('welfare/del/{id}', ['as' => 'admin.welfare.del', 'uses' => 'WelfareController@del']);
-
     //职位管理
     Route::get('job/index', ['as' => 'admin.job.index', 'uses' => 'JobController@index']);
     Route::get('job/{id}/update', ['as' => 'admin.job.update', 'uses' => 'JobController@update']);
@@ -162,7 +153,12 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::post('aboutus/store', ['as' => 'admin.system.aboutus_store', 'uses' => 'SystemController@aboutUsStore']);
     //图片上传地址
     Route::post('system/upload', ['as' => 'admin.system.upload', 'uses' => 'SystemController@upload']);
-
+    //商品管理
+    Route::get('goods/index', ['as' => 'admin.goods.index', 'uses' => 'GoodsController@index']);
+    Route::get('welfare/{id}/update', ['as' => 'admin.welfare.update', 'uses' => 'WelfareController@update']);
+    Route::post('welfare/save', ['as' => 'admin.welfare.save', 'uses' => 'WelfareController@save']);
+    Route::get('welfare/create', ['as' => 'admin.welfare.create', 'uses' => 'WelfareController@create']);
+    Route::get('welfare/del/{id}', ['as' => 'admin.welfare.del', 'uses' => 'WelfareController@del']);
 });
 
 // 获取city
