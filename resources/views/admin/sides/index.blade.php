@@ -19,14 +19,14 @@
                     <table id="tags-table" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th class="hidden-sm">ID</th>
-                            <th class="hidden-sm">幻灯片标题</th>
-                            <th class="hidden-sm">跳转地址</th>
-                            <th class="hidden-sm">图片地址</th>
-                            <th class="hidden-sm">类型</th>
-                            <th class="hidden-sm">排序</th>
-                            <th class="hidden-sm">状态</th>
-                            <th data-sortable="false">操作</th>
+                            <th>ID</th>
+                            <th>幻灯片标题</th>
+                            <th>跳转地址</th>
+                            <th>图片地址</th>
+                            <th>类型</th>
+                            <th>排序</th>
+                            <th>状态</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
