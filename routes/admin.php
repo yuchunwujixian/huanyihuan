@@ -32,14 +32,6 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::post('user/index', ['as' => 'admin.user.index', 'uses' => 'UserController@index']);
     Route::resource('user', 'UserController', ['names' => ['update' => 'admin.role.edit', 'store' => 'admin.role.create']]);
 
-
-    //职业分类管理路由
-    Route::get('jobcategory/index', ['as' => 'admin.job.category.index', 'uses' => 'JobCategoryController@index']);
-    Route::get('jobcategory/create', ['as' => 'admin.job.category.create', 'uses' => 'JobCategoryController@create']);
-    Route::get('jobcategory/{id}/update', ['as' => 'admin.job.category.update', 'uses' => 'JobCategoryController@update']);
-    Route::post('jobcategory/save', ['as' => 'admin.job.category.save', 'uses' => 'JobCategoryController@save']);
-    Route::get('jobcategory/{id}/destroy', ['as' => 'admin.job.category.destroy', 'uses' => 'JobCategoryController@destroy']);
-
     //职位管理
     Route::get('job/index', ['as' => 'admin.job.index', 'uses' => 'JobController@index']);
     Route::get('job/{id}/update', ['as' => 'admin.job.update', 'uses' => 'JobController@update']);
@@ -151,6 +143,13 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('goods/index', ['as' => 'admin.goods.index', 'uses' => 'GoodsController@index']);
     Route::get('goods/{id}/update', ['as' => 'admin.goods.update', 'uses' => 'GoodsController@update']);
     Route::post('goods/save', ['as' => 'admin.goods.save', 'uses' => 'GoodsController@save']);
+    //商品分类管理路由
+    Route::get('category/index', ['as' => 'admin.category.index', 'uses' => 'GoodsController@index']);
+    Route::get('category/create', ['as' => 'admin.category.create', 'uses' => 'GoodsController@create']);
+    Route::get('category/{id}/update', ['as' => 'admin.category.update', 'uses' => 'GoodsController@update']);
+    Route::post('category/save', ['as' => 'admin.category.save', 'uses' => 'GoodsController@save']);
+    Route::get('category/{id}/destroy', ['as' => 'admin.category.destroy', 'uses' => 'GoodsController@destroy']);
+
 });
 
 // 获取city
