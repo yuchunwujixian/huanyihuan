@@ -46,7 +46,10 @@ class GoodsController extends Controller
         return $this->view('admin.goods.index', compact('lists', 'goods_status'));
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b9da461f03217f1c95ccfa35d22181caa2b24401
     /**
      * @name save
      * @desc 修改或添加
@@ -59,6 +62,7 @@ class GoodsController extends Controller
     {
         $date['status'] = $request->input('status');
         $date['id'] = $request->input('id');
+<<<<<<< HEAD
         if ($request->hasFile('file')) {//修改图片
             $info = Sides::find($date['id']);
             $old_img = $info['img_url'];
@@ -67,10 +71,13 @@ class GoodsController extends Controller
         }
         $res = Sides::where('id', $date['id'])->update($date);
         $messge = "修改";
+=======
+        $res = Sides::where('id', $date['id'])->update($date);
+>>>>>>> b9da461f03217f1c95ccfa35d22181caa2b24401
         if ($res) {
-            return redirect()->route('admin.sides.index')->withSuccess($messge . '成功！');
+            return redirect()->route('admin.goods.index')->withSuccess('修改成功！');
         } else {
-            return redirect()->route('admin.sides.index')->withErrors($messge . '失败！');
+            return redirect()->route('admin.goods.index')->withErrors('修改失败！');
         }
 
     }
@@ -86,14 +93,25 @@ class GoodsController extends Controller
      */
     public function update($id)
     {
+<<<<<<< HEAD
         $this->title = '修改商品状态';
         $data = Sides::find($id);
+=======
+        $this->title = '查看商品详情';
+        $data = Goods::withTrashed()->find($id);
+>>>>>>> b9da461f03217f1c95ccfa35d22181caa2b24401
         if (empty($data)){
-            return redirect()->route('admin.sides.index')->withErrors('参数错误');
+            return redirect()->route('admin.goods.index')->withErrors('参数错误');
         }
+<<<<<<< HEAD
         $sides_type = $this->sides_type;
         $p_ids = Sides::getData($data->type);
         return $this->view('admin.sides.update', compact('data', 'sides_type', 'p_ids'));
     }
 
+=======
+        $goods_status = $this->goods_status;
+        return $this->view('admin.goods.update', compact('data', 'goods_status'));
+    }
+>>>>>>> b9da461f03217f1c95ccfa35d22181caa2b24401
 }

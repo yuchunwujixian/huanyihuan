@@ -25,22 +25,6 @@ Route::get('/', 'IndexController@index');
 
 
 Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () {
-    //系统管理
-    Route::get('index', ['as' => 'admin.index.index', 'uses' => 'IndexController@index']);
-//    Route::get('logs', ['as' => 'admin.index.index', 'uses' => 'IndexController@index']);
-
-    //权限管理路由
-    Route::get('permission/{cid}/create', ['as' => 'admin.permission.create', 'uses' => 'PermissionController@create']);
-    Route::get('permission/manage', ['as' => 'admin.permission.manage', 'uses' => 'PermissionController@index']);
-    Route::get('permission/{cid?}', ['as' => 'admin.permission.index', 'uses' => 'PermissionController@index']);
-    Route::post('permission/index', ['as' => 'admin.permission.index', 'uses' => 'PermissionController@index']); //查询
-    Route::resource('permission', 'PermissionController', ['names' => ['update' => 'admin.permission.edit', 'store' => 'admin.permission.create']]);
-
-
-    //角色管理路由
-    Route::get('role/index', ['as' => 'admin.role.index', 'uses' => 'RoleController@index']);
-    Route::post('role/index', ['as' => 'admin.role.index', 'uses' => 'RoleController@index']);
-    Route::resource('role', 'RoleController', ['names' => ['update' => 'admin.role.edit', 'store' => 'admin.role.create']]);
 
 
     //管理员用户管理路由
@@ -127,6 +111,17 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('sms/log/index', ['as' => 'admin.sms.index', 'uses' => 'LaravelSmsController@index']);
 
     //start
+    Route::get('index', ['as' => 'admin.index.index', 'uses' => 'IndexController@index']);
+    //权限管理路由
+    Route::get('permission/{cid}/create', ['as' => 'admin.permission.create', 'uses' => 'PermissionController@create']);
+    Route::get('permission/manage', ['as' => 'admin.permission.manage', 'uses' => 'PermissionController@index']);
+    Route::get('permission/{cid?}', ['as' => 'admin.permission.index', 'uses' => 'PermissionController@index']);
+    Route::post('permission/index', ['as' => 'admin.permission.index', 'uses' => 'PermissionController@index']); //查询
+    Route::resource('permission', 'PermissionController', ['names' => ['update' => 'admin.permission.edit', 'store' => 'admin.permission.create']]);
+    //角色管理路由
+    Route::get('role/index', ['as' => 'admin.role.index', 'uses' => 'RoleController@index']);
+    Route::post('role/index', ['as' => 'admin.role.index', 'uses' => 'RoleController@index']);
+    Route::resource('role', 'RoleController', ['names' => ['update' => 'admin.role.edit', 'store' => 'admin.role.create']]);
     //提示消息
     Route::get('tipnews/index', 'TipNewsController@index')->name('admin.tipnews.index');
     Route::get('tipnews/{id}/update', 'TipNewsController@update')->name('admin.tipnews.update');
@@ -146,8 +141,7 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('sides/create', 'SidesController@create')->name('admin.sides.create');
     Route::get('sides/del/{id}', 'SidesController@del')->name('admin.sides.del');
     Route::get('getsidestype', 'SidesController@getSidesType')->name('admin.sides.sides_type');
-
-    //杂项
+    //杂项-系统设置
     //联系我们
     Route::get('aboutus/index', ['as' => 'admin.system.aboutus_index', 'uses' => 'SystemController@aboutUsIndex']);
     Route::post('aboutus/store', ['as' => 'admin.system.aboutus_store', 'uses' => 'SystemController@aboutUsStore']);

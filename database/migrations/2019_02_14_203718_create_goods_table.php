@@ -26,13 +26,14 @@ class CreateGoodsTable extends Migration
             $table->Integer('view_count')->default(0)->comment('查看数');
             $table->Integer('collect_count')->default(0)->comment('收藏数');
             $table->smallInteger('num')->default(1)->comment('商品数量');
-            $table->unsignedTinyInteger('status')->default(0)->comment('状态-2已删除 -1被禁止 0待审核 1正常 2已完成');
+            $table->tinyInteger('status')->default(0)->comment('状态-2已删除 -1被禁止 0待审核 1正常 2已完成');
             $table->softDeletes();
             $table->timestamps();
             $table->index('user_id');
             $table->index('category_id');
             $table->index('title');
             $table->index('long_title');
+            $table->index('status');
         });
     }
 

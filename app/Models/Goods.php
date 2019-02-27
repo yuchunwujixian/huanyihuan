@@ -28,4 +28,8 @@ class Goods extends Model
     {
         return $this->belongsTo('App\Models\GoodsCategory', 'user_id', 'id');
     }
+    public function imgs()
+    {
+        return $this->hasMany('App\Models\GoodsImg', 'goods_id', 'id');
+    }
 }
