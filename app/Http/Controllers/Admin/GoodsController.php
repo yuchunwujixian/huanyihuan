@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\GoodsCategory;
 use Illuminate\Http\Request;
 use App\Models\Goods;
 use DB;
@@ -137,4 +138,72 @@ class GoodsController extends Controller
 
     }
 
+    public function categoryIndex()
+    {
+        $this->title = '商品分类列表';
+        $lists = GoodsCategory::orderBy('lft')->get();
+        return $this->view('admin.goods.categoryindex', ['lists' => $lists]);
+    }
+
+    public function categoryCreate()
+    {
+        $this->title = '增加商品分类';
+        $categories = GoodsCategory::where('status', 1)->orderBy('lft')->get();
+        return $this->view('admin.goods.categorycreate', ['categories' => $categories]);
+    }
+
+    public function categorySave(Request $request)
+    {
+        $this->validate($request, [
+            'parent_id' => 'required',
+            'title' => 'required|min:2',
+            'sort' => 'numeric',
+        ]);
+        $update_data = [
+            'title' => $request->input('title'),
+            'parent_id' => $request->input('parent_id'),
+            'status' => $request->input('status'),
+            'sort' => $request->input('sort'),
+        ];
+        if ($request->has('id')) {
+            GoodsCategory::where('id', $request->input('id'))->update($update_data);
+        } else {
+            if ($request->input('parent_id') == 0) {
+                GoodsCategory::create($update_data);
+            } else {
+                $root = GoodsCategory::find($request->input('parent_id'));
+                $root->children()->create(['title' => $request->input('title')]);
+            }
+
+        }
+        return redirect()->route('admin.category.index')->withSuccess('操作成功！');
+
+    }
+
+    public function categoryUpdate($id)
+    {
+        $this->title = '编辑商品分类';
+        $category = GoodsCategory::find($id);
+        $categories = GoodsCategory::where('status', 1)->orderBy('lft')->get();
+        return $this->view('admin.goods.categoryupdate', ['category' => $category, 'categories' => $categories]);
+    }
+
+    public function categoryDel($id)
+    {
+        $category = GoodsCategory::find($id);
+        if (!$category){
+            return redirect()->route('admin.category.index')->withErrors( '该分类不存在');
+        }
+        $childs = $category->childs->toArray();
+        if (!empty($childs)){
+            return redirect()->route('admin.category.index')->withErrors( '该分类下有子分类');
+        }
+        $jobs = $category->goods->toArray();
+        if(empty($jobs)) {
+            $category->destroy($id);
+            return redirect()->route('admin.category.index')->withSuccess( '操作成功');
+        } else {
+            return redirect()->route('admin.category.index')->withErrors( '该分类下存在商品');
+        }
+    }
 }

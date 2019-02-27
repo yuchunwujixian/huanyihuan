@@ -1,10 +1,6 @@
 @extends('admin.layouts.base')
 
-@section('title','职位管理')
-
-@section('pageHeader','职业分类列表')
-
-@section('pageDesc','DashBoard')
+@section('title', $title)
 
 @section('css')
     {{--图标--}}
@@ -15,7 +11,7 @@
 @section('content')
     <div class="row" style="margin-bottom: 5px">
         <div class="col-md-6">
-            <a href="{{ route('admin.job.category.create')}}" class="btn btn-success btn-md"><i class="fa fa-plus-circle"></i> 添加职业分类 </a>
+            <a href="{{ route('admin.category.create')}}" class="btn btn-success btn-md"><i class="fa fa-plus-circle"></i> 添加商品分类 </a>
         </div>
     </div>
 
@@ -47,8 +43,8 @@
                                     </td>
                                     <td>
 
-                                        <a href="{{route('admin.job.category.update', array('id' => $category->id))}}">编辑</a>
-                                        <a href="{{route('admin.job.category.destroy', array('id' => $category->id))}}">删除</a>
+                                        <a href="{{route('admin.category.update', array('id' => $category->id))}}">编辑</a>
+                                        <a href="{{route('admin.category.del', array('id' => $category->id))}}">删除</a>
                                     </td>
                                 </tr>
                          @endforeach

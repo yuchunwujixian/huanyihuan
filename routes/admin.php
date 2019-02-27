@@ -144,11 +144,11 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('goods/{id}/update', ['as' => 'admin.goods.update', 'uses' => 'GoodsController@update']);
     Route::post('goods/save', ['as' => 'admin.goods.save', 'uses' => 'GoodsController@save']);
     //商品分类管理路由
-    Route::get('category/index', ['as' => 'admin.category.index', 'uses' => 'GoodsController@index']);
-    Route::get('category/create', ['as' => 'admin.category.create', 'uses' => 'GoodsController@create']);
-    Route::get('category/{id}/update', ['as' => 'admin.category.update', 'uses' => 'GoodsController@update']);
-    Route::post('category/save', ['as' => 'admin.category.save', 'uses' => 'GoodsController@save']);
-    Route::get('category/{id}/destroy', ['as' => 'admin.category.destroy', 'uses' => 'GoodsController@destroy']);
+    Route::get('category/index', ['as' => 'admin.category.index', 'uses' => 'GoodsController@categoryIndex']);
+    Route::get('category/create', ['as' => 'admin.category.create', 'uses' => 'GoodsController@categoryCreate']);
+    Route::get('category/{id}/update', ['as' => 'admin.category.update', 'uses' => 'GoodsController@categoryUpdate']);
+    Route::post('category/save', ['as' => 'admin.category.save', 'uses' => 'GoodsController@categorySave']);
+    Route::get('category/del/{id}', 'GoodsController@categoryDel')->name('admin.category.del');
 
 });
 

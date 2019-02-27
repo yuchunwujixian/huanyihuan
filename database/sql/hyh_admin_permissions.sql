@@ -3,15 +3,15 @@
 
  Source Server         : 本地
  Source Server Type    : MySQL
- Source Server Version : 50553
- Source Host           : localhost:3306
+ Source Server Version : 50724
+ Source Host           : 127.0.0.1:3306
  Source Schema         : huanyihuan
 
  Target Server Type    : MySQL
- Target Server Version : 50553
+ Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 27/02/2019 15:06:30
+ Date: 27/02/2019 23:22:09
 */
 
 SET NAMES utf8mb4;
@@ -33,7 +33,7 @@ CREATE TABLE `hyh_admin_permissions`  (
   `is_menu` tinyint(4) NOT NULL DEFAULT 0 COMMENT '是否菜单 0否 1是',
   `params` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '额外参数，直接字符串拼接',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 42 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 47 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of hyh_admin_permissions
@@ -78,5 +78,10 @@ INSERT INTO `hyh_admin_permissions` VALUES (37, 'admin.sides.sides_type', '获�
 INSERT INTO `hyh_admin_permissions` VALUES (38, 'admin.system.upload', '图片上传接口', '', 28, '', '2019-02-27 14:35:39', '2019-02-27 14:35:39', 0, '');
 INSERT INTO `hyh_admin_permissions` VALUES (39, 'admin.goods.update', '查看商品详情', '', 31, '', '2019-02-27 14:36:26', '2019-02-27 14:36:26', 0, '');
 INSERT INTO `hyh_admin_permissions` VALUES (40, 'admin.goods.save', '审核商品状态', '', 31, '', '2019-02-27 14:36:55', '2019-02-27 14:36:55', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (42, 'admin.category.index', '商品分类管理', '', 31, '', '2019-02-27 23:18:54', '2019-02-27 23:18:54', 1, '');
+INSERT INTO `hyh_admin_permissions` VALUES (43, 'admin.category.create', '创建分类', '', 31, '', '2019-02-27 23:19:37', '2019-02-27 23:19:37', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (44, 'admin.category.update', '查看分类', '', 31, '', '2019-02-27 23:20:05', '2019-02-27 23:20:05', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (45, 'admin.category.save', '增加/编辑分类', '', 31, '', '2019-02-27 23:20:54', '2019-02-27 23:20:54', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (46, 'admin.category.del', '删除分类', '', 31, '', '2019-02-27 23:21:49', '2019-02-27 23:21:49', 0, '');
 
 SET FOREIGN_KEY_CHECKS = 1;
