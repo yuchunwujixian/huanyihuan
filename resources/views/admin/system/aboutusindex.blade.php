@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-7 col-md-offset-3">
+                                    <div class="col-md-9 col-md-offset-2">
                                         <button type="submit" class="btn btn-primary btn-md">
                                             <i class="fa fa-plus-circle"></i>
                                             保存

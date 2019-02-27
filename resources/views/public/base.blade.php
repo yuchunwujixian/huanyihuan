@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title') | 换一换</title>
-    <meta name=keywords content="{{ $base_config->meta_keywords }}">
-    <meta name=description content="{{ $base_config->meta_description }}">
+    <meta name=keywords content="{{ $base_config?$base_config->meta_keywords:'' }}">
+    <meta name=description content="{{ $base_config?$base_config->meta_description:'' }}">
     <meta name=robots content=all>
     <meta name=googlebot content=all>
     <meta name=baiduspider content=all>

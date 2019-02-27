@@ -3,15 +3,15 @@
 
  Source Server         : 本地
  Source Server Type    : MySQL
- Source Server Version : 50724
- Source Host           : 127.0.0.1:3306
+ Source Server Version : 50553
+ Source Host           : localhost:3306
  Source Schema         : huanyihuan
 
  Target Server Type    : MySQL
- Target Server Version : 50724
+ Target Server Version : 50553
  File Encoding         : 65001
 
- Date: 26/02/2019 23:01:24
+ Date: 27/02/2019 15:06:30
 */
 
 SET NAMES utf8mb4;
@@ -28,12 +28,12 @@ CREATE TABLE `hyh_admin_permissions`  (
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '描述与备注',
   `cid` tinyint(4) NOT NULL COMMENT '级别',
   `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '图标',
-  `created_at` timestamp(0) NULL DEFAULT NULL,
-  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   `is_menu` tinyint(4) NOT NULL DEFAULT 0 COMMENT '是否菜单 0否 1是',
   `params` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '额外参数，直接字符串拼接',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 33 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 42 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of hyh_admin_permissions
@@ -70,5 +70,13 @@ INSERT INTO `hyh_admin_permissions` VALUES (29, 'admin.system.aboutus_index', '�
 INSERT INTO `hyh_admin_permissions` VALUES (30, 'admin.system.aboutus_store', '编辑关于我们', '', 28, '', '2019-02-21 21:12:20', '2019-02-21 21:12:20', 0, NULL);
 INSERT INTO `hyh_admin_permissions` VALUES (31, 'admin.goods', '商品管理', '', 0, 'fa-html5', '2019-02-26 22:35:07', '2019-02-26 22:35:07', 1, NULL);
 INSERT INTO `hyh_admin_permissions` VALUES (32, 'admin.goods.index', '商品列表', '', 31, '', '2019-02-26 22:56:51', '2019-02-26 22:56:51', 1, NULL);
+INSERT INTO `hyh_admin_permissions` VALUES (33, 'admin.sides.update', '查看幻灯片', '', 26, '', '2019-02-27 14:32:35', '2019-02-27 14:32:35', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (34, 'admin.sides.save', '添加/修改幻灯片', '', 26, '', '2019-02-27 14:33:08', '2019-02-27 14:33:08', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (35, 'admin.sides.create', '增加幻灯片', '', 26, '', '2019-02-27 14:33:33', '2019-02-27 14:33:33', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (36, 'admin.sides.del', '删除幻灯片', '', 26, '', '2019-02-27 14:33:57', '2019-02-27 14:33:57', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (37, 'admin.sides.sides_type', '获取幻灯片分类', '', 26, '', '2019-02-27 14:34:24', '2019-02-27 14:34:24', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (38, 'admin.system.upload', '图片上传接口', '', 28, '', '2019-02-27 14:35:39', '2019-02-27 14:35:39', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (39, 'admin.goods.update', '查看商品详情', '', 31, '', '2019-02-27 14:36:26', '2019-02-27 14:36:26', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (40, 'admin.goods.save', '审核商品状态', '', 31, '', '2019-02-27 14:36:55', '2019-02-27 14:36:55', 0, '');
 
 SET FOREIGN_KEY_CHECKS = 1;
