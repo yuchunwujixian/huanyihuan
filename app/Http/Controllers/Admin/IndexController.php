@@ -2,16 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Foundation\Auth\User;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Log;
-use App\Models\Application;
-use App\Models\AppAndroid as Android;
-use App\Models\AppIos as Ios;
-use QrCode;
 
 class IndexController extends Controller
 {
@@ -22,6 +13,7 @@ class IndexController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('auth:admin');
     }
 
@@ -32,8 +24,8 @@ class IndexController extends Controller
      */
     public function index()
     {
-//        dd(\Auth::guest());
-        return view('admin.index.index', ['title' => '控制面板']);
+        $this->title = '控制面板';
+        return $this->view('admin.index.index');
     }
 
 

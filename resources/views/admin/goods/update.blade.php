@@ -2,10 +2,19 @@
 
 @section('title', $title)
 
+@section('css')
+    <link rel="stylesheet" href="/dist/css/swiper-3.4.2.min.css" />
+    <style>
+        .game-wrapper{
+            display: inline-block;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ $title }}</h3>
@@ -13,61 +22,69 @@
                     <div class="panel-body">
                         @include('admin.partials.errors')
                         @include('admin.partials.success')
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.sides.save') }}" enctype="multipart/form-data">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.goods.save') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="id" value="{{$data->id}}">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">幻灯片标题</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="title"  value="{{$data->title}}">
+                                <label class="col-md-3 control-label">商品名称</label>
+                                <div class="col-md-8">
+                                    <span class="radio-inline">{{$data->title}}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">类型</label>
-                                <div class="col-md-6">
-                                    <select class="selectpicker form-control sides_type"  name="type">
-                                        @foreach($sides_type as $key => $v)
-                                            <option value="{{ $key }}" @if($data->type == $key) selected @endif>{{ $v }}</option>
-                                        @endforeach
-                                    </select>
+                                <label class="col-md-3 control-label">商品标题</label>
+                                <div class="col-md-8">
+                                    <span class="radio-inline">{{$data->long_title}}</span>
                                 </div>
                             </div>
-                            <div id="sides_p_id">
-                                @if($p_ids)
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">所属类别</label>
-                                        <div class="col-md-6">
-                                            <select class="selectpicker form-control sides_p_id"  name="p_id">
-                                                @foreach($p_ids as $key => $v)
-                                                    <option value="{{ $v->id }}" @if($data->p_id == $v->id) selected @endif>{{ $v->name }}</option>
-                                                @endforeach
-                                            </select>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">发布者</label>
+                                <div class="col-md-8">
+                                    <span class="radio-inline">{{$data->user->name}}(状态：@if($data->user->status)<span class="label label-info">正常</span>@else <span class="label label-danger">禁用</span> @endif)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">商品分类</label>
+                                <div class="col-md-8">
+                                    <span class="radio-inline">{{$data->category->title}}(状态：@if($data->category->status)<span class="label label-info">正常</span>@else <span class="label label-danger">禁用</span> @endif)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">主图片地址</label>
+                                <div class="col-md-8">
+                                    <img src="{{ asset('storage/'.$data->img_url) }}" class="img-rounded" style="max-width: 100px;max-height: 100px;">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">商品轮播图</label>
+                                <div class="col-md-8">
+                                    <div class="swiper-container">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($data->imgs->chunk(4) as $chunks)
+                                                <div class="swiper-slide">
+                                                    @foreach ($chunks as $value)
+                                                        <div class="game-wrapper">
+                                                            <img src="{{ asset('storage/'.$value->img_url) }}"/>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            @endforeach
                                         </div>
+                                        <!-- 导航按钮 -->
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-button-next"></div>
                                     </div>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">跳转地址</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="url" value="{{$data->url}}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">图片地址</label>
-                                <div class="col-md-6">
-                                    {{$data->img_url}}
-                                    <input type="file" class="form-control" name="file" style="border: 0">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">排序</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="sort" value="0"  value="{{$data->sort}}">
+                                <label class="col-md-3 control-label">商品描述</label>
+                                <div class="col-md-8 row pre-scrollable">
+                                    {!! $data->description !!}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="status" class="col-md-3 control-label">是否显示</label>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <label class="radio-inline">
                                         <input type="radio" name="status" value="1" @if($data->status == 1)checked @endif> 是
                                     </label>
@@ -77,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-7 col-md-offset-3">
+                                <div class="col-md-9 col-md-offset-3">
                                     <button type="submit" class="btn btn-primary">保存</button>
                                 </div>
                             </div>
@@ -89,43 +106,7 @@
     </div>
 @stop
 @section('js')
-    <script>
-        $(document).ready(function () {
-            {{--var value = "{{ key($sides_type) }}";--}}
-//            shows(value);
-        });
-        $('.sides_type').change(function () {
-            var type = $(this).val();
-            shows(type);
-        });
-        function shows(type) {
-            $.ajax({
-                url : "{{ route('admin.sides.sides_type') }}",
-                data : { type : type},
-                dataType : 'json',
-                success : function (json) {
-                    if (json.status == 1){
-                        //数据不存在,清除掉
-                        if (json.data == null || json.data.length == 0){
-                            if ($('#sides_p_id').length > 0){
-                                $('#sides_p_id').html('');
-                            }
-                        }else{//存在则修改
-                            var str = '<div class="form-group"><label class="col-md-3 control-label">所属类别</label>'+
-                                '<div class="col-md-6"> <select class="selectpicker form-control sides_p_id"'+
-                                ' name="p_id">';
-                            $.each(json.data, function(index, val){
-                                str += '<option value="'+val.id+'">'+val.name+'</option>';
-                            });
-                            str += '</select></div></div>';
-                            $('#sides_p_id').html(str);
-                            $('.sides_p_id').selectpicker();
-                        }
-                    }else{
-                        alert(json.message)
-                    }
-                }
-            });
-        }
+    <script src="/dist/js/swiper-3.4.2.jquery.min.js"></script>
+    <script type="text/javascript">
     </script>
 @endsection

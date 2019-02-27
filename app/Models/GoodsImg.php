@@ -6,7 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GamePhoto extends Model
+class GoodsImg extends Model
 {
     //
 }

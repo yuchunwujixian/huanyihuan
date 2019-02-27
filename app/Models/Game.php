@@ -43,7 +43,7 @@ class Game extends Model
      */
     public function gamePhotoInfo()
     {
-        return $this->hasMany('App\Models\GamePhoto', 'game_id', 'id');
+        return $this->hasMany('App\Models\GoodsImg', 'game_id', 'id');
     }
 
 
