@@ -137,5 +137,4 @@ class GoodsController extends Controller
 
     }
 
-
 }
