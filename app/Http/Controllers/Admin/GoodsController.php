@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Goods;
+use DB;
 
 class GoodsController extends Controller
 {
@@ -76,22 +77,57 @@ class GoodsController extends Controller
      */
     public function save(Request $request)
     {
-        $date['status'] = $request->input('status');
-        $date['deleted_at'] = null;
+        $is_batch = $request->input('is_batch', 0);//是否批量审核 1是
+        $status = $request->input('status');
         $id = $request->input('id');
-        $info = Goods::withTrashed()->find($id);
-        if (empty($info)){
-            return redirect()->route('admin.goods.update', ['id' => $id])->withErrors('参数错误');
-        }
-        //删除特殊处理
-        if ($date['status'] == -2){
-            $date['deleted_at'] = date('Y-m-d H:i:s');
-        }
-        $res = Goods::withTrashed()->where('id', $id)->update($date);
-        if ($res) {
-            return redirect()->route('admin.goods.index')->withSuccess('修改成功！');
-        } else {
-            return redirect()->route('admin.goods.index')->withErrors('修改失败！');
+        DB::beginTransaction();
+        try{
+            $ids = [];
+            if ($is_batch){
+                $ids = explode(',', $id);
+            }else{
+                $ids = (array)$id;
+            }
+            if (empty($ids)){
+                throw new \Exception('审核商品不能为空');
+            }
+            //删除特殊处理
+            $date['deleted_at'] = null;
+            $date['status'] = $status;
+            if ($status == -2){
+                $date['deleted_at'] = date('Y-m-d H:i:s');
+            }
+            foreach ($ids as $v){
+                $info = Goods::withTrashed()->find($v);
+                if (empty($info)){
+                    throw new \Exception('参数错误，商品id:'.$v);
+                }
+                $res = Goods::withTrashed()->where('id', $v)->update($date);
+                if (!$res) {
+                    throw new \Exception('修改失败，商品id:'.$v);
+                }
+            }
+            DB::commit();
+            if ($request->ajax()){
+                $oupput = [
+                    'status' => 1,
+                    'message' => '修改成功！',
+                ];
+                return $this->tojson($oupput);
+            }else{
+                return redirect()->route('admin.goods.index')->withSuccess('修改成功！');
+            }
+        }catch (\Exception $e){
+            DB::rollBack();
+            if ($request->ajax()){
+                $oupput = [
+                    'status' => 0,
+                    'message' => $e->getMessage(),
+                ];
+                return $this->tojson($oupput);
+            }else{
+                return redirect()->route('admin.goods.index')->withErrors($e->getMessage());
+            }
         }
 
     }

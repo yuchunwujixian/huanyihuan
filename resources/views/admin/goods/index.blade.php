@@ -39,6 +39,17 @@
                     <table id="tags-table" class="table table-striped table-bordered">
                         <thead>
                         <tr>
+                            <th>批量审核</th>
+                            <th colspan="8">
+                                @foreach($goods_status as $k => $v)
+                                    <button class="btn btn-default is-batch" type="button" data-status="{{ $k }}">{{ $v }}</button>
+                                @endforeach
+                            </th>
+                        </tr>
+                        </thead>
+                        <thead>
+                        <tr>
+                            <th><label><input type="checkbox" name="select-all">全选</label></th>
                             <th>ID</th>
                             <th>商品名称</th>
                             <th>添加人</th>
@@ -52,8 +63,9 @@
                         <tbody>
                         @foreach($lists as $v)
                             <tr>
+                                <td><input type="checkbox" name="select-box" value="{{$v->id}}"></td>
                                 <td>{{$v->id}}</td>
-                                <td>{{$v->title}}</td>
+                                <td><a href="javascript:;" data-toggle="tooltip" title="{{$v->long_title}}">{{$v->title}}</a></td>
                                 <td>{{$v->user->name}}</td>
                                 <td>{{$v->category->title}}</td>
                                 <td>{{$v->num}}</td>
@@ -74,4 +86,54 @@
         </div>
     </div>
 @stop
+@section('js')
+    <script>
+        //给全选的复选框添加事件
+        $("input[name=select-all]").click(function(){
+            // this 全选的复选框
+            var userids=this.checked;
+            //获取name=select-box的复选框 遍历输出复选框
+            $("input[name=select-box]").each(function(){
+                this.checked=userids;
+            });
+        });
+
+        //给name=select-box的复选框绑定单击事件
+        $("input[name=select-box]").click(function(){
+            //获取选中复选框长度
+            var length=$("input[name=select-box]:checked").length;
+            //未选中的长度
+            var len=$("input[name=select-box]").length;
+            if(length==len){
+                $("input[name=select-all]").get(0).checked=true;
+            }else{
+                $("input[name=select-all]").get(0).checked=false;
+            }
+        });
+        //批量审核
+        $('.is-batch').click(function () {
+            var _this = $(this);
+            var id = '';
+            $("input[name=select-box]:checked").each(function(index, value){
+                id += $(value).val() + ',';
+            });
+            if (!id){
+                alert('请选择商品序号');
+            }
+            id = id.substr(0, id.length - 1);
+            $.ajax({
+                type : 'POST',
+                url : "{{ route('admin.goods.save') }}",
+                data : { id : id, status : _this.attr('data-status'), is_batch:1},
+                dataType : 'json',
+                success : function (json) {
+                    alert(json.message);
+                    if (json.status == 1){
+                        window.location.reload();
+                    }
+                }
+            });
+        })
+    </script>
+@endsection
 

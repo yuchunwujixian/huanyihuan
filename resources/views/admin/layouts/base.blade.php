@@ -157,6 +157,14 @@ desired effect
     $('.selectpicker').selectpicker({
         width : 'auto'
     });
+    //提示工具
+    $("[data-toggle='tooltip']").tooltip();
+    //全局ajax提交 csrf验证
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
 </script>
 </body>
 </html>
