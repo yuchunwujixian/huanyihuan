@@ -46,33 +46,6 @@ class GoodsController extends Controller
         return $this->view('admin.goods.index', compact('lists', 'goods_status'));
     }
 
-    /**
-     * @name save
-     * @desc 修改或添加
-     * @param Request $request
-     * @return $this
-     * @since  2017/03/18
-     * @update 2017/03/18
-     */
-    public function save(Request $request)
-    {
-        $date['status'] = $request->input('status');
-        $date['id'] = $request->input('id');
-        if ($request->hasFile('file')) {//修改图片
-            $info = Sides::find($date['id']);
-            $old_img = $info['img_url'];
-            $date['img_url'] = $request->file('file')->store('sides/'.$date['type']);
-            Storage::delete($old_img);
-        }
-        $res = Sides::where('id', $date['id'])->update($date);
-        if ($res) {
-            return redirect()->route('admin.goods.index')->withSuccess('修改成功！');
-        } else {
-            return redirect()->route('admin.goods.index')->withErrors('修改失败！');
-        }
-
-    }
-
 
     /**
      * @name view
@@ -92,5 +65,36 @@ class GoodsController extends Controller
         $goods_status = $this->goods_status;
         return $this->view('admin.goods.update', compact('data', 'goods_status'));
     }
+
+    /**
+     * @name save
+     * @desc 修改或添加
+     * @param Request $request
+     * @return $this
+     * @since  2017/03/18
+     * @update 2017/03/18
+     */
+    public function save(Request $request)
+    {
+        $date['status'] = $request->input('status');
+        $date['deleted_at'] = null;
+        $id = $request->input('id');
+        $info = Goods::withTrashed()->find($id);
+        if (empty($info)){
+            return redirect()->route('admin.goods.update', ['id' => $id])->withErrors('参数错误');
+        }
+        //删除特殊处理
+        if ($date['status'] == -2){
+            $date['deleted_at'] = date('Y-m-d H:i:s');
+        }
+        $res = Goods::withTrashed()->where('id', $id)->update($date);
+        if ($res) {
+            return redirect()->route('admin.goods.index')->withSuccess('修改成功！');
+        } else {
+            return redirect()->route('admin.goods.index')->withErrors('修改失败！');
+        }
+
+    }
+
 
 }

@@ -5,10 +5,6 @@
     <link rel="stylesheet" href="/dist/css/about.css">
 @endsection
 
-@section('css')
-    <link rel="stylesheet" href="/dist/css/about.css">
-@endsection
-
 @section('content')
     <!--banner area-->
     <img class="about-banner" src="/dist/img/about-banner.png"/>

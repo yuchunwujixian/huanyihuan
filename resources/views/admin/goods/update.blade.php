@@ -3,9 +3,10 @@
 @section('title', $title)
 
 @section('css')
-    <link rel="stylesheet" href="/dist/css/swiper-3.4.2.min.css" />
     <style>
-        .game-wrapper{
+        #carousel-ad img{
+            width: 23%;
+            max-height: 150px;
             display: inline-block;
         }
     </style>
@@ -58,21 +59,21 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">商品轮播图</label>
                                 <div class="col-md-8">
-                                    <div class="swiper-container">
-                                        <div class="swiper-wrapper">
+                                    <div id="carousel-ad" class="carousel slide" data-ride="carousel"  data-interval="2000">
+                                        <div class="carousel-inner" role="listbox">
+                                            @if($data->imgs)
                                             @foreach ($data->imgs->chunk(4) as $chunks)
-                                                <div class="swiper-slide">
+                                                <div class="item @if($loop->index == 0) active @endif">
                                                     @foreach ($chunks as $value)
-                                                        <div class="game-wrapper">
-                                                            <img src="{{ asset('storage/'.$value->img_url) }}"/>
-                                                        </div>
+                                                    <img class="img-responsive" src="{{ asset('storage/'.$value->img_url) }}">
                                                     @endforeach
                                                 </div>
                                             @endforeach
+                                            @else
+                                                暂无轮播图
+                                            @endif
                                         </div>
-                                        <!-- 导航按钮 -->
-                                        <div class="swiper-button-prev"></div>
-                                        <div class="swiper-button-next"></div>
+
                                     </div>
                                 </div>
                             </div>
@@ -85,12 +86,11 @@
                             <div class="form-group">
                                 <label for="status" class="col-md-3 control-label">是否显示</label>
                                 <div class="col-md-8">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="status" value="1" @if($data->status == 1)checked @endif> 是
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="status" value="0" @if($data->status == 0)checked @endif> 否
-                                    </label>
+                                    @foreach($goods_status as $k => $v)
+                                        <label class="radio-inline">
+                                            <input type="radio" name="status" value="{{$k}}" @if($data->status == $k)checked @endif> {{ $v }}
+                                        </label>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="form-group">
@@ -105,8 +105,3 @@
         </div>
     </div>
 @stop
-@section('js')
-    <script src="/dist/js/swiper-3.4.2.jquery.min.js"></script>
-    <script type="text/javascript">
-    </script>
-@endsection
