@@ -97,10 +97,15 @@ class GoodsController extends Controller
             if ($status == -2){
                 $date['deleted_at'] = date('Y-m-d H:i:s');
             }
-            foreach ($ids as $v){
+            //返回上一个页面的状态
+            $back_status = 0;
+            foreach ($ids as $k => $v){
                 $info = Goods::withTrashed()->find($v);
                 if (empty($info)){
                     throw new \Exception('参数错误，商品id:'.$v);
+                }
+                if ($k == 0){
+                    $back_status = $info->status;
                 }
                 $res = Goods::withTrashed()->where('id', $v)->update($date);
                 if (!$res) {
@@ -115,7 +120,7 @@ class GoodsController extends Controller
                 ];
                 return $this->tojson($oupput);
             }else{
-                return redirect()->route('admin.goods.index')->withSuccess('修改成功！');
+                return redirect()->route('admin.goods.index', ['status' => $back_status])->withSuccess('修改成功！');
             }
         }catch (\Exception $e){
             DB::rollBack();
@@ -126,7 +131,7 @@ class GoodsController extends Controller
                 ];
                 return $this->tojson($oupput);
             }else{
-                return redirect()->route('admin.goods.index')->withErrors($e->getMessage());
+                return redirect()->route('admin.goods.index', ['status' => $back_status])->withErrors($e->getMessage());
             }
         }
 
