@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>用户登录 | 北京炯米游戏网管理后台 </title>
+    <title>用户登录 | {{ config('config_base.site_name') }}管理后台 </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -29,7 +29,7 @@
 @include('admin.partials.success')
 <div class="login-box">
     <div class="text-center">
-        <h4>北京炯米游戏网管理后台</h4>
+        <h4>{{ config('config_base.site_name') }}管理后台</h4>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
@@ -49,7 +49,7 @@
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox">&nbsp;&nbsp;记住密码
+                            <input type="checkbox" name="remember">&nbsp;&nbsp;记住密码
                         </label>
                     </div>
                 </div>

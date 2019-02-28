@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@yield('title') | 换一换管理后台</title>
+    <title>@yield('title') | {{ config('config_base.site_name') }}管理后台</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="_token" content="{{ csrf_token() }}"/>
@@ -39,6 +39,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     {{--loding--}}
     <link href="/dist/css/load/load.css" rel="stylesheet">
     <link href="/plugins/bootstrap-select-1.13.2/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/plugins/iCheck/square/blue.css">
     @yield('css')
 </head>
 <!--
@@ -138,6 +140,8 @@ desired effect
 <script src="/plugins/tokenfield/dist/bootstrap-tokenfield.min.js"></script>
 <script src="/plugins/bootstrap-select-1.13.2/dist/js/bootstrap-select.min.js"></script>
 <script src="/dist/js/common.js"></script>
+<!-- iCheck -->
+<script src="/plugins/iCheck/icheck.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
@@ -164,6 +168,11 @@ desired effect
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
+    });
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '10%' // optional
     });
 </script>
 </body>

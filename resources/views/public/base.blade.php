@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title') | 换一换</title>
+    <title>@yield('title') | {{ config('config_base.site_name') }}</title>
     <meta name=keywords content="{{ $base_config?$base_config->meta_keywords:'' }}">
     <meta name=description content="{{ $base_config?$base_config->meta_description:'' }}">
     <meta name=robots content=all>

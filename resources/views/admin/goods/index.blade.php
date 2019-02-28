@@ -88,27 +88,46 @@
 @stop
 @section('js')
     <script>
-        //给全选的复选框添加事件
-        $("input[name=select-all]").click(function(){
-            // this 全选的复选框
-            var userids=this.checked;
-            //获取name=select-box的复选框 遍历输出复选框
-            $("input[name=select-box]").each(function(){
-                this.checked=userids;
-            });
+//        //给全选的复选框添加事件
+//        $("input[name=select-all]").click(function(){
+//            // this 全选的复选框
+//            var userids=this.checked;
+//            //获取name=select-box的复选框 遍历输出复选框
+//            $("input[name=select-box]").each(function(){
+//                this.checked=userids;
+//            });
+//        });
+//
+//        //给name=select-box的复选框绑定单击事件
+//        $("input[name=select-box]").click(function(){
+//            //获取选中复选框长度
+//            var length=$("input[name=select-box]:checked").length;
+//            //未选中的长度
+//            var len=$("input[name=select-box]").length;
+//            if(length==len){
+//                $("input[name=select-all]").get(0).checked=true;
+//            }else{
+//                $("input[name=select-all]").get(0).checked=false;
+//            }
+//        });
+        var checkAll =$('input[name=select-all]');  //全选的input
+        var checkboxs =$('input[name=select-box]'); //所有单选的input
+
+        checkAll.on('ifChecked ifUnchecked',function(event){
+            if(event.type == 'ifChecked'){
+                checkboxs.iCheck('check');
+            }else{
+                checkboxs.iCheck('uncheck');
+            }
         });
 
-        //给name=select-box的复选框绑定单击事件
-        $("input[name=select-box]").click(function(){
-            //获取选中复选框长度
-            var length=$("input[name=select-box]:checked").length;
-            //未选中的长度
-            var len=$("input[name=select-box]").length;
-            if(length==len){
-                $("input[name=select-all]").get(0).checked=true;
+        checkboxs.on('ifChanged',function(event){
+            if(checkboxs.filter(':checked').length == checkboxs.length){
+                checkAll.prop('checked',true);
             }else{
-                $("input[name=select-all]").get(0).checked=false;
+                checkAll.prop('checked',false);
             }
+            checkAll.iCheck('update');
         });
         //批量审核
         $('.is-batch').click(function () {
