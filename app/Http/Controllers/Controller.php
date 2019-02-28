@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AboutUs;
+use App\Models\TipNews;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -20,6 +21,8 @@ class Controller extends BaseController
 
     protected $base_config;
 
+    protected $tips;
+
     protected $province_config;
 
     protected $city_config;
@@ -33,6 +36,8 @@ class Controller extends BaseController
     public function __construct()
     {
         $this->base_config = AboutUs::first();
+        $this->tips = TipNews::where('status', 1)->orderBy('sort', 'asc')->get();
+
         $this->product_config = config('product');
         $this->province_config = json_decode(Redis::get('province_cache'), true);
         $this->city_config = json_decode(Redis::get('city_cache'), true);
@@ -42,6 +47,7 @@ class Controller extends BaseController
         $current_controller_array = explode('.', $route);
         \View::share('current_controller_array', $current_controller_array);
         \View::share('base_config', $this->base_config);
+        \View::share('tips', $this->tips);
     }
 
     /**

@@ -16,6 +16,10 @@ $(document).ready(function() {
     $(".one-setting").click(function() {
         settingContent = false;
         $(this).parent().css({display: "none"})
+    });
+
+    $('.tips-del').click(function () {
+        $(this).parent().remove()
     })
 
 

@@ -8,6 +8,7 @@
     <meta name=robots content=all>
     <meta name=googlebot content=all>
     <meta name=baiduspider content=all>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/dist/css/reset.css">
     <link rel="stylesheet" href="/dist/css/swiper-3.4.2.min.css" />
     <link rel="stylesheet" href="/dist/css/common.css">
@@ -20,6 +21,8 @@
     <![endif]-->
 </head>
 <body>
+<!-- 提示消息 -->
+@include('public.tips')
 <!-- 顶部导航栏 -->
 @include('public.header')
 
@@ -29,7 +32,9 @@
 <!-- 页面底部 -->
 @include('public.footer')
 
-<script src="/dist/js/jquery-3.1.1.js"></script>
+<script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/dist/js/jquery-validator-1.14.0.js"></script>
 <script src="/dist/js/swiper-3.4.2.jquery.min.js"></script>
 <script src="/dist/js/common.js"></script>
