@@ -4,7 +4,7 @@
             <div class="carousel-inner" role="listbox">
                 @foreach($tips as $v)
                     <div class="item @if($loop->index == 0) active @endif">
-                        <div class="img-responsive">@if($v->url)<a href="{{ $v->url }}" class="text-info">{{ $v->title }}</a>@else{{ $v->title }} @endif</div>
+                        <div class="img-responsive">@if($v->url)<a href="{{ url($v->url) }}" class="text-info">{{ $v->title }}</a>@else{{ $v->title }} @endif</div>
                     </div>
                 @endforeach
             </div>
