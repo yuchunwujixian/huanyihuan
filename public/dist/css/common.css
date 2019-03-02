@@ -326,7 +326,7 @@ input:focus{
 }
 .tips .tips-del{
 	position: absolute;
-	right: 0;
+	right: 4px;
 	cursor: pointer;
 	top: 4px;
 }
