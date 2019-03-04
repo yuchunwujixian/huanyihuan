@@ -13,23 +13,9 @@
 @section('content')
     <!-- 中部banner区域 -->
     <div class="banner">
-        <div class="banner-bg">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="/dist/img/banner.png" alt="banner">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/dist/img/about-banner.png" alt="banner">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/dist/img/recruit-banner.png" alt="banner">
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('public.banner')
         <div class="search-wrapper">
-            <input type="text" placeholder="找公司/找产品/找联系人">
+            <input type="text" placeholder="查找商品">
             <div class="search">
                 <img src="/dist/img/search.png" class="search-icon">
             </div>
@@ -38,8 +24,8 @@
     <!-- 中部周榜区域 -->
     <div class="week-list">
         <div class="week-list-head">
-            <h2 class="week-list-title">从此开启智联生活</h2>
-            <p class="week-list-comment">From now on open at life</p>
+            <h2 class="week-list-title">从此开启美好生活</h2>
+            <p class="week-list-comment">Start a good life from now on</p>
         </div>
         <div class="list-wrapper">
             <div class="list list1">

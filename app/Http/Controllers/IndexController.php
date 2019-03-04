@@ -8,12 +8,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sides;
 
 class IndexController extends Controller
 {
     public function index()
     {
         $this->title = '首页';
-        return $this->view('index.index');
+        $banners = Sides::where('status', 1)->where('type', 0)->orderBy('sort', 'asc')->get();
+        return $this->view('index.index', compact('banners'));
     }
 }

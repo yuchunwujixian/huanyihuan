@@ -4,24 +4,9 @@
       <img src="/dist/img/head_logo.png" alt="Brand">
     </a>
   </div>
-  <style>
-     .nav-account .navbar .nav-items li a {margin: 0 25px}
-     .msg-count {
-      position: absolute;
-       right: 60px;
-       top: 18px;
-      width: 12px;
-      height: 12px;
-      border-radius: 100%;
-      color: #fff;
-      font-size: 10px;
-      text-align: center;
-      line-height: 12px;
-    }
-  </style>
   <div class="navbar">
     <ul class="nav-items">
-      <li @if(isset($current_controller_array) && $current_controller_array[0] == 'company') class="com-nav-active" @endif><a href="{{route('company.index')}}">囧米互联</a></li>
+      <li @if(Route::currentRouteName() == 'index.index') class="com-nav-active" @endif><a href="{{route('index.index')}}">首页</a></li>
       <li @if(isset($current_controller_array) && $current_controller_array[0] == 'publishing') class="com-nav-active" @endif><a href="{{route('publishing.product.index')}}">供需信息榜</a></li>
       <li @if(isset($current_controller_array) && $current_controller_array[0] == 'community') class="com-nav-active" @endif><a href="{{route('community.index')}}">囧米社区</a></li>
       <li @if(isset($current_controller_array) && $current_controller_array[0] == 'job') class="com-nav-active" @endif><a href="{{route('job.index')}}">游戏圈招聘</a></li>

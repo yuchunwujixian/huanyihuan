@@ -1,25 +1,13 @@
-/*中部banner区域样式*/
-.banner{
-	position: relative;
-}
-.banner .banner-bg{
-	width: 100%;
-	height: auto;
-}
-.banner .banner-bg img{
-	width: 100%;
-	height: auto;
-}
 .search-wrapper{
 	position: absolute;
-	bottom: 17.5%;
+	top: 40%;
 	left: 50%;
 	margin-left: -250px;
 	width: 500px;
 	height: 50px;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000',endColorstr='#3f000000');  
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000',endColorstr='#3f000000');
    	background-color:rgba(0, 0, 0, 0.3);
-   	border-radius: 4px;	
+   	border-radius: 4px;
    	z-index: 1;
 }
 .search-wrapper input{
@@ -31,7 +19,7 @@
 	margin: 4px 0 0 4px;
 	padding-left: 30px;
 	border: none;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000',endColorstr='#3f000000');  
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000',endColorstr='#3f000000');
    	background-color:rgba(255, 255, 255, 0.8);
 }
 .search{
