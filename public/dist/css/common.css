@@ -401,7 +401,6 @@ input:focus{
 /*中部banner区域样式*/
 .banner{
     position: relative;
-    min-height: 200px;
 }
 .banner img{
     width:100%;
