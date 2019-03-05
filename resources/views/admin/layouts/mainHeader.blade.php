@@ -119,7 +119,7 @@
               <!-- The user image in the navbar-->
               {{--<img src="/imgs/avatar/u1.jpg" class="user-image" alt="User Image">--}}
              <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">{{auth('admin')->user()->name}}</span>
+              <span class="hidden-xs">{{Auth::user('admin')->name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->

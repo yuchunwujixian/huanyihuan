@@ -1,38 +1,42 @@
-<nav class="nav-account">
-  <div class="navbar-header">
-    <a href="{{route('index.index')}}" class="navbar-brand">
-      <img src="/dist/img/head_logo.png" alt="Brand">
-    </a>
-  </div>
-  <div class="navbar">
-    <ul class="nav-items">
-      <li @if(Route::currentRouteName() == 'index.index') class="com-nav-active" @endif><a href="{{route('index.index')}}">首页</a></li>
-      <li @if(isset($current_controller_array) && $current_controller_array[0] == 'publishing') class="com-nav-active" @endif><a href="{{route('publishing.product.index')}}">供需信息榜</a></li>
-      <li @if(isset($current_controller_array) && $current_controller_array[0] == 'community') class="com-nav-active" @endif><a href="{{route('community.index')}}">囧米社区</a></li>
-      <li @if(isset($current_controller_array) && $current_controller_array[0] == 'job') class="com-nav-active" @endif><a href="{{route('job.index')}}">游戏圈招聘</a></li>
-      <li @if(isset($current_controller_array) && $current_controller_array[0] == 'aboutus') class="com-nav-active" @endif><a href="{{route('aboutus.index')}}">关于我们</a></li>
-    </ul>
-  </div>
-  @if (Auth::check())
-  <div class="user">
-    <ul>
-      <li><a href="{{route('member.info.index')}}">{{ str_limit(Auth::user()->name, 9) }}</a></li>
-      {{--<li class="msg-coordinates"><a href="javascript:;">消息</a><span class="msg-count">2</span></li>--}}
-      <li><a href="{{route('member.info.index')}}">个人中心<span class="msg-count"><font color="red">(@if(!empty(Auth::user()->companyInfo->view_status)){{ Auth::user()->messages(Auth::user()->id)+1 }}@else{{ Auth::user()->messages(Auth::user()->id) }}@endif)</font></span></a></li>
-      <li><a href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出</a></li>
-    </ul>
-    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-      {{ csrf_field() }}
-    </form>
-  </div>
-  @else
-    <div class="account">
-      <ul class="account-items">
-        <li><a href="{{route('login')}}">登录</a></li>
-        <li><a class="middle-line" href="javascript:void(0);">|</a></li>
-        <li><a href="{{route('register')}}">注册</a></li>
+<nav class="navbar navbar-default nav-account" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target="#example-navbar-collapse">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="{{route('index.index')}}" class="navbar-brand">
+        <img src="/dist/img/head_logo.png" alt="Brand">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li @if(Route::currentRouteName() == 'index.index') class="active" @endif><a href="{{route('index.index')}}">首页</a></li>
+        <li @if(isset($current_controller_array) && $current_controller_array[0] == 'publishing') class="active" @endif><a href="{{route('publishing.product.index')}}">供需信息榜</a></li>
+        <li @if(isset($current_controller_array) && $current_controller_array[0] == 'community') class="active" @endif><a href="{{route('community.index')}}">囧米社区</a></li>
+        <li @if(isset($current_controller_array) && $current_controller_array[0] == 'job') class="active" @endif><a href="{{route('job.index')}}">游戏圈招聘</a></li>
+        <li @if(isset($current_controller_array) && $current_controller_array[0] == 'aboutus') class="active" @endif><a href="{{route('aboutus.index')}}">关于我们</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        @if (Auth::check())
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="javascript:;"><span class="glyphicon glyphicon-envelope"></span>消息</a></li>
+              <li class="divider"></li>
+              <li><a href="{{route('member.info.index')}}"><span class="glyphicon glyphicon-user"></span>个人中心</a></li>
+              <li class="divider"></li>
+              <li><a href="{{route('logout')}}"><span class="glyphicon glyphicon-log-out"></span>退出</a></li>
+            </ul>
+          </li>
+        @else
+          <li><a href="{{route('register')}}"><span class="glyphicon glyphicon-user"></span>注册</a></li>
+          <li><a href="{{route('login')}}"><span class="glyphicon glyphicon-log-in"></span>登录</a></li>
+        @endif
       </ul>
     </div>
-
-  @endif
+  </div>
 </nav>

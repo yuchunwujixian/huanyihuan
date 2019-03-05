@@ -141,113 +141,32 @@ input:focus{
 }
 /*顶部导航栏样式*/
 .nav-account{
-    width: 1024px;
+    width: 80%;
     height: 60px;
     margin: 0 auto;
+    background-color: white;
+    border: 0;
+    font-size: 20px;
+    z-index: 2;
 }
-.nav-account .navbar-header{
-    float: left;
-    margin: 4px 9px 0 0;
+.nav-account .navbar-brand{
+    padding-top: 0;
 }
-.nav-account .navbar-header{
-    display: block;
+.nav-account .navbar-nav>li>a{
+    line-height: 30px;
 }
 .nav-account .navbar-header img{
     width: 120px;
-    height: 50px;
-}
-.nav-account .navbar{
-    float: left;
-    border-top: 0;
-}
-.nav-account .navbar .nav-items{
     height: 60px;
 }
-.nav-account .navbar .nav-items li{
-    display: block;
-    float: left;
-    height: 60px;
+.nav-account .nav>li {
+    background-color: white;
 }
-.nav-account .navbar .nav-items li:hover{
-    background-color: #0064bc;
-    color: #fff;
+.nav-account .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    background-color: #eee;
 }
-.nav-account .navbar .nav-items li a{
-    display: block;
-    height: 60px;
-    line-height: 60px;
-    margin: 0 32px;
-    color: #000;
-    font-size: 18px;
-}
-.nav-account .navbar .nav-items li:hover a{
-    color: #fff;
-}
-.nav-account .navbar .nav-items .com-nav-active{
-    background-color: #0064bc;
-}
-.nav-account .navbar .nav-items .com-nav-active a{
-    color: #fff;
-}
-.nav-account .account{
-    float: right;
-    height: 60px;
-}
-.nav-account .account .account-items{
-    height: 60px;
-}
-.nav-account .account .account-items li{
-    display: block;
-    float: left;
-    height: 60px;
-}
-.nav-account .account .account-items li a{
-    display: block;
-    height: 60px;
-    line-height: 60px;
-    font-size: 16px;
-    color: #000;
-}
-.nav-account .account .account-items li .middle-line{
-    margin: 0 12px;
-}
-
-.user{
-    float: right;
-    height: 60px;
-    line-height: 60px;
-    border-left: 1px solid #bebebe;
-    position: relative;
-}
-.user .msg-coordinates{
-    position: relative;
-}
-.user .msg-coordinates .msg-count{
-    position: absolute;
-    right: -7px;
-    top: 13px;
-    background-color: #f00;
-    width: 12px;
-    height: 12px;
-    border-radius: 100%;
-    color: #fff;
-    font-size: 10px;
-    text-align: center;
-    line-height: 12px;
-}
-.user ul li{
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 13px;
-}
-.user ul li a{
-    color: #000;
-}
-.user ul li:hover{
-    color: #0064bc;
-}
-.user ul li:hover a{
-    color: #0064bc;
+.nav-account .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+    background-color: #eee;
 }
 /*页面底部样式*/
 #web-btm{
@@ -371,10 +290,11 @@ input:focus{
 }
 
 .container{
-    width: 1024px;
+    width: 80%;
     margin: 0 auto;
     font-size: 12px;
     line-height: 12px;
+    text-align: center;
 }
 .inline-block{
     display: inline-block;
