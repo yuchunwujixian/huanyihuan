@@ -14,10 +14,12 @@
     <!-- 中部banner区域 -->
     <div class="banner">
         @include('public.banner')
-        <div class="search-wrapper">
-            <input type="text" placeholder="查找商品">
-            <div class="search">
-                <img src="/dist/img/search.png" class="search-icon">
+        <div class="container">
+            <div class="search-wrapper">
+                <input type="text" class="col-lg-9 col-xs-9" placeholder="查找商品">
+                <div class="search col-lg-2 col-xs-2">
+                    <img src="/dist/img/search.png" class="search-icon">
+                </div>
             </div>
         </div>
     </div>

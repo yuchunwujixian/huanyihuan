@@ -5,6 +5,7 @@
     <title>@yield('title') | {{ config('config_base.site_name') }}</title>
     <meta name=keywords content="{{ $base_config?$base_config->meta_keywords:'' }}">
     <meta name=description content="{{ $base_config?$base_config->meta_description:'' }}">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name=robots content=all>
     <meta name=googlebot content=all>
     <meta name=baiduspider content=all>

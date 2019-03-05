@@ -2,25 +2,21 @@
 	min-height: 200px;
 }
 .search-wrapper{
-	position: absolute;
+	/*position: absolute;*/
 	top: 40%;
-	left: 50%;
-	margin-left: -250px;
-	width: 500px;
 	height: 50px;
+	width: 50%;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000',endColorstr='#3f000000');
    	background-color:rgba(0, 0, 0, 0.3);
    	border-radius: 4px;
    	z-index: 1;
+	margin: auto;
 }
 .search-wrapper input{
 	display: block;
 	float: left;
-	font-size: 14px;
-	width: 377px;
-	height:42px;
-	margin: 4px 0 0 4px;
-	padding-left: 30px;
+	height:82%;
+	margin: 4px 0 0 15px;
 	border: none;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000',endColorstr='#3f000000');
    	background-color:rgba(255, 255, 255, 0.8);
@@ -28,8 +24,7 @@
 .search{
 	display: block;
 	float: left;
-	width: 85px;
-	height: 42px;
+	height: 82%;
 	margin-top: 4px;
 	background-color: #0063bc;
 	cursor: pointer;
