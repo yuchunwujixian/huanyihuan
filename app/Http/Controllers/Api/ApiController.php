@@ -62,7 +62,7 @@ class ApiController extends Controller
         $output = ['status' => 0, 'message' => ''];
         $output['status'] = 1;
         $output['data'] = Topic::with(['goods' => function ($query) {
-            $query->where('status', 1)->limit(3);
+            $query->where('status', 1);
         }])->where('status', 1)->orderBy('sort', 'asc')->limit(5)->get()->toArray();
         return $this->tojson($output);
     }
