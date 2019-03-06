@@ -44,8 +44,8 @@
                     @foreach($v->goods as $good)
                         <div class="col-sm-6 col-md-4 col-lg-3 ">
                             <div class="thumbnail height-250">
-                                <a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank">
-                                    <img class="lazy" src="/dist/img/head_logo.png" data-src="/dist/img/head_logo.png" alt="Bootstrap 优站精选">
+                                <a href="http://www.youzhan.org/" title="{{ $good->title }}" target="_blank">
+                                    <img class="lazy" src="{{asset('storage/'.$good->img_url)}}" data-src="{{asset('storage/'.$good->img_url)}}" alt="{{ $good->title }}">
                                 </a>
                                 <div class="caption">
                                     <h3>
