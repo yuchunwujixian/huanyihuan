@@ -124,6 +124,9 @@ body {
 .margin-b-10{
     margin-bottom: 10px;
 }
+.height-260{
+    height: 260px;
+}
 .height-250{
     height: 250px;
 }
@@ -133,6 +136,10 @@ input:focus{
 }
 .cursor{
     cursor: pointer;
+}
+.b-shadow{
+    border-bottom: 1px solid #ccc;
+    box-shadow: darkgrey 0 0 15px;
 }
 /*伪类清楚浮动*/
 .clearfix:after{
@@ -167,13 +174,12 @@ input:focus{
 }
 /*顶部导航栏样式*/
 .nav-account{
-    width: 80%;
-    height: 60px;
     margin: 0 auto;
     background-color: white;
     border: 0;
     font-size: 20px;
     z-index: 2;
+    padding: 0 10%;
 }
 .nav-account .navbar-left{
     margin-bottom: 0;

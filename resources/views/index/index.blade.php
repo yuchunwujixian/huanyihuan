@@ -12,7 +12,7 @@
 
 @section('content')
     <!-- 中部banner区域 -->
-    <div class="banner">
+    <div class="banner b-shadow">
         @include('public.banner')
         <div class="container">
             <div class="search-wrapper">
@@ -36,6 +36,7 @@
                     <div class="display-inline">
                         {{ $v->title }}
                     </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div class="display-inline font-16">
                         <a href="javascript:;" class="color-aaa">更多<i class="glyphicon glyphicon-chevron-right"></i></a>
                     </div>
@@ -43,9 +44,9 @@
                 <div class="row">
                     @foreach($v->goods as $good)
                         <div class="col-sm-6 col-md-4 col-lg-3 ">
-                            <div class="thumbnail height-250">
+                            <div class="thumbnail">
                                 <a href="http://www.youzhan.org/" title="{{ $good->title }}" target="_blank">
-                                    <img class="lazy" src="{{asset('storage/'.$good->img_url)}}" data-src="{{asset('storage/'.$good->img_url)}}" alt="{{ $good->title }}">
+                                    <img class="lazy" src="{{asset('storage/'.$good->img_url)}}" data-src="{{asset('storage/'.$good->img_url)}}" alt="{{ $good->title }}" onerror="this.src='/img/default_cover.png';this.onerror=null">
                                 </a>
                                 <div class="caption">
                                     <h3>

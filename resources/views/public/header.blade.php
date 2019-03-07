@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default nav-account" role="navigation">
+<nav class="navbar navbar-default nav-account b-shadow" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse"
