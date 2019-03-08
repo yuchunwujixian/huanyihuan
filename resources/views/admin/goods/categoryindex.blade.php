@@ -3,9 +3,7 @@
 @section('title', $title)
 
 @section('css')
-    {{--图标--}}
-    <link rel="stylesheet" href="/plugins/bootstrap-iconpicker/icon-fonts/font-awesome-4.2.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/plugins/bootstrap-iconpicker/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css"/>
+    <link rel="stylesheet" href="/plugins/jquery-treegrid/css/jquery.treegrid.css">
 @stop
 
 @section('content')
@@ -24,8 +22,8 @@
                     <table id="tags-table" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th class="hidden-sm">职位名称</th>
-                            <th data-sortable="false">操作</th>
+                            <th>职位名称</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -57,12 +55,8 @@
 
 @stop
 @section('js')
-    <script type="text/javascript" src="/plugins/bootstrap-iconpicker/bootstrap-iconpicker/js/iconset/iconset-fontawesome-4.3.0.min.js"></script>
-    <script type="text/javascript" src="/plugins/bootstrap-iconpicker/bootstrap-iconpicker/js/bootstrap-iconpicker.js"></script>
-    <link rel="stylesheet" href="/plugins/jquery-treegrid/css/jquery.treegrid.css">
     <script src="/plugins/jquery-treegrid/js/jquery.treegrid.min.js"></script>
     <script>
-        $('.caret').remove();
         $('.btn-default').removeClass('iconpicker');
         $('.btn-default').unbind('click');
         $('#tags-table').treegrid();
