@@ -26,12 +26,6 @@ Route::get('/', 'IndexController@index');
 
 Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () {
 
-
-    //管理员用户管理路由
-    Route::get('user/index', ['as' => 'admin.user.index', 'uses' => 'UserController@index']);  //用户管理
-    Route::post('user/index', ['as' => 'admin.user.index', 'uses' => 'UserController@index']);
-    Route::resource('user', 'UserController', ['names' => ['update' => 'admin.role.edit', 'store' => 'admin.role.create']]);
-
     //职位管理
     Route::get('job/index', ['as' => 'admin.job.index', 'uses' => 'JobController@index']);
     Route::get('job/{id}/update', ['as' => 'admin.job.update', 'uses' => 'JobController@update']);
@@ -114,6 +108,10 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('role/index', ['as' => 'admin.role.index', 'uses' => 'RoleController@index']);
     Route::post('role/index', ['as' => 'admin.role.index', 'uses' => 'RoleController@index']);
     Route::resource('role', 'RoleController', ['names' => ['update' => 'admin.role.edit', 'store' => 'admin.role.create']]);
+    //管理员用户管理路由
+    Route::get('user/index', ['as' => 'admin.user.index', 'uses' => 'UserController@index']);  //用户管理
+    Route::post('user/index', ['as' => 'admin.user.index', 'uses' => 'UserController@index']);
+    Route::resource('user', 'UserController', ['names' => ['update' => 'admin.role.edit', 'store' => 'admin.role.create']]);
     //提示消息
     Route::get('tipnews/index', 'TipNewsController@index')->name('admin.tipnews.index');
     Route::get('tipnews/{id}/update', 'TipNewsController@update')->name('admin.tipnews.update');
@@ -126,6 +124,7 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::post('topic/save', 'TopicController@save')->name('admin.topic.save');
     Route::get('topic/create', 'TopicController@create')->name('admin.topic.create');
     Route::get('topic/del/{id}', 'TopicController@del')->name('admin.topic.del');
+    Route::get('topic/{id}/goods', 'TopicController@goods')->name('admin.topic.goods');
     //幻灯片
     Route::get('sides/index', 'SidesController@index')->name('admin.sides.index');
     Route::get('sides/{id}/update', 'SidesController@update')->name('admin.sides.update');

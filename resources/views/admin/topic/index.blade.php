@@ -36,6 +36,7 @@
                                 <td>
                                     <a style="margin:3px;"  href="{{ route('admin.topic.update', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-edit"></i>查看</a>
                                     <a style="margin:3px;"  href="{{ route('admin.topic.del', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-times-circle"></i>删除</a>
+                                    <a style="margin:3px;"  href="{{ route('admin.topic.goods', ['id' => $v->id]) }}" class="X-Small btn-xs text-danger"><i class="fa fa-edit"></i>分配商品</a>
                                 </td>
                             </tr>
                          @endforeach
