@@ -23,6 +23,20 @@
                             <input type="text" class="form-control" name="search_title" value="{{ app('request')->get('search_title') }}" placeholder="商品名称，模糊查询">
                         </div>
                         &nbsp;&nbsp;
+                        <div class="form-group">
+                            <select class="selectpicker form-control"  name="category_id">
+                                <option value="0">商品分类</option>
+                                @foreach($categories as $v)
+                                    <option value="{{$v->id}}" @if($v->parent_id == 0)disabled @endif
+                                    @if($v->id == app('request')->get('category_id')) selected @endif>
+                                        @for($i=0;$i<$v->depth;$i++)
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                        @endfor
+                                        {{$v->title}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
                     </form>
                 </div>
@@ -79,7 +93,7 @@
                         </tbody>
                     </table>
                     <div class="page text-right">
-                        {{ $lists->links() }}
+                        {{ $lists->appends($param)->links() }}
                     </div>
                 </div>
             </div>

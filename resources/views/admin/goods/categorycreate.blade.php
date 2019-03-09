@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="pid" class="col-md-3 control-label">父级分类</label>
+                            <label class="col-md-3 control-label">父级分类</label>
                             <div class="col-md-6">
                                 <select class="form-control" name="parent_id">
                                     <option value="0">顶级分类</option>

@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\GoodsCategory;
+use App\Models\TopicGoods;
 use Illuminate\Http\Request;
 use App\Models\Goods;
 use DB;
@@ -26,8 +27,10 @@ class GoodsController extends Controller
      */
     public function index(Request $request)
     {
-        $status = $request->input('status', 0);
-        $search = $request->input('search_title');
+        $status = $request->input('status', 0);//状态
+        $search = $request->input('search_title');//名称
+        $category_id = $request->input('category_id');//分类
+        $param = $request->all();//所有
         if ($status == 0){
             $this->title = '待审核商品列表';
         }elseif ($status == 1){
@@ -40,12 +43,18 @@ class GoodsController extends Controller
             $this->title = '被禁止商品列表';
         }
         $lists = Goods::withTrashed()->where('status', $status);
+        //商品名称
         if ($search){
             $lists = $lists->where('title', 'like', '%'.$search.'%')->orWhere('long_title', 'like', '%'.$search.'%');
         }
+        //商品分类
+        if ($category_id){
+            $lists = $lists->where('category_id', $category_id);
+        }
         $lists = $lists->orderBy('id', 'asc')->paginate(30);
         $goods_status = $this->goods_status;
-        return $this->view('admin.goods.index', compact('lists', 'goods_status'));
+        $categories = GoodsCategory::where('status', 1)->orderBy('lft')->get();
+        return $this->view('admin.goods.index', compact('lists', 'goods_status', 'categories', 'param'));
     }
 
 
@@ -112,6 +121,8 @@ class GoodsController extends Controller
                 if (!$res) {
                     throw new \Exception('修改失败，商品id:'.$v);
                 }
+                //TODO::特殊处理--删除专题下商品
+                TopicGoods::where('goods_id', $v)->delete();
             }
             DB::commit();
             if ($request->ajax()){
@@ -148,7 +159,7 @@ class GoodsController extends Controller
     public function categoryCreate()
     {
         $this->title = '增加商品分类';
-        $categories = GoodsCategory::where('status', 1)->orderBy('lft')->get();
+        $categories = GoodsCategory::orderBy('lft')->get();
         return $this->view('admin.goods.categorycreate', ['categories' => $categories]);
     }
 
@@ -184,7 +195,7 @@ class GoodsController extends Controller
     {
         $this->title = '编辑商品分类';
         $category = GoodsCategory::find($id);
-        $categories = GoodsCategory::where('status', 1)->orderBy('lft')->get();
+        $categories = GoodsCategory::orderBy('lft')->get();
         return $this->view('admin.goods.categoryupdate', ['category' => $category, 'categories' => $categories]);
     }
 

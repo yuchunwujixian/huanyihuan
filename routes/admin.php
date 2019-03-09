@@ -125,6 +125,8 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('topic/create', 'TopicController@create')->name('admin.topic.create');
     Route::get('topic/del/{id}', 'TopicController@del')->name('admin.topic.del');
     Route::get('topic/{id}/goods', 'TopicController@goods')->name('admin.topic.goods');
+    Route::post('topic/{id}/savegoods', 'TopicController@saveGoods')->name('admin.topic.savegoods');
+    Route::post('topic/{id}/delgoods', 'TopicController@delGoods')->name('admin.topic.delgoods');
     //幻灯片
     Route::get('sides/index', 'SidesController@index')->name('admin.sides.index');
     Route::get('sides/{id}/update', 'SidesController@update')->name('admin.sides.update');

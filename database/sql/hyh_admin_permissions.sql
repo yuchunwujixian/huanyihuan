@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 27/02/2019 23:22:09
+ Date: 10/03/2019 02:32:11
 */
 
 SET NAMES utf8mb4;
@@ -28,12 +28,12 @@ CREATE TABLE `hyh_admin_permissions`  (
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '描述与备注',
   `cid` tinyint(4) NOT NULL COMMENT '级别',
   `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '图标',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   `is_menu` tinyint(4) NOT NULL DEFAULT 0 COMMENT '是否菜单 0否 1是',
   `params` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '额外参数，直接字符串拼接',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 47 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 50 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of hyh_admin_permissions
@@ -51,8 +51,8 @@ INSERT INTO `hyh_admin_permissions` VALUES (10, 'admin.user.index', '用户管�
 INSERT INTO `hyh_admin_permissions` VALUES (11, 'admin.user.create', '用户添加', '', 1, '', '2016-05-23 10:39:21', '2016-06-22 13:49:29', 0, NULL);
 INSERT INTO `hyh_admin_permissions` VALUES (12, 'admin.user.edit', '用户编辑', '', 1, '', '2016-05-23 10:39:52', '2016-05-23 10:39:52', 0, NULL);
 INSERT INTO `hyh_admin_permissions` VALUES (13, 'admin.user.destroy', '用户删除', '', 1, '', '2016-05-23 10:40:36', '2016-05-23 10:40:36', 0, NULL);
-INSERT INTO `hyh_admin_permissions` VALUES (14, 'admin.tipnews', 'tipnews管理', 'tipnews管理', 0, 'fa-gittip', '2019-02-18 21:20:46', '2019-02-18 21:20:46', 1, NULL);
-INSERT INTO `hyh_admin_permissions` VALUES (15, 'admin.tipnews.index', 'tipnews列表', '', 14, '', '2019-02-18 21:21:10', '2019-02-18 21:21:10', 1, NULL);
+INSERT INTO `hyh_admin_permissions` VALUES (14, 'admin.tipnews', '提示消息管理', '提示消息管理', 0, 'fa-gittip', '2019-02-18 21:20:46', '2019-03-09 20:15:18', 1, '');
+INSERT INTO `hyh_admin_permissions` VALUES (15, 'admin.tipnews.index', '提示消息列表', '', 14, '', '2019-02-18 21:21:10', '2019-03-09 20:15:45', 1, '');
 INSERT INTO `hyh_admin_permissions` VALUES (16, 'admin.tipnews.update', '查看tipnews', '', 14, '', '2019-02-18 22:07:14', '2019-02-18 22:07:14', 0, NULL);
 INSERT INTO `hyh_admin_permissions` VALUES (17, 'admin.tipnews.create', '创建tipnews', '', 14, '', '2019-02-18 22:07:52', '2019-02-18 22:07:52', 0, NULL);
 INSERT INTO `hyh_admin_permissions` VALUES (18, 'admin.tipnews.save', '增加、编辑tipnews', '', 14, '', '2019-02-18 22:08:29', '2019-02-18 22:08:29', 0, NULL);
@@ -83,5 +83,8 @@ INSERT INTO `hyh_admin_permissions` VALUES (43, 'admin.category.create', '创建
 INSERT INTO `hyh_admin_permissions` VALUES (44, 'admin.category.update', '查看分类', '', 31, '', '2019-02-27 23:20:05', '2019-02-27 23:20:05', 0, '');
 INSERT INTO `hyh_admin_permissions` VALUES (45, 'admin.category.save', '增加/编辑分类', '', 31, '', '2019-02-27 23:20:54', '2019-02-27 23:20:54', 0, '');
 INSERT INTO `hyh_admin_permissions` VALUES (46, 'admin.category.del', '删除分类', '', 31, '', '2019-02-27 23:21:49', '2019-02-27 23:21:49', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (47, 'admin.topic.goods', '专题下商品', '', 20, '', '2019-03-10 00:23:51', '2019-03-10 00:23:51', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (48, 'admin.topic.savegoods', '保存专题商品', '', 20, '', '2019-03-10 00:24:16', '2019-03-10 00:24:16', 0, '');
+INSERT INTO `hyh_admin_permissions` VALUES (49, 'admin.topic.delgoods', '删除专题商品', '', 20, '', '2019-03-10 02:21:57', '2019-03-10 02:21:57', 0, '');
 
 SET FOREIGN_KEY_CHECKS = 1;
