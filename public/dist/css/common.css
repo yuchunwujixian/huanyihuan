@@ -17,13 +17,22 @@ time, mark, audio, video, input {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
     font-weight: normal;
     vertical-align: baseline;
 }
+.h1, .h2, .h3, .h4, .lead, h1, h2, h3, h4 {
+    font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+}
+.h4, h4 {
+    font-size: 18px;
+}
+.h4, .h5, .h6, h4, h5, h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 body{
     font-size: 14px;
-    font-family:Microsoft YaHei;
+    font-family:"Microsoft YaHei";
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -138,8 +147,7 @@ input:focus{
     cursor: pointer;
 }
 .b-shadow{
-    border-bottom: 1px solid #ccc;
-    box-shadow: darkgrey 0 0 15px;
+    box-shadow: 0 4px 5px -3px darkgrey;
 }
 /*伪类清楚浮动*/
 .clearfix:after{
@@ -206,126 +214,6 @@ input:focus{
 .nav-account .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
     background-color: #eee;
 }
-/*页面底部样式*/
-#web-btm{
-    width: 100%;
-    background-color: #1f2027;
-}
-#web-btm .web-btm-up{
-    width: 1064px;
-    height: 138px;
-    margin: 0 auto;
-    /*display: flex;*/
-    /*justify-content: space-between;*/
-}
-#web-btm .web-btm-up:after{
-    content:".";
-    display:block;
-    height:0;
-    clear:both;
-    visibility:hidden;
-}
-#web-btm .web-btm-up .footer-logo{
-    float: left;
-    /* width: 120px; */
-    margin: 56px auto 0;
-}
-#web-btm .web-btm-up .footer-logo img{
-    display: block;
-    width: 112px;
-    height: 36px;
-    /* margin: 31px auto 0; */
-    /*zoom: 1.5;*/
-}
-#web-btm .web-btm-up .web-btm-links{
-    float: left;
-    margin-top: 32px;
-    width: 375px;
-    height: 87px;
-    padding: 3px 55px 0 37px;
-    border-right: 1px solid #3d3e43;
-    box-sizing: border-box;
-}
-#web-btm .web-btm-up .web-btm-links div{
-    /*display: flex;
-    justify-content: space-around;*/
-    /*flex-wrap: wrap;*/
-    margin-top: 10px;
-}
-#web-btm .web-btm-up .web-btm-links div:after{
-    content:".";
-    display:block;
-    height:0;
-    clear:both;
-    visibility:hidden;
-}
-#web-btm .web-btm-up .web-btm-links div a{
-    width: 33.3%;
-    display: block;
-    float: left;
-    font-size: 14px;
-    line-height: 20px;
-    color: #cecece;
-    text-align: center;
-    padding: 5px 0;
-}
-#web-btm .web-btm-up .web-btm-contact-us{
-    float: left;
-    margin-top: 32px;
-    margin-left: 57px;
-    color: #cecece;
-}
-#web-btm .web-btm-up .web-btm-contact-us p{
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-#web-btm .web-btm-up .web-btm-contact-us div{
-    height: 20px;
-}
-#web-btm .web-btm-up .web-btm-contact-us div img{
-    display: block;
-    float: left;
-    margin-top: 4px;
-    margin-right: 16px;
-}
-#web-btm .web-btm-up .web-btm-contact-us div span{
-    display: block;
-    float: left;
-    font-size: 14px;
-    line-height: 20px;
-}
-#web-btm .web-btm-up .weixin{
-    float: right;
-    margin-top: 32px;
-}
-#web-btm .web-btm-up .weixin span{
-    display: block;
-    margin-top: 9px;
-    float: left;
-    color: #cecece;
-    font-size: 11px;
-    line-height: 12px;
-}
-#web-btm .web-btm-up .weixin img{
-    width: 68px;
-    height: 68px;
-    display: block;
-    float: left;
-    margin-top: 4px;
-    margin-right: 40px;
-    margin-left: 40px;
-}
-#web-btm hr{
-    color: #cecece;
-    margin: 0;
-}
-#web-btm .copyright{
-    height: 40px;
-    font-size: 10px;
-    color: #cecece;
-    text-align: center;
-    line-height: 40px;
-}
 
 .container{
     width: 80%;
@@ -335,28 +223,31 @@ input:focus{
     display: inline-block;
     vertical-align: top;
 }
-
-
-.top-arrow{
-    position: relative;
-}
-.top-arrow:before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: -31px;
-    right: 3px;
-    border: 8px solid transparent;
-    border-bottom-color: rgba(0, 0, 0, 0.4);
-    padding: 0;
-    width: 0px;
-    height: 0px;
-    background-color: rgba(0, 0, 0, 0)
-}
 /*中部banner区域样式*/
 .banner{
     position: relative;
 }
 .banner img{
     width:100%;
+}
+
+
+/*页面底部样式*/
+.footer {
+    color: #777;
+    padding: 30px 0;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 30px;
+}
+.footer .container {
+    width: 100%;
+}
+.footer-top .about>div h4 {
+    color: #563d7c;
+}
+.footer a {
+    color: #777;
+}
+.footer li {
+    padding: 5px 0;
 }

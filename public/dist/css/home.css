@@ -65,3 +65,9 @@
 	height: auto;
 	min-height: 100px;
 }
+.week-list .thumbnail {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 310px;
+	margin-bottom: 30px;
+}
