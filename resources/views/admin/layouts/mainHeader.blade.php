@@ -124,7 +124,7 @@
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="/123.png" class="img-circle" alt="User Image">
+                <img src="/img/default_admin.png" class="img-circle" alt="User Image">
                 <p>
                   {{auth('admin')->user()->username}} - 系统管理员
                   <small>最后登录:{{date('Y-m-d H:i',strtotime(auth('admin')->user()->updated_at))}}</small>

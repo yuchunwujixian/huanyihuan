@@ -15,8 +15,8 @@ Auth::routes();
 
 //首页
 Route::get('/', 'IndexController@index')->name('index.index');
-//专题
-Route::get('topic/{id?}', 'IndexController@index')->name('topic.index');
+//商品列表页
+Route::get('goods', 'GoodsController@index')->name('goods.index');
 
 
 Route::match(['get', 'post'],'/search/index', 'SearchController@index')->name('search.index');

@@ -3,19 +3,24 @@
 @section('title', $title)
 
 @section('css')
-    <link rel="stylesheet" href="/dist/css/index.css">
+    <link rel="stylesheet" href="/dist/css/goods.css">
 @endsection
+
 
 @section('content')
     <!-- 中部banner区域 -->
-    <div class="banner b-shadow">
-        @include('public.banner')
-        <div class="container">
-            <div class="search-wrapper">
-                <input type="text" class="col-lg-9 col-xs-9" placeholder="查找商品">
-                <div class="search">
-                    <span class="glyphicon glyphicon-search"></span>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1">
+                <h4>专题：</h4>
+            </div>
+            <div class="col-sm-11">
+                <ul class="list-inline">
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                    <li>Item 4</li>
+                </ul>
             </div>
         </div>
     </div>

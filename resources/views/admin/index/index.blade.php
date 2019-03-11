@@ -11,8 +11,3 @@
         <li>程序：赵本彩</li>
     </ul>
 @endsection
-
-
-@section('js')
-
-@endsection
