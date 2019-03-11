@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         //
         Commands\CreateZoneCache::class,
+        Commands\CreatePermissionsCache::class,
     ];
 
     /**

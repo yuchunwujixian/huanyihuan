@@ -1,43 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : 本地
- Source Server Type    : MySQL
- Source Server Version : 50724
- Source Host           : 127.0.0.1:3306
- Source Schema         : huanyihuan
-
- Target Server Type    : MySQL
- Target Server Version : 50724
- File Encoding         : 65001
-
- Date: 10/03/2019 02:32:11
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for hyh_admin_permissions
--- ----------------------------
-DROP TABLE IF EXISTS `hyh_admin_permissions`;
-CREATE TABLE `hyh_admin_permissions`  (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '权限名',
-  `label` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '权限解释名称',
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '描述与备注',
-  `cid` tinyint(4) NOT NULL COMMENT '级别',
-  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '图标',
-  `created_at` timestamp(0) NULL DEFAULT NULL,
-  `updated_at` timestamp(0) NULL DEFAULT NULL,
-  `is_menu` tinyint(4) NOT NULL DEFAULT 0 COMMENT '是否菜单 0否 1是',
-  `params` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '额外参数，直接字符串拼接',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 50 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of hyh_admin_permissions
--- ----------------------------
 INSERT INTO `hyh_admin_permissions` VALUES (1, 'admin.permission', '权限管理', '', 0, 'fa-users', '2016-05-21 10:06:50', '2016-06-22 13:49:09', 1, NULL);
 INSERT INTO `hyh_admin_permissions` VALUES (2, 'admin.permission.index', '权限列表', '', 1, '', '2016-05-21 10:08:04', '2016-05-21 10:08:04', 1, NULL);
 INSERT INTO `hyh_admin_permissions` VALUES (3, 'admin.permission.create', '权限添加', '', 1, '', '2016-05-21 10:08:18', '2016-05-21 10:08:18', 0, NULL);
@@ -86,5 +46,3 @@ INSERT INTO `hyh_admin_permissions` VALUES (46, 'admin.category.del', '删除分
 INSERT INTO `hyh_admin_permissions` VALUES (47, 'admin.topic.goods', '专题下商品', '', 20, '', '2019-03-10 00:23:51', '2019-03-10 00:23:51', 0, '');
 INSERT INTO `hyh_admin_permissions` VALUES (48, 'admin.topic.savegoods', '保存专题商品', '', 20, '', '2019-03-10 00:24:16', '2019-03-10 00:24:16', 0, '');
 INSERT INTO `hyh_admin_permissions` VALUES (49, 'admin.topic.delgoods', '删除专题商品', '', 20, '', '2019-03-10 02:21:57', '2019-03-10 02:21:57', 0, '');
-
-SET FOREIGN_KEY_CHECKS = 1;
