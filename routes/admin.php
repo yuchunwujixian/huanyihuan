@@ -26,65 +26,8 @@ Route::get('/', 'IndexController@index');
 
 Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () {
 
-    //职位管理
-    Route::get('job/index', ['as' => 'admin.job.index', 'uses' => 'JobController@index']);
-    Route::get('job/{id}/update', ['as' => 'admin.job.update', 'uses' => 'JobController@update']);
-    Route::put('job/store', ['as' => 'admin.job.store', 'uses' => 'JobController@store']);
-
-    //公司管理
-    Route::get('company/index', ['as' => 'admin.company.index', 'uses' => 'CompanyController@index']);
-    Route::get('company/{id}/update', ['as' => 'admin.company.update', 'uses' => 'CompanyController@update']);
-    Route::put('company/store', ['as' => 'admin.company.store', 'uses' => 'CompanyController@store']);
-    Route::get('company/{id}/persons', ['as' => 'admin.company.persons', 'uses' => 'CompanyController@persons']);
-    Route::get('company/apply/modify/index', ['as' => 'admin.company_apply_modify.index', 'uses' => 'CompanyController@applyModifyInfo']);
-    Route::get('company/tianyancha/{id}', ['as' => 'admin.company.tianyancha', 'uses' => 'CompanyController@tianyancha']);
-
     //反馈管理
     Route::get('feedback/index', ['as' => 'admin.feedback.index', 'uses' => 'FeedbackController@index']);
-
-    //游戏管理
-    Route::get('game/index', ['as' => 'admin.game.index', 'uses' => 'GameController@index']);
-    Route::get('game/edit/{id}', ['as' => 'admin.game.edit', 'uses' => 'GameController@edit']);
-    Route::put('game/update', ['as' => 'admin.game.update', 'uses' => 'GameController@update']);
-
-
-    //社区管理
-    Route::get('community/index', ['as' => 'admin.community.index', 'uses' => 'CommunityController@index']);
-    Route::get('community/{id}/update', ['as' => 'admin.community.update', 'uses' => 'CommunityController@update']);
-    Route::post('community/destroy', ['as' => 'admin.community.destroy', 'uses' => 'CommunityController@destroy']);
-    Route::put('community/store', ['as' => 'admin.community.store', 'uses' => 'CommunityController@store']);
-    Route::get('community/{id}/comments', ['as' => 'admin.community.comments', 'uses' => 'CommunityController@comments']);
-    Route::get('community/comments/destroy', ['as' => 'admin.community.comments.destroy', 'uses' => 'CommunityController@commentsDestroyAjax']);
-
-    //产品研发榜管理
-    Route::get('product/index', ['as' => 'admin.product.index', 'uses' => 'ProductController@index']);
-    Route::get('product/{id}/update', ['as' => 'admin.product.update', 'uses' => 'ProductController@update']);
-    Route::put('product/store', ['as' => 'admin.product.store', 'uses' => 'ProductController@store']);
-    Route::post('product/destroy', ['as' => 'admin.product.destroy', 'uses' => 'ProductController@destroy']);
-
-    //发布需求榜管理
-    Route::get('issue/demand/index', ['as' => 'admin.issue.demand.index', 'uses' => 'IssueDemandController@index']);
-    Route::get('issue/demand/{id}/update', ['as' => 'admin.issue.demand.update', 'uses' => 'IssueDemandController@update']);
-    Route::put('issue/demand/store', ['as' => 'admin.issue.demand.store', 'uses' => 'IssueDemandController@store']);
-    Route::post('issue/demand/destroy', ['as' => 'admin.issue.demand.destroy', 'uses' => 'IssueDemandController@destroy']);
-
-    //渠道需求榜管理
-    Route::get('channel/demand/index', ['as' => 'admin.channel.demand.index', 'uses' => 'ChannelDemandController@index']);
-    Route::get('channel/demand/{id}/update', ['as' => 'admin.channel.demand.update', 'uses' => 'ChannelDemandController@update']);
-    Route::put('channel/demand/store', ['as' => 'admin.channel.demand.store', 'uses' => 'ChannelDemandController@store']);
-    Route::post('channel/demand/destroy', ['as' => 'admin.channel.demand.destroy', 'uses' => 'ChannelDemandController@destroy']);
-
-    //外包供需榜管理
-    Route::get('outsource/index', ['as' => 'admin.outsource.index', 'uses' => 'OutsourceController@index']);
-    Route::get('outsource/{id}/update', ['as' => 'admin.outsource.update', 'uses' => 'OutsourceController@update']);
-    Route::put('outsource/store', ['as' => 'admin.outsource.store', 'uses' => 'OutsourceController@store']);
-    Route::post('outsource/destroy', ['as' => 'admin.outsource.destroy', 'uses' => 'OutsourceController@destroy']);
-
-    //游戏开测榜管理
-    Route::get('open/test/index', ['as' => 'admin.open.test.index', 'uses' => 'OpenTestController@index']);
-    Route::get('open/test/{id}/update', ['as' => 'admin.open.test.update', 'uses' => 'OpenTestController@update']);
-    Route::put('open/test/store', ['as' => 'admin.open.test.store', 'uses' => 'OpenTestController@store']);
-    Route::post('open/test/destroy', ['as' => 'admin.open.test.destroy', 'uses' => 'OpenTestController@destroy']);
 
     //普通用户管理
     Route::get('member/index', ['as' => 'admin.member.index', 'uses' => 'MemberController@index']);

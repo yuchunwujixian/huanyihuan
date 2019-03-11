@@ -13,23 +13,12 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-
-//测试
-Route::get('/test/jobs', 'TestController@jobs');
-Route::get('/test/job/{id}', 'TestController@show');
-Route::get('/test/category/{category_id}', 'TestController@jobsForOneCategory');
-Route::get('/test/user/info', 'TestController@userInfo');
-Route::get('/test/insert/category', 'TestController@insertCategory');
-Route::get('/test/insert/child/node', 'TestController@insertChildNode');
-Route::get('/test/build/tree', 'TestController@buildTree');
-Route::get('/test/get/siblings', 'TestController@getSiblings');
-Route::get('/test/get/all/nodes', 'TestController@allNodes');
-Route::get('/test/node/info', 'TestController@info');
-
-
-//---------------首页-------------
+//首页
 Route::get('/', 'IndexController@index')->name('index.index');
+//专题
+Route::get('topic/{id?}', 'IndexController@index')->name('topic.index');
+
+
 Route::match(['get', 'post'],'/search/index', 'SearchController@index')->name('search.index');
 Route::get('/search/no/result', 'SearchController@noresult')->name('search.noresult');
 
@@ -95,9 +84,7 @@ Route::post('/login/login','LoginBandController@login')->name('login.login');
 //---------------用户中心-----------------
 Route::group(['namespace' => 'Member', 'prefix' => 'member', 'middleware' => ['auth']], function () {
 
-    Route::get('/', function(){
-    return redirect('/member/info/index');
-})->name('member.index.index');
+    Route::get('/', function(){return redirect('/member/info/index');})->name('member.index.index');
     //---------------招聘-----------------
     Route::get('job/index', 'JobController@index')->name('member.job.index');
     Route::get('job/create', 'JobController@create')->name('member.job.create');

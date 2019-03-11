@@ -14,9 +14,9 @@
     </div>
     <div class="collapse navbar-collapse" id="example-navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
-        <li @if(Route::currentRouteName() == 'index.index') class="active" @endif><a href="{{route('index.index')}}">首页</a></li>
-        <li @if(isset($current_controller_array) && $current_controller_array[0] == 'publishing') class="active" @endif><a href="{{route('publishing.product.index')}}">供需信息榜</a></li>
-        <li @if(isset($current_controller_array) && $current_controller_array[0] == 'community') class="active" @endif><a href="{{route('community.index')}}">囧米社区</a></li>
+        <li @if(strpos(Route::currentRouteName(), 'index') === 0) class="active" @endif><a href="{{route('index.index')}}">首页</a></li>
+        <li @if(isset($current_controller_array) && $current_controller_array[0] == 'publishing') class="active" @endif><a href="{{route('publishing.product.index')}}">分类</a></li>
+        <li @if(strpos(Route::currentRouteName(), 'topic') === 0) class="active" @endif><a href="{{route('topic.index')}}">专题</a></li>
         <li @if(isset($current_controller_array) && $current_controller_array[0] == 'job') class="active" @endif><a href="{{route('job.index')}}">游戏圈招聘</a></li>
         <li @if(isset($current_controller_array) && $current_controller_array[0] == 'aboutus') class="active" @endif><a href="{{route('aboutus.index')}}">关于我们</a></li>
       </ul>
