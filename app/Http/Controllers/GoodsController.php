@@ -10,7 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\Redis;
 
 class GoodsController extends Controller
 {
@@ -25,6 +25,7 @@ class GoodsController extends Controller
                 $query->where('status', 1)->orderBy('view_count', 'desc')->limit(4);
             }]);
         });
-        return $this->view('index.goods', compact('topics'));
+        $provinces = json_decode(Redis::get('province_cache'), true);
+        return $this->view('index.goods', compact('topics', 'provinces'));
     }
 }

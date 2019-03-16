@@ -1,12 +1,36 @@
-.banner .container{
+.goods-search{
 	height: 50px;
-	position: absolute;
-	top: 20%;
 	width: 100%;
 	text-align: center;
+	margin: 15px 0;
 }
-.banner img{
-	max-height: 400px;
+.goods-condition{
+	font-size: 18px;
+}
+.goods-condition .panel-body{
+	padding-bottom: 5px;
+}
+.goods-condition .panel-body:last-child{
+	padding-bottom: 10px;
+}
+.goods-condition .list-inline>li {
+	/*margin: -5px auto;*/
+	padding: 5px;
+	border-radius: 5px
+}
+.goods-condition .list-inline>li.active {
+	background-color: #1a8afa;
+}
+.goods-condition .list-inline>li.active a {
+	color: white;
+}
+.goods-condition ul li a{
+	color: #777;
+	cursor: pointer;
+}
+.goods-condition ul li:first-child{
+	font-weight: 700;
+	min-width: 70px;
 }
 .search-wrapper{
 	top: 40%;
@@ -46,7 +70,7 @@
 	margin: 0 auto;
 }
 .week-list .week-list-head{
-	margin-top: 44px;
+	margin-top: 24px;
 	margin-bottom: 40px;
 }
 .week-list .week-list-head .week-list-title{

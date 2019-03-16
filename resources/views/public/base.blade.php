@@ -47,7 +47,18 @@
     //提示消息关闭
     $('.tips-del').click(function () {
         $(this).parent().remove()
-    })
+    });
+    //tooltip
+    $("[data-toggle='tooltip']").tooltip();
+    //设置子元素中的高度相等
+    if($(".same-height").length > 0) {
+        //元素存在时执行的代码
+        var arr = new Array();
+        $('.same-height > div').each(function(i){
+            arr[i] = $(this).outerHeight();
+        });
+        $('.same-height > div').height(Math.max.apply(null,arr));
+    }
 </script>
 </body>
 </html>

@@ -37,7 +37,7 @@
                         <a href="javascript:;" class="color-aaa">更多<i class="glyphicon glyphicon-chevron-right"></i></a>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row same-height">
                     @foreach($v->goods as $good)
                         <div class="col-sm-6 col-md-4 col-lg-3 ">
                             <div class="thumbnail">
@@ -46,9 +46,16 @@
                                 </a>
                                 <div class="caption">
                                     <h3>
-                                        <a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank">{{ $good->title }}<small> Bootstrap 网站实例</small></a>
+                                        <a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank">
+                                            {{ $good->title }}
+                                        </a>
+                                        <small><span class="text-danger">¥<strong>{{ $good->num }}</strong></span></small>
                                     </h3>
-                                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                                    <p class="cursor" data-toggle="tooltip" title="{{ $good->long_title }}">{{ str_limit($good->long_title, 56) }}</p>
+                                    <div>
+                                        <div class="display-inline"><a href="javascript:;">{{ $good->user->nickname }}</a></div>
+                                        <div class="display-inline fr">浏览：{{ $good->view_count }}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

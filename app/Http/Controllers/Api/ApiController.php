@@ -62,7 +62,7 @@ class ApiController extends Controller
     {
         $output = ['status' => 0, 'message' => ''];
         $output['status'] = 1;
-        $topics = Topic::where('status', 1)->orderBy('sort', 'asc')->limit(5)->get();
+        $topics = Topic::has('goods')->where('status', 1)->orderBy('sort', 'asc')->limit(5)->get();
         //所有数据都会返回，可以循环在取数据
         $topics->each(function (Topic $topic) {
             $topic->load(['goods' => function ($query) {
