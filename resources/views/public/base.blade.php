@@ -38,8 +38,6 @@
 <script src="/dist/js/jquery-validator-1.14.0.js"></script>
 <script src="/plugins/bootstrap-swiper/swiper-3.4.2.jquery.min.js"></script>
 <script src="/plugins/toastr/toastr.min.js"></script>
-@yield('js')
-
 {!! Toastr::render() !!}
 <script>
     //定位提示信息位置为头部居中
@@ -60,5 +58,6 @@
         $('.same-height > div').height(Math.max.apply(null,arr));
     }
 </script>
+@yield('js')
 </body>
 </html>

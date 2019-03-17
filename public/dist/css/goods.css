@@ -95,3 +95,41 @@
 	max-width: 310px;
 	margin-bottom: 30px;
 }
+/*修改字体大小 注意等级*/
+@media (min-width: 768px){
+	.panel-body .col-sm-11 {
+		font-size: 16px;
+	}
+	.panel-body .col-sm-1 {
+		font-size: 16px;
+		padding-left: 0;
+	}
+	.panel-body .ele-not {
+		max-height: 26px;
+	}
+}
+@media (min-width: 992px){
+	.panel-body .col-md-11 {
+		font-size: 18px;
+	}
+	.panel-body .col-md-1 {
+		font-size: 18px;
+		padding-left: 0;
+	}
+	.panel-body .ele-not {
+		max-height: 28px;
+	}
+}
+@media (max-width: 768px){
+	.panel-body .col-xs-11 {
+		font-size: 14px;
+	}
+	.panel-body .col-xs-1 {
+		font-size: 14px;
+		padding-left: 0;
+		margin-left: -15px;
+	}
+	.panel-body .ele-not {
+		max-height: 24px;
+	}
+}

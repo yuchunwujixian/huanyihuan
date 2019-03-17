@@ -148,6 +148,12 @@ input:focus{
 .b-shadow{
     box-shadow: 0 4px 5px -3px darkgrey;
 }
+.overflow-h{
+    overflow: hidden;
+}
+.overflow-a{
+    overflow: auto;
+}
 /*伪类清楚浮动*/
 .clearfix:after{
     content:".";

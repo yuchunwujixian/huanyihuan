@@ -21,31 +21,48 @@
     <div class="container goods-condition">
         <div class="panel panel-default">
             <div class="panel-body">
-                <ul class="list-inline">
-                    <li>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：</li>
-                    <li class="@if(empty(app('request')->input('area')) || app('request')->input('area') == 0) active @endif"><a>全部</a></li>
-                    @foreach($provinces as $k => $v)
-                        <li><a>{{ $v }}</a></li>
-                    @endforeach
-                </ul>
+                <div class="row">
+                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <ul class="list-inline overflow-h ele-not ele-in">
+                            <li>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：</li>
+                            <li class="@if(empty(app('request')->input('area')) || app('request')->input('area') == 0) active @endif"><a href="javascript:;">全部</a></li>
+                            @foreach($provinces as $k => $v)
+                                <li class="@if(empty(app('request')->input('area'))) active @endif"><a href="javascript:;">{{ $v }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <ul class="list-inline">
+                            <li><a href="javascript:;" class="area-more">更多</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="panel-body">
-                <ul class="list-inline">
-                    <li>商品分类：</li>
-                    <li><a>最热</a></li>
-                    <li><a>最热</a></li>
-                    <li><a>最热</a></li>
-                    <li><a>最热</a></li>
-                </ul>
+                <div class="row">
+                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <ul class="list-inline">
+                            <li>商品分类：</li>
+                            <li><a>最热</a></li>
+                            <li><a>最热</a></li>
+                            <li><a>最热</a></li>
+                            <li><a>最热</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="panel-body">
-                <ul class="list-inline">
-                    <li>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</li>
-                    <li class="active"><a>全部</a></li>
-                    @foreach($topics as $v)
-                        <li><a>{{ $v->title }}</a></li>
-                    @endforeach
-                </ul>
+                <div class="row">
+                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <ul class="list-inline">
+                            <li>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</li>
+                            <li class="active"><a>全部</a></li>
+                            @foreach($topics as $v)
+                                <li><a>{{ $v->title }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="panel-body">
                 <ul class="list-inline">
@@ -103,4 +120,18 @@
             @endforeach
         </div>
     </div>
+@endsection
+@section('js')
+    <script>
+        $('.area-more').click(function () {
+            var _this = $(this);
+            if (_this.html() == '更多'){
+                _this.parents('.panel-body').find('.ele-in').removeClass('overflow-h').removeClass('ele-not');
+                _this.html('隐藏');
+            }else{
+                _this.parents('.panel-body').find('.ele-in').addClass('overflow-h').addClass('ele-not');
+                _this.html('更多');
+            }
+        })
+    </script>
 @endsection
