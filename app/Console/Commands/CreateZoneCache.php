@@ -47,6 +47,9 @@ class CreateZoneCache extends Command
             $out_provinces = [];
             foreach ($provinces AS $v) {
                 $out_provinces[$v['code']] = $v['name'];
+                //城市与市区对应
+                $out_cities = City::where('provincecode', $v['code'])->pluck('name', 'code');
+                Redis::set('province_city'.$v['code'], json_encode($out_cities));
             }
             Redis::set('province_cache', json_encode($out_provinces));
         }
@@ -59,6 +62,7 @@ class CreateZoneCache extends Command
                 $out_cities[$v['code']] = $v['name'];
             }
             Redis::set('city_cache', json_encode($out_cities));
+
         }
 
         //生成区县

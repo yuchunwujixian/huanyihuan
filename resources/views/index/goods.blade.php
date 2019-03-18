@@ -24,10 +24,38 @@
                 <div class="row">
                     <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                         <ul class="list-inline overflow-h ele-not ele-in">
-                            <li>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：</li>
-                            <li class="@if(empty(app('request')->input('area')) || app('request')->input('area') == 0) active @endif"><a href="javascript:;">全部</a></li>
+                            <li>省&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：</li>
+                            <li class="@if(empty(app('request')->input('province')) || app('request')->input('province') == 0) active @endif link-box"
+                                data-node="province" data-value="0">
+                                <a href="javascript:;">全部</a>
+                            </li>
                             @foreach($provinces as $k => $v)
-                                <li class="@if(empty(app('request')->input('area'))) active @endif"><a href="javascript:;">{{ $v }}</a></li>
+                                <li class="@if(app('request')->input('province') == $k) active @endif link-box" data-node="province" data-value="{{ $k }}">
+                                    <a href="javascript:;">{{ $v }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <ul class="list-inline">
+                            <li><a href="javascript:;" class="area-more">更多</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <ul class="list-inline overflow-h ele-not ele-in">
+                            <li>市&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：</li>
+                            <li class="@if(empty(app('request')->input('city')) || app('request')->input('city') == 0) active @endif link-box"
+                                data-node="city" data-value="0">
+                                <a href="javascript:;">全部</a>
+                            </li>
+                            @foreach($citys as $k => $v)
+                                <li class="@if(app('request')->input('city') == $k) active @endif link-box" data-node="city" data-value="{{ $k }}">
+                                    <a href="javascript:;">{{ $v }}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -82,19 +110,9 @@
                 <h2 class="week-list-title">从此开启美好生活</h2>
                 <p class="week-list-comment">Start a good life from now on</p>
             </div>
-            <!-- 专题 -->
-            @foreach($topics as $v)
-                <div class="row font-22 margin-b-10">
-                    <div class="display-inline">
-                        {{ $v->title }}
-                    </div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div class="display-inline font-16">
-                        <a href="javascript:;" class="color-aaa">更多<i class="glyphicon glyphicon-chevron-right"></i></a>
-                    </div>
-                </div>
+            @if(count($goods))
                 <div class="row same-height">
-                    @foreach($v->goods as $good)
+                    @foreach($goods as $good)
                         <div class="col-sm-6 col-md-4 col-lg-3 ">
                             <div class="thumbnail">
                                 <a href="http://www.youzhan.org/" title="{{ $good->title }}" target="_blank">
@@ -117,7 +135,15 @@
                         </div>
                     @endforeach
                 </div>
-            @endforeach
+                <div class="page text-center">
+    {{--                {{ $goods->appends($param)->links() }}--}}
+                    {{ $goods->links() }}
+                </div>
+            @else
+                <div>
+                    <h3 class="text-center">暂无数据</h3>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
@@ -132,6 +158,52 @@
                 _this.parents('.panel-body').find('.ele-in').addClass('overflow-h').addClass('ele-not');
                 _this.html('更多');
             }
-        })
+        });
+        var urlen = "{!! app('request')->fullUrl() !!}";
+        $(document).on('click','.link-box',function(){
+            var alias = $(this).attr('data-node');
+            var val = $(this).attr('data-value');
+            var url =decodeURIComponent(urlen);
+            if(url.indexOf('page')>0) {
+                var page = new RegExp( "page=([^&]*)(&|$)", "i");
+                url = url.replace(page,"");
+            }
+            if(url.indexOf('?')>0) {
+                if($.inArray(alias,['sort_default','sort_publish_time','sort_salary','sort_mate']) >= 0) {
+                    var reg = new RegExp("sort_([^=]*)=([^&]*)(&|$)", "i");
+                } else {
+                    var reg = new RegExp( alias + "=([^&]*)(&|$)", "i");
+                }
+                url = url.replace(reg, "");
+                window.location.href=url+"&"+alias+"="+val;
+            } else {
+                window.location.href=url+"?"+alias+"="+val;
+            }
+
+        });
+        $(document).on('click','.pagination li a',function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            var hrefurl = $(this).attr("href");
+            var reg = new RegExp("page=([^&]*)(&|$)");
+            var r = hrefurl.substr(1).match(reg);
+            var page =r[1];
+            var url =decodeURIComponent(urlen);
+            if(url.indexOf('?')>0) {
+                url = url.replace(reg, "");
+                window.location.href=url+"&page="+page;
+            } else {
+                window.location.href=url+"?page="+page;
+            }
+        });
+        $('.ele-in').each(function (index, value) {
+            overflow_deal($(value));
+        });
+        function overflow_deal(ele) {
+            var ele_in = ele;
+            if (ele_in.find('.active').length > 0 && ele_in.find('.active').offset().top != ele_in.offset().top){
+                ele_in.parents('.panel-body').find('.area-more').trigger("click");
+            }
+        }
     </script>
 @endsection

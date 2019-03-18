@@ -8,7 +8,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Goods;
 use App\Models\Topic;
+use App\Service\AddressService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
@@ -17,15 +19,24 @@ class GoodsController extends Controller
     public function index(Request $request)
     {
         $this->title = '商品列表';
-        //专题，然后每个再取
+        //专题
         $topics = Topic::where('status', 1)->orderBy('sort', 'asc')->get();
-        //所有数据都会返回，可以循环再取数据
-        $topics->each(function (Topic $topic) {
-            $topic->load(['goods' => function ($query) {
-                $query->where('status', 1)->orderBy('view_count', 'desc')->limit(4);
-            }]);
-        });
         $provinces = json_decode(Redis::get('province_cache'), true);
-        return $this->view('index.goods', compact('topics', 'provinces'));
+        $citys = [];
+        $goods = Goods::where('status', 1);
+        $input = $request->only(['province', 'city']);
+        //省
+        if ($input['province']){
+            $goods = $goods->where('province_code', $input['province']);
+            $citys = json_decode(Redis::get('province_city'.$input['province']), true);
+        }
+        //市
+        if ($citys && $input['city'] && isset($citys[$input['city']])){
+            $goods = $goods->where('city_code', $input['city']);
+        }
+
+
+        $goods = $goods->orderBy('view_count', 'desc')->paginate(48);
+        return $this->view('index.goods', compact('topics', 'provinces', 'goods', 'citys'));
     }
 }

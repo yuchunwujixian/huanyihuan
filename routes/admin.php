@@ -19,11 +19,6 @@ Route::post('logout', 'LoginController@logout');
 Route::get('/', 'IndexController@index');
 
 
-//Route::get('index', ['as' => 'admin.index.index', 'uses' => function () {
-//    return redirect('/admin/log-viewer');
-//}]);
-
-
 Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () {
 
     //反馈管理
