@@ -49,7 +49,7 @@
                                         <a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank">
                                             {{ $good->title }}
                                         </a>
-                                        <small><span class="text-danger">¥<strong>{{ $good->num }}</strong></span></small>
+                                        <small><span class="text-danger">¥<strong>{{ $good->price }}</strong></span></small>
                                     </h3>
                                     <p class="cursor" data-toggle="tooltip" title="{{ $good->long_title }}">{{ str_limit($good->long_title, 56) }}</p>
                                     <div>

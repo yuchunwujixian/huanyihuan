@@ -69,6 +69,7 @@
                             <th>添加人</th>
                             <th>所属分类</th>
                             <th>商品数量</th>
+                            <th>价值</th>
                             <th>图片地址</th>
                             <th>状态</th>
                             <th>操作</th>
@@ -83,6 +84,7 @@
                                 <td>{{$v->user->name}}</td>
                                 <td>{{$v->category->title}}</td>
                                 <td>{{$v->num}}</td>
+                                <td><span class="text-danger">¥<strong>{{ $v->price }}</strong></span></td>
                                 <td><img  src="{{asset('storage/'.$v->img_url)}}" class="img-rounded" style="max-width: 100px;max-height: 100px;"></td>
                                 <td>{{$goods_status[$v->status]}}</td>
                                 <td>

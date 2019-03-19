@@ -39,6 +39,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-md-3 control-label">商品价值</label>
+                                <div class="col-md-8">
+                                    <span class="radio-inline text-danger">¥<strong>{{ $data->price }}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-md-3 control-label">发布者</label>
                                 <div class="col-md-8">
                                     <span class="radio-inline">{{$data->user->name}}(状态：@if($data->user->status)<span class="label label-info">正常</span>@else <span class="label label-danger">禁用</span> @endif)</span>

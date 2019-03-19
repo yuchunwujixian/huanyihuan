@@ -22,9 +22,10 @@ class GoodsController extends Controller
         //专题
         $topics = Topic::where('status', 1)->orderBy('sort', 'asc')->get();
         $provinces = json_decode(Redis::get('province_cache'), true);
+        $prices = config('config_base.prices');
         $citys = [];
         $goods = Goods::where('status', 1);
-        $input = $request->only(['province', 'city']);
+        $input = $request->only(['province', 'city', 'price', 'topic']);
         //省
         if ($input['province']){
             $goods = $goods->where('province_code', $input['province']);
@@ -34,9 +35,29 @@ class GoodsController extends Controller
         if ($citys && $input['city'] && isset($citys[$input['city']])){
             $goods = $goods->where('city_code', $input['city']);
         }
-
+        //价格
+        if ($input['price']){
+            $price = explode('~', $input['price']);
+            if (is_numeric($price[1])){
+                $goods = $goods->whereBetween('price', $price);
+            }else{
+                $goods = $goods->where('price', '>=', $price[0]);
+            }
+        }
+        //专题
+        if ($input['topic']){
+            $goods = $goods->whereHas('topics', function ($query) use($input){
+                $query->where('status', 1)->where('id', $input['topic']);
+            });
+        }
+        //分类
 
         $goods = $goods->orderBy('view_count', 'desc')->paginate(48);
-        return $this->view('index.goods', compact('topics', 'provinces', 'goods', 'citys'));
+        return $this->view('index.goods', compact(
+            'topics',
+                'provinces',
+                'goods',
+                'citys',
+                'prices'));
     }
 }

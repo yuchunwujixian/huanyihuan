@@ -84,22 +84,28 @@
                     <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                         <ul class="list-inline">
                             <li>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</li>
-                            <li class="active"><a>全部</a></li>
+                            <li class="@if(empty(app('request')->input('topic')) || app('request')->input('topic') == 0) active @endif link-box"
+                                data-node="topic" data-value="0"><a>全部</a></li>
                             @foreach($topics as $v)
-                                <li><a>{{ $v->title }}</a></li>
+                                <li class="@if(app('request')->input('topic') == $v->id) active @endif link-box" data-node="topic" data-value="{{ $v->id }}"><a>{{ $v->title }}</a></li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="panel-body">
-                <ul class="list-inline">
-                    <li>价格区间：</li>
-                    <li><a>最热</a></li>
-                    <li><a>最热</a></li>
-                    <li><a>最热</a></li>
-                    <li><a>最热</a></li>
-                </ul>
+                <div class="row">
+                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <ul class="list-inline">
+                            <li>价格区间：</li>
+                            <li class="@if(empty(app('request')->input('price')) || app('request')->input('price') == 0) active @endif link-box"
+                                data-node="price" data-value="0"><a>全部</a></li>
+                            @foreach($prices as $v)
+                                <li class="@if(app('request')->input('price') == $v) active @endif link-box" data-node="price" data-value="{{ $v }}"><a>{{ $v }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -123,7 +129,7 @@
                                         <a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank">
                                             {{ $good->title }}
                                         </a>
-                                        <small><span class="text-danger">¥<strong>{{ $good->num }}</strong></span></small>
+                                        <small><span class="text-danger">¥<strong>{{ $good->price }}</strong></span></small>
                                     </h3>
                                     <p class="cursor" data-toggle="tooltip" title="{{ $good->long_title }}">{{ str_limit($good->long_title, 56) }}</p>
                                     <div>
