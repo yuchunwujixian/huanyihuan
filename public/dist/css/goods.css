@@ -97,7 +97,7 @@
 }
 /*修改字体大小 注意等级*/
 @media (min-width: 768px){
-	.panel-body .col-sm-11 {
+	.panel-body .col-sm-11,.panel-body .col-sm-12 {
 		font-size: 16px;
 	}
 	.panel-body .col-sm-1 {
@@ -109,7 +109,7 @@
 	}
 }
 @media (min-width: 992px){
-	.panel-body .col-md-11 {
+	.panel-body .col-md-11,.panel-body .col-md-12 {
 		font-size: 18px;
 	}
 	.panel-body .col-md-1 {
@@ -121,7 +121,7 @@
 	}
 }
 @media (max-width: 768px){
-	.panel-body .col-xs-11 {
+	.panel-body .col-xs-11,.panel-body .col-xs-12 {
 		font-size: 14px;
 	}
 	.panel-body .col-xs-1 {

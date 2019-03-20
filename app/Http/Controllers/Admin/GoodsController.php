@@ -53,7 +53,7 @@ class GoodsController extends Controller
         }
         $lists = $lists->orderBy('id', 'asc')->paginate(30);
         $goods_status = $this->goods_status;
-        $categories = GoodsCategory::where('status', 1)->orderBy('lft')->get();
+        $categories = GoodsCategory::orderBy('lft')->get();
         return $this->view('admin.goods.index', compact('lists', 'goods_status', 'categories', 'param'));
     }
 

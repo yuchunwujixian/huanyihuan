@@ -27,7 +27,7 @@ class Goods extends Model
     //分类
     public function category()
     {
-        return $this->belongsTo('App\Models\GoodsCategory', 'user_id', 'id');
+        return $this->belongsTo('App\Models\GoodsCategory', 'category_id', 'id');
     }
     //缩略图
     public function imgs()

@@ -18,4 +18,8 @@ class GoodsCategory extends Node
     {
         return $this->hasMany('App\Models\GoodsCategory', 'parent_id', 'id');
     }
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\GoodsCategory', 'parent_id', 'id');
+    }
 }

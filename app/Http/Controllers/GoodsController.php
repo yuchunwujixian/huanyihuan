@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Goods;
+use App\Models\GoodsCategory;
 use App\Models\Topic;
 use App\Service\AddressService;
 use Illuminate\Http\Request;
@@ -23,10 +24,11 @@ class GoodsController extends Controller
         $topics = Topic::where('status', 1)->orderBy('sort', 'asc')->get();
         $provinces = json_decode(Redis::get('province_cache'), true);
         $prices = config('config_base.prices');
-        $citys = [];
+        $categories = GoodsCategory::where('status', 1)->where('parent_id', 0)->orderBy('lft', 'asc')->get();
+        $input = $request->only(['province', 'city', 'price', 'topic', 'category', 'category_child']);
         $goods = Goods::where('status', 1);
-        $input = $request->only(['province', 'city', 'price', 'topic']);
         //省
+        $citys = [];
         if ($input['province']){
             $goods = $goods->where('province_code', $input['province']);
             $citys = json_decode(Redis::get('province_city'.$input['province']), true);
@@ -50,7 +52,18 @@ class GoodsController extends Controller
                 $query->where('status', 1)->where('id', $input['topic']);
             });
         }
-        //分类
+        //一级分类
+        $category_childs = [];
+        $childs = [];
+        if ($input['category']){
+            $category = GoodsCategory::with('childs')->where('status', 1)->find($input['category']);
+            $category_childs = $category->childs;
+            $childs = array_column($category_childs->toArray(), 'id');
+            $goods = $goods->whereIn('category_id', $childs);
+        }
+        if ($category_childs && in_array($input['category_child'], $childs)){
+            $goods = $goods->where('category_id', $input['category_child']);
+        }
 
         $goods = $goods->orderBy('view_count', 'desc')->paginate(48);
         return $this->view('index.goods', compact(
@@ -58,6 +71,8 @@ class GoodsController extends Controller
                 'provinces',
                 'goods',
                 'citys',
-                'prices'));
+                'prices',
+                'categories',
+                'category_childs'));
     }
 }

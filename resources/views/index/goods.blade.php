@@ -26,11 +26,12 @@
                         <ul class="list-inline overflow-h ele-not ele-in">
                             <li>省&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：</li>
                             <li class="@if(empty(app('request')->input('province')) || app('request')->input('province') == 0) active @endif link-box"
-                                data-node="province" data-value="0">
+                                data-node="province" data-value="0" data-link-node="city">
                                 <a href="javascript:;">全部</a>
                             </li>
                             @foreach($provinces as $k => $v)
-                                <li class="@if(app('request')->input('province') == $k) active @endif link-box" data-node="province" data-value="{{ $k }}">
+                                <li class="@if(app('request')->input('province') == $k) active @endif link-box" data-node="province" data-value="{{ $k }}"
+                                    data-link-node="city">
                                     <a href="javascript:;">{{ $v }}</a>
                                 </li>
                             @endforeach
@@ -43,51 +44,72 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
-                        <ul class="list-inline overflow-h ele-not ele-in">
-                            <li>市&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：</li>
-                            <li class="@if(empty(app('request')->input('city')) || app('request')->input('city') == 0) active @endif link-box"
-                                data-node="city" data-value="0">
-                                <a href="javascript:;">全部</a>
-                            </li>
-                            @foreach($citys as $k => $v)
-                                <li class="@if(app('request')->input('city') == $k) active @endif link-box" data-node="city" data-value="{{ $k }}">
-                                    <a href="javascript:;">{{ $v }}</a>
+            @if(count($citys))
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                            <ul class="list-inline overflow-h ele-not ele-in">
+                                <li>市&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：</li>
+                                <li class="@if(empty(app('request')->input('city')) || app('request')->input('city') == 0) active @endif link-box"
+                                    data-node="city" data-value="0">
+                                    <a href="javascript:;">全部</a>
                                 </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                        <ul class="list-inline">
-                            <li><a href="javascript:;" class="area-more">更多</a></li>
-                        </ul>
+                                @foreach($citys as $k => $v)
+                                    <li class="@if(app('request')->input('city') == $k) active @endif link-box" data-node="city" data-value="{{ $k }}">
+                                        <a href="javascript:;">{{ $v }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                            <ul class="list-inline">
+                                <li><a href="javascript:;" class="area-more">更多</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <ul class="list-inline">
                             <li>商品分类：</li>
-                            <li><a>最热</a></li>
-                            <li><a>最热</a></li>
-                            <li><a>最热</a></li>
-                            <li><a>最热</a></li>
+                            <li class="@if(empty(app('request')->input('category')) || app('request')->input('category') == 0) active @endif link-box"
+                                data-node="category" data-value="0" data-link-node="category_child"><a href="javascript:;">全部</a></li>
+                            @foreach($categories as $v)
+                                <li class="@if(app('request')->input('category') == $v->id) active @endif link-box" data-node="category" data-value="{{ $v->id }}"
+                                    data-link-node="category_child">
+                                    <a href="javascript:;">{{ $v->title }}</a>
+                                </li>
+                            @endforeach
                         </ul>
+                        @if(count($category_childs))
+                            <div class="well" style="margin-bottom: 0;padding: 10px 0;">
+                                <ul class="list-inline">
+                                    <li></li>
+                                    <li class="@if(empty(app('request')->input('category_child')) || app('request')->input('category_child') == 0) active @endif link-box"
+                                        data-node="category_child" data-value="0"><a href="javascript:;">全部</a></li>
+                                    @foreach($category_childs as $v)
+                                        <li class="@if(app('request')->input('category_child') == $v->id) active @endif link-box" data-node="category_child" data-value="{{ $v->id }}">
+                                            <a href="javascript:;">{{ $v->title }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <ul class="list-inline">
                             <li>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</li>
                             <li class="@if(empty(app('request')->input('topic')) || app('request')->input('topic') == 0) active @endif link-box"
-                                data-node="topic" data-value="0"><a>全部</a></li>
+                                data-node="topic" data-value="0"><a href="javascript:;">全部</a></li>
                             @foreach($topics as $v)
-                                <li class="@if(app('request')->input('topic') == $v->id) active @endif link-box" data-node="topic" data-value="{{ $v->id }}"><a>{{ $v->title }}</a></li>
+                                <li class="@if(app('request')->input('topic') == $v->id) active @endif link-box" data-node="topic" data-value="{{ $v->id }}">
+                                    <a href="javascript:;">{{ $v->title }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -95,13 +117,14 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <ul class="list-inline">
                             <li>价格区间：</li>
-                            <li class="@if(empty(app('request')->input('price')) || app('request')->input('price') == 0) active @endif link-box"
-                                data-node="price" data-value="0"><a>全部</a></li>
+                            <li class="@if(empty(app('request')->input('price')) || app('request')->input('price') === 0) active @endif link-box"
+                                data-node="price" data-value="0"><a href="javascript:;">全部</a></li>
                             @foreach($prices as $v)
-                                <li class="@if(app('request')->input('price') == $v) active @endif link-box" data-node="price" data-value="{{ $v }}"><a>{{ $v }}</a></li>
+                                <li class="@if(app('request')->input('price') == $v) active @endif link-box" data-node="price" data-value="{{ $v }}">
+                                    <a href="javascript:;">{{ $v }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -168,6 +191,7 @@
         var urlen = "{!! app('request')->fullUrl() !!}";
         $(document).on('click','.link-box',function(){
             var alias = $(this).attr('data-node');
+            var linknode = $(this).attr('data-link-node');
             var val = $(this).attr('data-value');
             var url =decodeURIComponent(urlen);
             if(url.indexOf('page')>0) {
@@ -181,6 +205,11 @@
                     var reg = new RegExp( alias + "=([^&]*)(&|$)", "i");
                 }
                 url = url.replace(reg, "");
+                //特殊处理
+                if (linknode){
+                    reg = new RegExp( linknode + "=([^&]*)(&|$)", "i");
+                    url = url.replace(reg, "");
+                }
                 window.location.href=url+"&"+alias+"="+val;
             } else {
                 window.location.href=url+"?"+alias+"="+val;
