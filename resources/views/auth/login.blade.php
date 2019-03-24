@@ -4,21 +4,10 @@
 @section('css')
     <link rel="stylesheet" href="/dist/css/account/login.css">
 @endsection
-@section('js')
-    <script src="/dist/js/account/login.js"></script>
-    @if (session('success'))
-        <script>
-            $(function(){
-                alert("{{ session('success') }}")
-            })
-        </script>
-    @endif
-@endsection
 
 @section('content')
-
     <!-- 中部内容区域 -->
-    <div class="container" style="background-image: url('/dist/img/accountbg.png')">
+    <div class="container" style="background: url('/dist/img/accountbg.png') no-repeat left top;background-size: cover;">
         <div class="row margin-t-44">
             <div class="col-sm-6 hidden-xs col-md-6">
                 <div class="panel panel-default text-center">
@@ -27,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-5">
+            <div class="col-sm-6 col-md-5 col-lg-4">
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
                         <h3 >登录</h3>
@@ -108,4 +97,14 @@
 
         </div>
     </div>
+@endsection
+@section('js')
+    <script src="/dist/js/account/login.js"></script>
+    @if (session('success'))
+        <script>
+            $(function(){
+                alert("{{ session('success') }}")
+            })
+        </script>
+    @endif
 @endsection

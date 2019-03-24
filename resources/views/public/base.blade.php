@@ -9,6 +9,7 @@
     <meta name=robots content=all>
     <meta name=googlebot content=all>
     <meta name=baiduspider content=all>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/plugins/bootstrap-swiper/swiper-3.4.2.min.css" />
     <link rel="stylesheet" href="/plugins/toastr/toastr.min.css" >
@@ -39,6 +40,8 @@
 <script src="/plugins/toastr/toastr.min.js"></script>
 {!! Toastr::render() !!}
 <script>
+    var mobile_reg = /^(\+?0?86\-?)?((13\d|14[57]|15[^4,\D]|17[13678]|18\d)\d{8}|170[059]\d{7})$/;
+    var email_reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/i;
     //定位提示信息位置为头部居中
     toastr.options = {"positionClass":"toast-top-center"};
     //提示消息关闭
@@ -59,6 +62,10 @@
             _this.children('div').height(Math.max.apply(null,arr));
         });
     }
+    //提交headers中增加 X-CSRF-TOKEN
+    $.ajaxSetup({
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    });
 </script>
 @yield('js')
 </body>

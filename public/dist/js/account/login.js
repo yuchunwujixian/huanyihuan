@@ -1,4 +1,5 @@
 $(function(){
+    //密码显示隐藏
 	$('.password-eye').click(function () {
 		var _this = $(this);
 		if (_this.hasClass('glyphicon-eye-open')){

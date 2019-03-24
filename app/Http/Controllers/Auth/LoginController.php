@@ -67,7 +67,7 @@ class LoginController extends Controller
             'password' => $request->input('password')
         );
 
-        if (preg_match(config('config_base.phone_rule'), $login)) {
+        if (preg_match(config('config_base.mobile_rule'), $login)) {
             $input['mobile'] = $login;
         } elseif (preg_match(config('config_base.email_rule'), $login)) {
             $input['email'] = $login;

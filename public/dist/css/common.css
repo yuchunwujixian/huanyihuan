@@ -135,6 +135,10 @@ body {
 .color-777{
     color: #777;
 }
+.back-color-blue{
+    background-color: #337ab7;
+    color:white;
+}
 .margin-t-8{
     margin-top: 8px;
 }

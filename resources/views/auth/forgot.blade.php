@@ -4,10 +4,6 @@
 @section('css')
     <link rel="stylesheet" type="text/css" href="/dist/css/account/account.css"/>
     <link rel="stylesheet" href="/dist/css/account/register.css">
-    <link rel="stylesheet" type="text/css" href="/dist/css/iconfont.css">
-    {{--<link rel="stylesheet" type="text/css" href="/dist/css/mobile_base.css">--}}
-    <!--页面样式-->
-    <link rel="stylesheet" type="text/css" href="/dist/css/me.css">
 @endsection
 
 @section('content')

@@ -32,8 +32,8 @@
             </ul>
           </li>
         @else
-          <li><a href="{{route('register')}}"><span class="glyphicon glyphicon-user"></span>注册</a></li>
-          <li><a href="{{route('login')}}"><span class="glyphicon glyphicon-log-in"></span>登录</a></li>
+          <li @if(strpos(Route::currentRouteName(), 'register') === 0) class="active" @endif><a href="{{route('register')}}"><span class="glyphicon glyphicon-user"></span>注册</a></li>
+          <li @if(strpos(Route::currentRouteName(), 'login') === 0) class="active" @endif><a href="{{route('login')}}"><span class="glyphicon glyphicon-log-in"></span>登录</a></li>
         @endif
       </ul>
     </div>

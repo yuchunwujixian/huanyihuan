@@ -22,7 +22,11 @@ Route::get('aboutus/index', 'AboutusController@index')->name('aboutus.index');
 //---------------反馈-------------
 Route::post('aboutus/feedback', 'AboutusController@feedback')->name('aboutus.feedback');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
+//---------------手机注册-----------------
+Route::post('/sms/send', 'SmsController@send')->name('sms.send');//发送注册验证码
+Route::get('/forgot/password', 'Auth\ForgotPasswordController@forgot')->name('forgot.password');//忘记密码
+Route::post('/forgot/password/send', 'SmsController@forgot')->name('forgot.password.send');//发送忘记密码的验证码
+Route::post('/forgot/password/reset', 'Auth\RegisterController@forgot')->name('forgot.password.reset');//忘记密码
 //--end
 
 Route::match(['get', 'post'],'/search/index', 'SearchController@index')->name('search.index');
@@ -56,11 +60,6 @@ Route::get('/registration/policy', function(){
     return view('auth.registrationPolicy');
 })->name('registration.policy');
 
-//---------------邮箱注册-----------------
-Route::post('/email/send', 'EmailCodeController@send')->name('email.send');//发送注册验证码
-Route::get('/forgot/password', 'Auth\ForgotPasswordController@forgot')->name('forgot.password');//忘记密码
-Route::post('/forgot/password/send', 'EmailCodeController@forgot')->name('forgot.password.send');//发送忘记密码的验证码
-Route::post('/forgot/password/reset', 'Auth\RegisterController@forgot')->name('forgot.password.reset');//忘记密码
 
 //---------------第三方登陆---------------
 Route::get('/login/qqlogin','LoginBandController@qqlogin');//qq回掉地址
