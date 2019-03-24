@@ -41,33 +41,20 @@
     font-size: 250%;
 }
 /*中部周榜区域样式*/
-.week-list{
-    width: 100%;
-    margin: 0 auto;
-}
-.week-list .week-list-head{
-    margin-top: 44px;
-    margin-bottom: 40px;
-}
-.week-list .week-list-head .week-list-title{
-    text-align: center;
-    font-size: 24px;
-    line-height: 24px;
-}
-.week-list .week-list-head .week-list-comment{
-    margin-top: 8px;
-    text-align: center;
-    font-size: 14px;
-    color: #aaa;
-}
-.week-list .thumbnail img {
+.thumbnail img {
     max-width: 100%;
     height: auto;
     min-height: 100px;
 }
-.week-list .thumbnail {
+.thumbnail {
     margin-left: auto;
     margin-right: auto;
     max-width: 310px;
     margin-bottom: 30px;
+}
+
+@media (max-width: 768px){
+    .sm-center{
+        text-align: center;
+    }
 }

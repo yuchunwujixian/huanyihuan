@@ -17,7 +17,13 @@ Auth::routes();
 Route::get('/', 'IndexController@index')->name('index.index');
 //商品列表页
 Route::get('goods', 'GoodsController@index')->name('goods.index');
+//---------------关于我们-------------
+Route::get('aboutus/index', 'AboutusController@index')->name('aboutus.index');
+//---------------反馈-------------
+Route::post('aboutus/feedback', 'AboutusController@feedback')->name('aboutus.feedback');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
+//--end
 
 Route::match(['get', 'post'],'/search/index', 'SearchController@index')->name('search.index');
 Route::get('/search/no/result', 'SearchController@noresult')->name('search.noresult');
@@ -32,22 +38,6 @@ Route::get('company/{id}/show', 'CompanyController@show')->name('company.show');
 Route::get('company/search', 'CompanyController@lists')->name('company.search');
 
 
-
-//---------------社区---------------
-Route::get('community/index', 'CommunityController@index')->name('community.index');
-Route::post('community/post/store', 'CommunityController@storePost')->name('community.post.store');
-Route::post('community/comment/store', 'CommunityController@storeCommentAjax')->name('community.comment.store');    //保存评论
-Route::post('community/points/store', 'CommunityController@storePoints')->name('community.points.store'); //点赞
-Route::post('community/collects/store', 'CommunityController@storeCollects')->name('community.collects.store');  //收藏
-Route::get('community/my/posts', 'CommunityController@myReleasePosts')->name('community.posts.my'); //我的发布
-Route::get('community/my/collects', 'CommunityController@myCollectsPosts')->name('community.collects.my'); //我的收藏
-Route::get('community/my/comments', 'CommunityController@myCommentPosts')->name('community.comments.my'); //我参与的
-Route::get('community/post/{id}/destroy', 'CommunityController@destroy')->name('community.post.destroy'); //删除我发布的帖子
-
-//---------------关于我们-------------
-Route::get('aboutus/index', 'AboutusController@index')->name('aboutus.index');
-//---------------反馈-------------
-Route::post('aboutus/feedback', 'AboutusController@feedback')->name('aboutus.feedback');
 
 //---------------游戏详情页---------------
 Route::get('game/{id}/show', 'GameController@show')->name('game.show');

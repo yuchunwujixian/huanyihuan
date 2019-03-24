@@ -30,17 +30,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * @desc 公司信息
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     * @author Jiafang.wang
-     * @since 2017/5/12 17:06
-     */
-    public function companyInfo()
-    {
-        return $this->belongsTo('App\Models\Company', 'company_id', 'id');
-    }
-
-    /**
      * @desc 收藏的帖子
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      * @author Jiafang.wang
@@ -77,5 +66,47 @@ class User extends Authenticatable
             ->where('receive_user_id', $user_id)
             ->count() + Integral::where('view_issue', 0)
             ->where('user_id', $user_id)->count();
+    }
+
+    public static function giveIntegral($user_id = 0, $type = 1, $num = 1, $note = '')
+    {
+        if (!$user_id || !$num || $num < 1){
+            return false;
+        }
+        $user = self::getUserInfo(['id' => $user_id]);
+        if (!$user){
+            return false;
+        }
+        $res = $user->increment('integral', $num);
+        if (!$res){
+            return false;
+        }
+        //加入日志
+        $add = [
+            'user_id' => $user_id,
+            'type' => $type,
+            'change_value' => $num,
+            'change_before' => $user->integral,
+            'note' => $note,
+            'created_at' => date('Y-m-d H:i:s'),
+        ];
+        $res = (new UserIntegralLog)->add($add);
+        if (!$res){
+            return false;
+        }
+        return true;
+    }
+
+    public static function getUserInfo($where, $fields = '*', $is_one = true)
+    {
+        unset($where['password']);
+        if (empty($where)){
+            return false;
+        }
+        if ($is_one){
+            return self::where($where)->select($fields)->first();
+        }else{
+            return self::where($where)->select($fields)->get();
+        }
     }
 }

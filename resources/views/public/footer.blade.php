@@ -8,8 +8,8 @@
                 <p>我们一直致力于为广大开发者提供更多的优质技术文档和辅助开发工具！</p>
             </div>
             <div class="col-md-6">
-                <div class="row about">
-                    <div class="col-sm-2">
+                <div class="row about same-height">
+                    <div class="col-xs-6 col-sm-2">
                         <h4>关于</h4>
                         <ul class="list-unstyled">
                             <li><a href="/about/">关于我们</a></li>
@@ -18,24 +18,24 @@
                             <li><a href="/hr/">招聘</a></li>
                         </ul>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-xs-6 col-sm-4">
                         <h4>联系方式</h4>
                         <ul class="list-unstyled">
                             <li>
-                                <img src="/dist/img/Tel.png"/>
-                                <span>021-25458413</span>
+                                <i class="glyphicon glyphicon-earphone"></i>
+                                <span>18351424931</span>
                             </li>
                             <li>
-                                <img src="/dist/img/qq.png"/>
-                                <span>6582348</span>
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span>17183457036</span>
                             </li>
                             <li>
-                                <img src="/dist/img/e-mail.png"/>
-                                <span>JIONGmi1235@163.com</span>
+                                <i class="glyphicon glyphicon-envelope"></i>
+                                <span>342338015@qq.com</span>
                             </li>
                         </ul>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-xs-6 col-sm-4">
                         <h4>旗下网站</h4>
                         <ul class="list-unstyled">
                             <li><a href="http://www.golaravel.com/" target="_blank">Laravel中文网</a></li>
@@ -45,12 +45,13 @@
                             <li><a href="https://www.return.net/" target="_blank">燃腾教育</a></li>
                         </ul>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-xs-6 col-sm-2">
                         <h4>赞助商</h4>
                         <ul class="list-unstyled">
                             <li><a href="http://www.maoyun.tv/" target="_blank">猫云</a></li>
                             <li><a href="https://www.jdcloud.com/" target="_blank">京东云</a></li>
                             <li><a href="https://www.upyun.com" target="_blank">又拍云</a></li>
+                            <li><a href="http://glyphicons.com/" target="_blank">Glyphicons</a></li>
                         </ul>
                     </div>
                 </div>

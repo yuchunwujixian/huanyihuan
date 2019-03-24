@@ -11,7 +11,6 @@
     <meta name=baiduspider content=all>
     <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/plugins/bootstrap-swiper/swiper-3.4.2.min.css" />
-    <link rel="stylesheet" href="/dist/iconfont/iconfont.css">
     <link rel="stylesheet" href="/plugins/toastr/toastr.min.css" >
     <link rel="stylesheet" href="/dist/css/common.css">
     @yield('css')
@@ -51,11 +50,14 @@
     //设置子元素中的高度相等
     if($(".same-height").length > 0) {
         //元素存在时执行的代码
-        var arr = new Array();
-        $('.same-height > div').each(function(i){
-            arr[i] = $(this).outerHeight();
+        $('.same-height').each(function(index,value){
+            var _this = $(value);
+            var arr = new Array();
+            _this.children('div').each(function(i){
+                arr[i] = $(this).outerHeight();
+            });
+            _this.children('div').height(Math.max.apply(null,arr));
         });
-        $('.same-height > div').height(Math.max.apply(null,arr));
     }
 </script>
 @yield('js')

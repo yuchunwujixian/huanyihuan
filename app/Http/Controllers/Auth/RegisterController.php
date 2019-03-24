@@ -40,12 +40,14 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('guest');
     }
 
     public function showRegistrationForm()
     {
-        return view('auth.register');
+        $this->title = '注册';
+        return $this->view('auth.register');
     }
 
 

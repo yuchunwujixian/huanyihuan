@@ -1,9 +1,5 @@
-/*banner area*/
-.about-banner{
-	width: 100%;
-	height: 260px;
-    max-height: 260px;
-	margin-bottom: 30px;
+.about-about-us li{
+	padding: 5px 0;
 }
 /*about-item area*/
 .about-item{
@@ -31,25 +27,6 @@
 .item-content{
 	width: 100%;
 	height: auto;
-}
-/*company profile area*/
-.company-profile{
-	padding: 30px 0 20px 22px;
-}
-.company-profile h3{
-	font-size: 14px;
-	line-height: 20px;
-	/*margin-top: 30px;*/
-}
-.company-profile p{
-	font-size: 12px;
-	line-height: 20px;
-}
-.company-profile ul li{
-	font-size: 12px;
-	line-height: 20px;
-	list-style-type: disc;
-	margin-left: 13px;
 }
 /*provide-service area*/
 .provide-service{

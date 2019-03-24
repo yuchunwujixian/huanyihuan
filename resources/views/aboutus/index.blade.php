@@ -1,137 +1,106 @@
 @extends('public.base')
 
-@section('title','关于我们')
+@section('title', $title)
 @section('css')
     <link rel="stylesheet" href="/dist/css/about.css">
 @endsection
 
 @section('content')
-    <!--banner area-->
-    <img class="about-banner" src="/dist/img/about-banner.png"/>
-    <!--company profile area-->
-    <div class="about-item">
-        <div class="item-title">
-            <img src="/dist/img/about-icon1.png"/>
-            <span>企业介绍</span>
-        </div>
-        <div class="item-content company-profile">
-            @if(isset($aboutus->description)){!! $aboutus->description !!}@else 暂无数据@endif
-            <p>aaa</p>
+    <!-- 中部banner区域 -->
+    <div class="banner b-shadow">
+        @include('public.banner')
+    </div>
+    <div class="container">
+        <div class="text-center margin-24">
+            <h2 class="font-24">从此开启美好生活</h2>
+            <p class="font-14 color-aaa margin-t-8">Start a good life from now on</p>
         </div>
     </div>
-    <div class="about-item">
-        <div class="item-title">
-            <img src="/dist/img/about-icon2.png"/>
-            <span>提供服务</span>
-        </div>
-        <div class="item-content provide-service">
-            @if($service)
-                @foreach($service as $v)
-                <span>{{$v}}</span>
-               @endforeach
-            @else
-                  暂无数据
-            @endif
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <i class="glyphicon glyphicon-home"></i>&nbsp;&nbsp;
+                <span>企业介绍</span>
+            </div>
+            <div class="panel-body max-w-img">
+                @if(isset($base_config->description)){!! $base_config->description !!}@else 暂无数据@endif
+            </div>
         </div>
     </div>
-    <div class="about-item">
-        <div class="item-title">
-            <img src="/dist/img/about-icon3.png"/>
-            <span>运营游戏</span>
-        </div>
-        <div class="item-content run-game">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    @foreach ($games->chunk(4) as $chunks)
-                    <div class="swiper-slide">
-                        @foreach ($chunks as $value)
-                        <div class="game-wrapper">
-                            <a href="http://www.jiongmiyou.cn" class="img-wrapper" target="_blank">
-                                <img src="http://www.jiongmiyou.cn{{ $value->icon }}"/>
-                            </a>
-                            <span class="game-title">{{ $value->title }}</span>
-                        </div>
-                        @endforeach
+    <div class="container">
+        <div class="panel panel-default about-about-us">
+            <div class="panel-heading text-center">
+                <i class="glyphicon glyphicon-phone-alt"></i>&nbsp;&nbsp;
+                <span>联系我们</span>
+            </div>
+            <div class="panel-body">
+                <div class="row same-height color-777">
+                    <div class="col-xs-6 col-sm-4">
+                        <ul class="list-unstyled">
+                            <li>
+                                <i class="glyphicon glyphicon-home"></i>
+                                <span>江苏南京中航科技大厦</span>
+                            </li>
+                            <li>
+                                <i class=""></i>
+                                <span>ADD:Nanjing,Jiangsu,China</span>
+                            </li>
+                            <li>
+                                <i class="glyphicon glyphicon-phone-alt"></i>
+                                <span>18351424931</span>
+                            </li>
+                            <li>
+                                <i class="glyphicon glyphicon-envelope"></i>
+                                <span>342338015@qq.com</span>
+                            </li>
+                        </ul>
                     </div>
-                    @endforeach
+                    <div class="col-xs-6 col-sm-4">
+                        <ul class="list-unstyled">
+                            <li>Laravel中文网</li>
+                            <li>Ghost中国</li>
+                            <li>BootCDN</li>
+                            <li>Packagist中国镜像</li>
+                            <li>燃腾教育</li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- 导航按钮 -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
             </div>
         </div>
     </div>
-    <div class="about-item">
-        <div class="item-title">
-            <img src="/dist/img/about-icon4.png"/>
-            <span>联系我们</span>
-        </div>
-        <div class="item-content contact-us">
-            <div class="company-info">
-                <p>公司地址：北京市东花市北里20号楼6单元501室</p>
-                <br />
-                <p>电话：021-15512118741</p>
-                <br />
-                <p>QQ：587453841</p>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;
+                <span>意见反馈</span>
             </div>
-            <div class="company-info">
-                <p>ADD:Room 501,Unit 6,Building 20,North Donghuoshi Residential Chongwen District BeiJing City</p>
-                <br />
-                <p>TEL：021-15512118741</p>
-                <br />
-                <p>QQ：587453841</p>
-            </div>
-            <div class="company-info">
-                <p>公司地址：北京市东花市北里20号楼6单元501室</p>
-                <br />
-                <p>电话：021-15512118741</p>
-                <br />
-                <p>QQ：587453841</p>
-            </div>
-            <div class="company-info">
-                <p>ADD:Room 501,Unit 6,Building 20,North Donghuoshi Residential Chongwen District BeiJing City</p>
-                <br />
-                <p>TEL：021-15512118741</p>
-                <br />
-                <p>QQ：587453841</p>
-            </div>
-        </div>
-    </div>
-    <div class="about-item last-item">
-        <div class="item-title">
-            <img src="/dist/img/about-icon5.png"/>
-            <span>意见反馈</span>
-        </div>
-        <style>
-            .error { margin: 5px; color: red}
-        </style>
-        <div class="item-content feedback">
-            <div class="feedback-container clearfix">
-                <form class="feedback-form" action="{{route('aboutus.feedback')}}" method="post">
+            <div class="panel-body">
+                <form id="feedback-form" role="form" action="{{route('aboutus.feedback')}}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <textarea id="suggestInfo" name="suggestInfo" placeholder="如果您能留下宝贵建议，我们将感激不尽！"></textarea>
-                    <button type="submit" id="submit" class="fr">确定</button>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" name="content" placeholder="如果您能留下宝贵建议，我们将感激不尽！"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="fr">
+                            <button type="submit" class="btn btn-default" id="submit">提交</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 @stop
 @section('js')
-    <!-- 引入本页js文件 -->
-    <script src="/dist/js/about.js"></script>
     <script>
-            $("#submit").click(function () {
-                $(".feedback-form").validate({
-                    errorClass: "label.error",
-                    rules: {
-                        suggestInfo: "required"
-                    },
-                    messages: {
-                        suggestInfo: "请输入内容"
-                    }
-                });
-            })
-
+        $("#feedback-form").validate({
+            errorClass: "text-danger",
+            rules: {
+                content: "required"
+            },
+            messages: {
+                content: "请输入内容"
+            }
+        });
     </script>
 @endsection
 

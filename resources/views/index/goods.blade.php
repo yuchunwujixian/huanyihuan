@@ -132,48 +132,47 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="text-center margin-t-24 margin-b-40">
+            <h2 class="font-24">从此开启美好生活</h2>
+            <p class="font-14 color-aaa margin-t-8">Start a good life from now on</p>
+        </div>
+    </div>
     <!-- 中部周榜区域 -->
     <div class="container">
-        <div class="week-list">
-            <div class="week-list-head">
-                <h2 class="week-list-title">从此开启美好生活</h2>
-                <p class="week-list-comment">Start a good life from now on</p>
-            </div>
-            @if(count($goods))
-                <div class="row same-height">
-                    @foreach($goods as $good)
-                        <div class="col-sm-6 col-md-4 col-lg-3 ">
-                            <div class="thumbnail">
-                                <a href="http://www.youzhan.org/" title="{{ $good->title }}" target="_blank">
-                                    <img class="lazy" src="{{asset('storage/'.$good->img_url)}}" data-src="{{asset('storage/'.$good->img_url)}}" alt="{{ $good->title }}" onerror="this.src='/img/default_cover.png';this.onerror=null">
-                                </a>
-                                <div class="caption">
-                                    <h3>
-                                        <a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank">
-                                            {{ $good->title }}
-                                        </a>
-                                        <small><span class="text-danger">¥<strong>{{ $good->price }}</strong></span></small>
-                                    </h3>
-                                    <p class="cursor" data-toggle="tooltip" title="{{ $good->long_title }}">{{ str_limit($good->long_title, 56) }}</p>
-                                    <div>
-                                        <div class="display-inline"><a href="javascript:;">{{ $good->user->nickname }}</a></div>
-                                        <div class="display-inline fr">浏览：{{ $good->view_count }}</div>
-                                    </div>
+        @if(count($goods))
+            <div class="row same-height">
+                @foreach($goods as $good)
+                    <div class="col-sm-6 col-md-4 col-lg-3 ">
+                        <div class="thumbnail">
+                            <a href="http://www.youzhan.org/" title="{{ $good->title }}" target="_blank">
+                                <img class="lazy" src="{{asset('storage/'.$good->img_url)}}" data-src="{{asset('storage/'.$good->img_url)}}" alt="{{ $good->title }}" onerror="this.src='/img/default_cover.png';this.onerror=null">
+                            </a>
+                            <div class="caption">
+                                <h3>
+                                    <a href="http://www.youzhan.org/" title="Bootstrap 优站精选" target="_blank">
+                                        {{ $good->title }}
+                                    </a>
+                                    <small><span class="text-danger">¥<strong>{{ $good->price }}</strong></span></small>
+                                </h3>
+                                <p class="cursor" data-toggle="tooltip" title="{{ $good->long_title }}">{{ str_limit($good->long_title, 56) }}</p>
+                                <div>
+                                    <div class="display-inline"><a href="javascript:;">{{ $good->user->nickname }}</a></div>
+                                    <div class="display-inline fr">浏览：{{ $good->view_count }}</div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                </div>
-                <div class="page text-center">
-    {{--                {{ $goods->appends($param)->links() }}--}}
-                    {{ $goods->links() }}
-                </div>
-            @else
-                <div>
-                    <h3 class="text-center">暂无数据</h3>
-                </div>
-            @endif
-        </div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="page text-center">
+                {{ $goods->links() }}
+            </div>
+        @else
+            <div>
+                <h3 class="text-center">暂无数据</h3>
+            </div>
+        @endif
     </div>
 @endsection
 @section('js')
