@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Sms extends Model
 {
     protected $table = 'sms';
+    public $timestamps = false;
     public $fillable = array(
-        'username','sms_type',  'code', 'type', 'created_at', 'updated_at'
+        'username','user_id','sms_type',  'code', 'type', 'status', 'created_at'
     );
 }

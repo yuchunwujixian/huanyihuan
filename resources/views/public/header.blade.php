@@ -22,7 +22,7 @@
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::check())
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}<b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->nickname }}<b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="javascript:;"><span class="glyphicon glyphicon-envelope"></span>消息</a></li>
               <li class="divider"></li>

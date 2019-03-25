@@ -19,10 +19,11 @@ class SmsController extends Controller
         //判断账号是否已注册
         $input = [];
         $sms_type = 1;
-        if ($type == 'mobile'){
+        if (preg_match(config('config_base.mobile_rule'), $username)) {
             $input['mobile'] = $username;
-        }elseif ($type == 'email'){
+        } elseif (preg_match(config('config_base.email_rule'), $username)) {
             $input['email'] = $username;
+            $sms_type = 2;
         }
         if (!$input){
             $output['message'] = "账号格式不正确，请重试";
@@ -35,23 +36,30 @@ class SmsController extends Controller
         }
 
         //判断账号是否过期
-        $res = Sms::where(['username' => $username, 'sms_type' => $sms_type, 'type' => 1])->orderBy('created_at', 'desc')->first();
-        if (!empty($res) && time() - strtotime($res['created_at']) <= 300) {
+        $res = Sms::where(['username' => $username, 'sms_type' => $sms_type, 'type' => $type])->orderBy('id', 'desc')->first();
+        if (!env('APP_DEBUG') && !empty($res) && time() - strtotime($res['created_at']) <= 300) {
             $output['message'] = "验证码已发送，且有效，无需重发";
             return $this->tojson($output);
         }
-
-        Mail::send('email.verify', ['code' => $code], function ($message) use ($email) {
-            $message->to($email)->subject('注册通知');
-        });
-        Email::create([
-            'email' => $email,
+        $add = [
+            'username' => $username,
+            'sms_type' => $sms_type,
             'code' => $code,
-            'type' => 1
-        ]);
-        $date['code'] = 0;
-        $date['message'] = "验证码发送成功，请注意查收";
-        return $date;
+            'type' => $type,
+            'created_at' => date('Y-m-d H:i:s'),
+        ];
+        if (auth()->user()){
+            $add['user_id'] = auth()->user()->id;
+        }
+        $res = Sms::create($add);
+        if ($res){
+            $output['status'] = 1;
+            $output['message'] = "验证码发送成功，请注意查收";
+            if (env('APP_DEBUG')){
+                $output['message'] = '验证码为：'.$code.'，请在有效时间内填写';
+            }
+        }
+        return $this->tojson($output);
     }
 
 

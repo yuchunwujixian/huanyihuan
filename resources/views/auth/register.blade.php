@@ -32,7 +32,22 @@
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-                                        <input type="text" class="form-control" placeholder="手机号" name="username"  value="{{ old('username') }}">
+                                        <input type="text" class="form-control" placeholder="昵称" name="nickname"  value="{{ old('nickname') }}" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-10 tip-error col-sm-offset-1 text-left">
+                                    @if ($errors->has('nickname'))
+                                        <strong style="color: red">{{ $errors->first('nickname') }}</strong>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></div>
+                                        <input type="text" class="form-control" placeholder="手机号/邮箱" name="username"  value="{{ old('username') }}" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +62,7 @@
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                                        <input type="password" class="form-control" placeholder="密码" name="password"  value="{{ old('password') }}">
+                                        <input type="password" class="form-control" placeholder="密码" name="password"  value="{{ old('password') }}" autocomplete="off">
                                         <div class="input-group-addon"><i class="glyphicon glyphicon-eye-close cursor password-eye"></i></div>
                                     </div>
                                 </div>
@@ -63,8 +78,15 @@
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="验证码" name="code"  value="{{ old('code') }}">
-                                        <div class="input-group-addon cursor back-color-blue" id="sendVerifySmsButton">获取验证码</div>
+                                        <a class="btn input-group-addon cursor back-color-blue" id="sendVerifySmsButton">获取验证码</a>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-10 tip-error col-sm-offset-1 text-left">
+                                    @if ($errors->has('code'))
+                                        <strong style="color: red">{{ $errors->first('code') }}</strong>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
@@ -77,7 +99,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10 col-sm-offset-1">
-                                    <button type="button" class="btn btn-primary btn-block disabled register-button">注册</button>
+                                    <button type="{{ !old('allow_register')?'button':'submit' }}" class="btn btn-primary btn-block @if(!old('allow_register')) disabled @endif register-button">注册</button>
                                 </div>
                             </div>
                         </form>

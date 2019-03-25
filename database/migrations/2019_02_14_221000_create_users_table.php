@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mobile', 12)->unique()->comment('手机号');
+            $table->string('mobile', 12)->nullable()->comment('手机号');
             $table->string('nickname')->nullable()->comment('昵称');
             $table->string('name')->nullable()->comment('用户姓名');
             $table->string('email')->nullable()->comment('邮箱');
@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->boolean('status')->default(1)->comment('状态 0禁用 1正常');
             $table->rememberToken();
             $table->timestamps();
+            $table->index('mobile');
+            $table->index('email');
         });
     }
 

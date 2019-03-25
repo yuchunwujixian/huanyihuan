@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => '3146793486@qq.com',
-        'name' => '北京炯米互联有限公司',
+        'address' => env('MAIL_USERNAME', '342338015@qq.com'),
+        'name' => env('MAIL_FROM_NAME','换一换'),
     ],
 
     /*
