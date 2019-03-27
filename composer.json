@@ -16,12 +16,12 @@
         "doctrine/dbal": "^2.5",
         "guzzlehttp/guzzle": "^6.2",
         "latrell/alipay": "dev-master",
-        "flc/alidayu": "^2.0",
         "socialiteproviders/manager": " ~2.0",
         "socialiteproviders/qq": "v2.0.5",
         "laravel/socialite": "^2.0",
         "socialiteproviders/weixin": "3.0.*",
-        "socialiteproviders/weibo": "v2.0.1"
+        "socialiteproviders/weibo": "v2.0.1",
+        "alibabacloud/client": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

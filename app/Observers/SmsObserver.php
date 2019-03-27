@@ -4,10 +4,9 @@ namespace App\Observers;
 use App\Models\Sms;
 use Illuminate\Support\Facades\Log;
 use Mail;
-use Flc\Alidayu\Client;
-use Flc\Alidayu\App;
-use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
-use Flc\Alidayu\Requests\IRequest;
+use AlibabaCloud\Client\AlibabaCloud;
+use AlibabaCloud\Client\Exception\ClientException;
+use AlibabaCloud\Client\Exception\ServerException;
 
 class SmsObserver
 {
@@ -17,25 +16,28 @@ class SmsObserver
         try{
             if ($sms->sms_type == 1){//手机
                 $config = config('laravel-sms')[$sms->type];
-                $client = new Client(new App($config));
-                $req    = new AlibabaAliqinFcSmsNumSend();
-
-                $req->setRecNum($sms->username)
-                    ->setSmsFreeSignName($config['sign_name'])
-                    ->setSmsTemplateCode($config['template_code']);
-
-                $resp = $client->execute($req);
-
-//                Client::configure($config);  // 全局定义配置（定义一次即可，无需重复定义）
-//                $resp = Client::request('alibaba.aliqin.fc.sms.num.send', function (IRequest $req)use($sms,$config) {
-//                    $req->setRecNum($sms->username)
-////                        ->setSmsParam([
-////                            'code' => $sms->code
-////                        ])
-//                        ->setSmsFreeSignName($config['sign_name'])
-//                        ->setSmsTemplateCode($config['template_code']);
-//                });
-                Log::info(print_r($resp, 1));
+                AlibabaCloud::accessKeyClient($config['app_key'], $config['app_secret'])
+                    ->regionId('cn-hangzhou')
+                    ->asGlobalClient();
+                $query = [
+                    'RegionId' => 'cn-hangzhou',
+                    'PhoneNumbers' => $sms->username,
+                    'SignName' => $config['sign_name'],
+                    'TemplateCode' => $config['template_code'],
+                ];
+                if (!empty($config['template_param'])){
+                    $query['TemplateParam'] = json_encode(['code' => $sms->code]);
+                }
+                $result = AlibabaCloud::rpcRequest()
+                    ->product('Dysmsapi')
+                    ->version('2017-05-25')
+                    ->action('SendSms')
+                    ->method('POST')
+                    ->options([
+                        'query' => $query,
+                    ])
+                    ->request();
+                Log::info(print_r($result->toArray(),1));
             }elseif ($sms->sms_type == 2){//邮箱
                 // emails.test 指向\resources\views\emails\test.blade.php
                 switch ($sms->type){
