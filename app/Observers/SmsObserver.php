@@ -37,7 +37,14 @@ class SmsObserver
                         'query' => $query,
                     ])
                     ->request();
-                Log::info(print_r($result->toArray(),1));
+                $result = $result->toArray();
+                if ($result && $result['Code'] == 'OK'){
+                    Sms::where('id', $sms->id)->update([
+                        'status' => 1
+                    ]);
+                }else{
+                    throw new \Exception(json_encode(['res' => '验证码类型错误', 'result'=>$result]));
+                }
             }elseif ($sms->sms_type == 2){//邮箱
                 // emails.test 指向\resources\views\emails\test.blade.php
                 switch ($sms->type){

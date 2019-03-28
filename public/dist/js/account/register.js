@@ -1,4 +1,3 @@
-
 $(function(){
     //密码显示隐藏
     $('.password-eye').click(function () {
@@ -49,20 +48,23 @@ $(function(){
                 }
             });
             //进入倒计时
-            if (isTiming){
-                var second = 60;
-                _this.text(second);
-                var timer = setInterval(function() {
-                    second--;
-                    if (second > 0) {
-                        _this.text(second);
-                    } else {
-                        clearInterval(timer);
-                        isTiming = false;
-                        _this.text("重新获取").removeClass('disabled').addClass('back-color-blue');
-                    };
-                },1000);
-            }
+            setTimeout(function () {
+                console.log(isTiming);
+                if (isTiming){
+                    var second = 60;
+                    _this.text(second);
+                    var timer = setInterval(function() {
+                        second--;
+                        if (second > 0) {
+                            _this.text(second);
+                        } else {
+                            clearInterval(timer);
+                            isTiming = false;
+                            _this.text("重新获取").removeClass('disabled').addClass('back-color-blue');
+                        };
+                    },1000);
+                }
+            }, 1000);
         }
     });
 });
