@@ -60,6 +60,8 @@ class RegisterController extends Controller
         if (!$user || !$user['status']) {
             return redirect()->back()->withInput()->withErrors($user['error']);
         }
+        //赠送积分
+        User::giveIntegral($user['user']->id, 1, 20, '注册送');
         $this->guard()->login($user['user']);
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());

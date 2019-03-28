@@ -12,7 +12,7 @@ class UserIntegralLog extends Model
         'user_id',
         'type',
         'change_value',
-        'change_before',
+        'change_after',
         'note',
         'created_at',
     ];

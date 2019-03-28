@@ -41,6 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link href="/plugins/bootstrap-select-1.13.2/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <!-- iCheck -->
     <link rel="stylesheet" href="/plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="/plugins/toastr/toastr.min.css" >
     @yield('css')
 </head>
 <!--
@@ -141,11 +142,8 @@ desired effect
 <script src="/plugins/bootstrap-select-1.13.2/dist/js/bootstrap-select.min.js"></script>
 <!-- iCheck -->
 <script src="/plugins/iCheck/icheck.min.js"></script>
-
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. Slimscroll is required when using the
-     fixed layout. -->
+<script src="/plugins/toastr/toastr.min.js"></script>
+{!! Toastr::render() !!}
 @yield('js')
         <!-- Main Footer -->
 @include('admin.layouts.mainFooter')
@@ -168,11 +166,13 @@ desired effect
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
     });
-    $('input').iCheck({
+    $('input:not(.origin)').iCheck({
         checkboxClass: 'icheckbox_square-blue',
         radioClass: 'iradio_square-blue',
         increaseArea: '10%' // optional
     });
+    //定位提示信息位置为头部右侧
+    toastr.options = {"positionClass":"toast-top-right"};
 </script>
 </body>
 </html>

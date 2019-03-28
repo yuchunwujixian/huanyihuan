@@ -24,9 +24,7 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     //反馈管理
     Route::get('feedback/index', ['as' => 'admin.feedback.index', 'uses' => 'FeedbackController@index']);
 
-    //普通用户管理
-    Route::get('member/index', ['as' => 'admin.member.index', 'uses' => 'MemberController@index']);
-    Route::get('member/{id}/show', ['as' => 'admin.member.show', 'uses' => 'MemberController@show']);
+
 
     //充值管理
     Route::get('payment/log/index', ['as' => 'admin.payment.log.index', 'uses' => 'PaymentLogController@index']);
@@ -88,6 +86,11 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('category/{id}/update', ['as' => 'admin.category.update', 'uses' => 'GoodsController@categoryUpdate']);
     Route::post('category/save', ['as' => 'admin.category.save', 'uses' => 'GoodsController@categorySave']);
     Route::get('category/del/{id}', 'GoodsController@categoryDel')->name('admin.category.del');
+    //普通用户管理
+    Route::get('member/index', ['as' => 'admin.member.index', 'uses' => 'MemberController@index']);
+    Route::get('member/{id}/show', ['as' => 'admin.member.show', 'uses' => 'MemberController@show']);
+    Route::get('member/changestatus', 'MemberController@changeStatus')->name('admin.member.changestatus');
+
 
 });
 

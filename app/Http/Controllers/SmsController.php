@@ -36,10 +36,16 @@ class SmsController extends Controller
         }
 
         //判断账号是否过期
-        $res = Sms::where(['username' => $username, 'sms_type' => $sms_type, 'type' => $type])->orderBy('id', 'desc')->first();
-        if (!env('APP_DEBUG') && !empty($res) && time() - strtotime($res['created_at']) <= 300) {
-            $output['message'] = "验证码已发送，且有效，无需重发";
-            return $this->tojson($output);
+        $res = Sms::where(['username' => $username, 'sms_type' => $sms_type, 'type' => $type])->orderBy('id', 'desc')->get();
+        if (!env('APP_DEBUG') && $res->count() > 0){
+            if (time() - strtotime($res[0]['created_at']) <= 300) {
+                $output['message'] = "验证码已发送，且有效，无需重发";
+                return $this->tojson($output);
+            }
+            if ($res->count() >= 3) {
+                $output['message'] = "对不起，您的账号已操作三次，请联系官方解绑";
+                return $this->tojson($output);
+            }
         }
         $add = [
             'username' => $username,
