@@ -41,30 +41,25 @@ $(function(){
                     toastr.options = {"positionClass":"toast-top-right"};
                     if (data.status == 1) {
                         toastr.success(data.message,'');
+                        //进入倒计时
+                        var second = 60;
+                        _this.text(second);
+                        var timer = setInterval(function() {
+                            second--;
+                            if (second > 0) {
+                                _this.text(second);
+                            } else {
+                                clearInterval(timer);
+                                isTiming = false;
+                                _this.text("重新获取").removeClass('disabled').addClass('back-color-blue');
+                            };
+                        },1000);
                     } else {
-                        isTiming = false;
+                        _this.addClass('back-color-blue').removeClass('disabled');
                         toastr.error(data.message,'');
                     }
                 }
             });
-            //进入倒计时
-            setTimeout(function () {
-                console.log(isTiming);
-                if (isTiming){
-                    var second = 60;
-                    _this.text(second);
-                    var timer = setInterval(function() {
-                        second--;
-                        if (second > 0) {
-                            _this.text(second);
-                        } else {
-                            clearInterval(timer);
-                            isTiming = false;
-                            _this.text("重新获取").removeClass('disabled').addClass('back-color-blue');
-                        };
-                    },1000);
-                }
-            }, 1000);
         }
     });
 });
