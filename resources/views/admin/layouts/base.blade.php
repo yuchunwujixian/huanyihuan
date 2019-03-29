@@ -144,7 +144,6 @@ desired effect
 <script src="/plugins/iCheck/icheck.min.js"></script>
 <script src="/plugins/toastr/toastr.min.js"></script>
 {!! Toastr::render() !!}
-@yield('js')
         <!-- Main Footer -->
 @include('admin.layouts.mainFooter')
 <script>
@@ -174,5 +173,6 @@ desired effect
     //定位提示信息位置为头部右侧
     toastr.options = {"positionClass":"toast-top-right"};
 </script>
+@yield('js')
 </body>
 </html>
