@@ -2,10 +2,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Feedback;
 use App\Models\Sms;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Toastr;
+use Toastr,DB;
 
 class MemberController extends Controller
 {
@@ -89,6 +90,7 @@ class MemberController extends Controller
         }
         return back();
     }
+    //短信
     public function sms(Request $request)
     {
         $this->title = '短信验证日志';
@@ -105,5 +107,49 @@ class MemberController extends Controller
         }
         $sms = $sms->orderBy('id', 'desc')->paginate(30);
         return $this->view('admin.member.sms', compact('sms', 'input'));
+    }
+    //反馈
+    public function feedback(Request $request)
+    {
+        $this->title = '用户反馈列表';
+        $input = $request->only(['status']);
+        $datas = Feedback::query();
+        if ($input['status'] || $input['status'] === 0 || $input['status'] === '0'){
+            $datas = $datas->where('status', $input['status']);
+        }
+        $datas = $datas->orderBy('status', 'asc')->orderBy('created_at', 'asc')->paginate(30);
+        return $this->view('admin.member.feedback', compact('datas', 'input'));
+    }
+
+    public function feedbackStatus(Request $request)
+    {
+        $id = $request->input('id');
+        DB::beginTransaction();
+        try{
+            $ids = explode(',', $id);
+            if (empty($ids)){
+                throw new \Exception('反馈id不能为空');
+            }
+            foreach ($ids as $k => $v){
+                $res = Feedback::where('id', $v)->update(['status' => 1]);
+                if (!$res) {
+                    throw new \Exception('修改失败，反馈id:'.$v);
+                }
+            }
+            DB::commit();
+            $oupput = [
+                'status' => 1,
+                'message' => '修改成功！',
+            ];
+            return $this->tojson($oupput);
+        }catch (\Exception $e){
+            DB::rollBack();
+            $oupput = [
+                'status' => 0,
+                'message' => $e->getMessage(),
+            ];
+            return $this->tojson($oupput);
+        }
+
     }
 }

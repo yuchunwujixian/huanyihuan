@@ -91,6 +91,9 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::post('member/store', 'MemberController@store')->name('admin.member.store');
     //短信验证
     Route::get('member/sms', 'MemberController@sms')->name('admin.member.sms');
+    //用户回馈
+    Route::get('member/feedback', 'MemberController@feedback')->name('admin.member.feedback');
+    Route::post('member/feedbackstatus', 'MemberController@feedbackStatus')->name('admin.member.feedbackstatus');
 
 });
 

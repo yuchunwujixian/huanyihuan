@@ -78,7 +78,7 @@
                 <form id="feedback-form" role="form" action="{{route('aboutus.feedback')}}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-                        <textarea class="form-control" rows="3" name="content" placeholder="如果您能留下宝贵建议，我们将感激不尽！"></textarea>
+                        <textarea class="form-control" rows="3" name="content" placeholder="如果您能留下宝贵建议，我们将感激不尽！">{{ old('content') }}</textarea>
                     </div>
                     <div class="form-group">
                         <div class="fr">
