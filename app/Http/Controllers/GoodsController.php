@@ -25,8 +25,12 @@ class GoodsController extends Controller
         $provinces = json_decode(Redis::get('province_cache'), true);
         $prices = config('config_base.prices');
         $categories = GoodsCategory::where('status', 1)->where('parent_id', 0)->orderBy('lft', 'asc')->get();
-        $input = $request->only(['province', 'city', 'price', 'topic', 'category', 'category_child']);
+        $input = $request->only(['province', 'city', 'price', 'topic', 'category', 'category_child', 'keyword']);
         $goods = Goods::where('status', 1);
+        //关键字
+        if ($input['keyword']){
+            $goods = $goods->where('title', 'like', '%'.$input['keyword'].'%')->orWhere('long_title', 'like', '%'.$input['keyword'].'%');
+        }
         //省
         $citys = [];
         if ($input['province']){

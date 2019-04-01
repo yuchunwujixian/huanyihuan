@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Sms;
 use App\Models\User;
-use Validator;
+use Validator,Toastr;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Email;
 
 class RegisterController extends Controller
 {
@@ -50,6 +49,11 @@ class RegisterController extends Controller
         $this->title = '注册';
         return $this->view('auth.register');
     }
+    public function policy()
+    {
+        $this->title = '注册须知';
+        return $this->view('auth.policy');
+    }
 
 
     public function register(Request $request)
@@ -63,8 +67,8 @@ class RegisterController extends Controller
         //赠送积分
         User::giveIntegral($user['user']->id, 1, 20, '注册送');
         $this->guard()->login($user['user']);
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+        Toastr::success("恭喜您，注册成功");
+        return redirect($this->redirectPath());
     }
 
     protected function guard()
@@ -142,39 +146,62 @@ class RegisterController extends Controller
         return $output;
     }
 
-    public function forgot(Request $request)
+    public function forget(Request $request)
     {
         $messages = [
+            'username.required' => '账号不能为空',
             'code.required' => '验证码不能为空',
             'code.digits' => '验证码必须是6位数字',
         ];
-         Validator::make($request->all(), [
-            'email' => 'required|email',
+        Validator::make($request->all(), [
+            'username' => 'required',
             'password' => 'required|min:6',
             'code' => 'required|digits:6',
         ], $messages);
-
-        event(new Registered($user = $this->store($request->all())));
-        if ($user == '3') {
-            return redirect()->back()->withInput()->with('code', '验证码过期，请重新获取');
-        } elseif ($user == '2') {
-            return redirect()->back()->withInput()->with('code', '验证码不正确，请重新输入');
-        } else {
-            return redirect()->route('login')->with('success', '密码修改成功，请重新登陆');
+        $user = $this->store($request->all());
+        if (!$user || !$user['status']) {
+            return redirect()->back()->withInput()->withErrors($user['error']);
         }
+        $this->guard()->login($user['user']);
+        Toastr::success("恭喜您，重置密码成功");
+        return redirect($this->redirectPath());
     }
 
     protected function store(array $data)
     {
-        $res = Email::where(['email' => $data['email'], 'type' => 3])->orderBy('created_at', 'desc')->first();
+        $output = ['status' => 0, 'error' => []];
+        //判断账号是否已注册
+        $input = [];
+        $sms_type = 1;
+        if (preg_match(config('config_base.mobile_rule'), $data['username'])) {
+            $input['mobile'] = $data['username'];
+        } elseif (preg_match(config('config_base.email_rule'), $data['username'])) {
+            $input['email'] = $data['username'];
+            $sms_type = 2;
+        }
+        if (!$input){
+            $output['error'] = ['username' => '账号格式不正确，请重试'];
+            return $output;
+        }
+        $user = User::where($input)->first();
+        if (empty($user)) {
+            $output['error'] = ['username' => '该账号未注册，请去注册账号'];
+            return $output;
+        }
+        $res = Sms::where(['username' => $data['username'], 'sms_type' => $sms_type, 'type' => 2])->orderBy('id', 'desc')->first();
         if (time() - strtotime($res['created_at']) > 300) {
-            return 3;
+            $output['error'] = ['code' => '验证码失效，请重新获取'];
+            return $output;
         }
         if ($res['code'] != $data['code']) {
-            return 2;
+            $output['error'] = ['code' => '验证码不正确，请重试'];
+            return $output;
         }
-        return User::where('email', $data['email'])->update([
-            'password' => bcrypt($data['password']),
-        ]);
+        $res = $user->update(['password' => bcrypt($data['password'])]);
+        if ($res){
+            $output['status'] = 1;
+            $output['user'] = $user;
+        }
+        return $output;
     }
 }

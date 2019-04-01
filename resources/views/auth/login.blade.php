@@ -68,7 +68,7 @@
                                     </label>
                                 </div>
                                 <div class="col-xs-6 padding-t-5">
-                                    <a href="{{ route('forgot.password') }}" class="color-777">忘记密码？</a>
+                                    <a href="{{ route('forget.index') }}" class="color-777">忘记密码？</a>
                                 </div>
                             </div>
                             <div class="form-group">

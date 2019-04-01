@@ -1,7 +1,7 @@
 var mobile_reg = /^(\+?0?86\-?)?((13\d|14[57]|15[^4,\D]|17[13678]|18\d)\d{8}|170[059]\d{7})$/;
 var email_reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/i;
 //定位提示信息位置为头部居中
-toastr.options = {"positionClass":"toast-top-center"};
+toastr.options = {"positionClass":"toast-top-right"};
 //提示消息关闭
 $('.tips-del').click(function () {
     $(this).parent().remove()

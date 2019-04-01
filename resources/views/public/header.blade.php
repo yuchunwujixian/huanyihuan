@@ -17,11 +17,11 @@
         <li @if(strpos(Route::currentRouteName(), 'index') === 0) class="active" @endif><a href="{{route('index.index')}}">首页</a></li>
         <li @if(strpos(Route::currentRouteName(), 'goods') === 0) class="active" @endif><a href="{{route('goods.index')}}">商品列表</a></li>
         <li @if(isset($current_controller_array) && $current_controller_array[0] == 'job') class="active" @endif><a href="{{route('job.index')}}">游戏圈招聘</a></li>
-        <li @if(isset($current_controller_array) && $current_controller_array[0] == 'aboutus') class="active" @endif><a href="{{route('aboutus.index')}}">关于我们</a></li>
+        <li @if(strpos(Route::currentRouteName(), 'aboutus') === 0) class="active" @endif><a href="{{route('aboutus.index')}}">关于我们</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::check())
-          <li class="dropdown">
+          <li class="dropdown  @if(strpos(Route::currentRouteName(), 'member') === 0) active @endif">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->nickname }}<b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="javascript:;"><span class="glyphicon glyphicon-envelope"></span>消息</a></li>

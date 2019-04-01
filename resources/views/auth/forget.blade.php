@@ -2,7 +2,7 @@
 
 @section('title', $title)
 @section('css')
-    <link rel="stylesheet" href="/dist/css/account/register.css">
+    <link rel="stylesheet" href="/dist/css/account/forget.css">
 @endsection
 
 @section('content')
@@ -19,30 +19,14 @@
             <div class="col-sm-6 col-md-5 col-lg-4">
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
-                        <h3 >注册</h3>
+                        <h3 >{{ $title }}</h3>
                         <p class="panel-title margin-t-8">
-                            已有账号，
-                            <a href="{{ route('login') }}" class="text-blue">直接登录</a>
+                            请输入您的账号，我们会发信息到您的账号上
                         </p>
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('forget.reset') }}">
                             {{ csrf_field() }}
-                            <div class="form-group">
-                                <div class="col-sm-10 col-sm-offset-1">
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-                                        <input type="text" class="form-control" placeholder="昵称" name="nickname"  value="{{ old('nickname') }}" autocomplete="off">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-10 tip-error col-sm-offset-1 text-left">
-                                    @if ($errors->has('nickname'))
-                                        <strong style="color: red">{{ $errors->first('nickname') }}</strong>
-                                    @endif
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="input-group">
@@ -55,22 +39,6 @@
                                 <div class="col-sm-10 tip-error col-sm-offset-1 text-left">
                                     @if ($errors->has('username'))
                                         <strong style="color: red">{{ $errors->first('username') }}</strong>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10 col-sm-offset-1">
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                                        <input type="password" class="form-control" placeholder="密码" name="password"  value="{{ old('password') }}" autocomplete="new-password">
-                                        <div class="input-group-addon"><i class="glyphicon glyphicon-eye-close cursor password-eye"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-10 tip-error col-sm-offset-1 text-left">
-                                    @if ($errors->has('password'))
-                                        <strong style="color: red">{{ $errors->first('password') }}</strong>
                                     @endif
                                 </div>
                             </div>
@@ -90,16 +58,24 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-10 col-sm-offset-1 text-left">
-                                    <label>
-                                        <input type="checkbox" name="allow_register" @if(old('allow_register')) checked @endif>
-                                        同意<a href="{{ route('register.policy') }}" class="form-control-static text-blue">注册须知</a>
-                                    </label>
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
+                                        <input type="password" class="form-control" placeholder="新密码" name="password"  value="{{ old('password') }}" autocomplete="new-password">
+                                        <div class="input-group-addon"><i class="glyphicon glyphicon-eye-close cursor password-eye"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-10 tip-error col-sm-offset-1 text-left">
+                                    @if ($errors->has('password'))
+                                        <strong style="color: red">{{ $errors->first('password') }}</strong>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10 col-sm-offset-1">
-                                    <button type="{{ !old('allow_register')?'button':'submit' }}" class="btn btn-primary btn-block @if(!old('allow_register')) disabled @endif register-button">注册</button>
+                                    <button type="submit" class="btn btn-primary btn-block register-button">重置密码</button>
                                 </div>
                             </div>
                         </form>
@@ -112,5 +88,5 @@
 
 @endsection
 @section('js')
-    <script src="/dist/js/account/register.js"></script>
+    <script src="/dist/js/account/forget.js"></script>
 @endsection

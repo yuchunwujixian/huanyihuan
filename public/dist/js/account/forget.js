@@ -10,14 +10,6 @@ $(function(){
             _this.parent().prev().attr('type', 'text');
         }
     });
-    //注册同意注册须知
-    $('input[name=allow_register]').click(function () {
-        if ($(this).prop('checked')){
-            $('.register-button').removeClass('disabled').attr('type', 'submit');
-        }else{
-            $('.register-button').addClass('disabled').attr('type', 'button');
-        }
-    });
     //点击获取验证码进入倒计时
     var isTiming = false;
     $('#sendVerifySmsButton').on('click', function() {
@@ -27,7 +19,7 @@ $(function(){
         if(mobile_reg.test(username) || email_reg.test(username)) {
             isTiming = true;
         }else{
-            alert('请输入有效的账号');
+            toastr.error('请输入有效的账号');
             return false;
         }
         if (isTiming) {
@@ -35,7 +27,7 @@ $(function(){
             $.ajax({
                 url     : "/sms/send",
                 type    : 'POST',
-                data    : {username : username, type:1},
+                data    : {username : username, type:2},
                 dataType   : 'json',
                 success : function (data) {
                     if (data.status == 1) {

@@ -1,0 +1,14 @@
+a.text-blue{
+    color: #337ab7;
+}
+.other-login{
+    line-height: 26px;
+    vertical-align: bottom;
+}
+.tip-error{
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+.container{
+    width: 100%;
+}

@@ -22,15 +22,14 @@ Route::get('aboutus/index', 'AboutusController@index')->name('aboutus.index');
 //---------------反馈-------------
 Route::post('aboutus/feedback', 'AboutusController@feedback')->name('aboutus.feedback');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-//---------------手机注册-----------------
-Route::post('/sms/send', 'SmsController@send')->name('sms.send');//发送注册验证码
-Route::get('/forgot/password', 'Auth\ForgotPasswordController@forgot')->name('forgot.password');//忘记密码
-Route::post('/forgot/password/send', 'SmsController@forgot')->name('forgot.password.send');//发送忘记密码的验证码
-Route::post('/forgot/password/reset', 'Auth\RegisterController@forgot')->name('forgot.password.reset');//忘记密码
+//---------------注册-----------------
+
+Route::get('/register/policy', 'Auth\RegisterController@policy')->name('register.policy');//注册须知
+Route::post('/sms/send', 'SmsController@send')->name('sms.send');//发送验证码
+Route::get('/forget/password', 'Auth\ForgetPasswordController@index')->name('forget.index');//忘记密码
+Route::post('/forget/password/reset', 'Auth\RegisterController@forget')->name('forget.reset');//忘记密码
 //--end
 
-Route::match(['get', 'post'],'/search/index', 'SearchController@index')->name('search.index');
-Route::get('/search/no/result', 'SearchController@noresult')->name('search.noresult');
 
 //---------------招聘---------------
 Route::get('job/{id}/show', 'JobController@show')->name('job.show');
@@ -53,12 +52,6 @@ Route::get('publishing/issue/demand/index/{platform?}/{type?}/{game_type?}/{coop
 Route::get('publishing/channel/demand/index/{platform?}/{type?}/{game_type?}/{cooperation?}/{channel?}/{province?}', 'ChannelDemandController@index')->name('publishing.channel.demand.index');
 Route::get('publishing/outsource/index/{outsource?}/{precondition?}', 'OutsourceController@index')->name('publishing.outsource.index');
 Route::get('publishing/open/test/index', 'OpenTestController@index')->name('publishing.open.test.index');
-
-//---------------注册获得短信验证码-----------------
-Route::post('/laravel/sms/verify/code', 'LaravelSmsController@send')->name('verify.code');
-Route::get('/registration/policy', function(){
-    return view('auth.registrationPolicy');
-})->name('registration.policy');
 
 
 //---------------第三方登陆---------------

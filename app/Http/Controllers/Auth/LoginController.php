@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Toastr;
 
 class LoginController extends Controller
 {
@@ -115,11 +116,23 @@ class LoginController extends Controller
         if ($this->attemptLogin($request)) {
             //赠送积分
             User::giveIntegral($user->id, 2, 10, '登录送');
+            Toastr::success("登录成功");
             return $this->sendLoginResponse($request);
         }
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+        Toastr::success("退出成功");
+        return redirect(route('index.index'));
     }
 
 }

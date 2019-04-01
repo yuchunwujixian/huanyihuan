@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
-class ForgotPasswordController extends Controller
+class ForgetPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -20,18 +20,9 @@ class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function index()
     {
-        $this->middleware('guest');
-    }
-
-    public function forgot()
-    {
-        return view('auth.forgot');
+        $this->title = '找回密码';
+        return $this->view('auth.forget');
     }
 }

@@ -13,7 +13,7 @@
         <div class="container">
             <div class="search-wrapper">
                 <input type="text" class="col-lg-9 col-xs-9" placeholder="查找商品">
-                <div class="search">
+                <div class="search search-goods">
                     <span class="glyphicon glyphicon-search"></span>
                 </div>
             </div>
@@ -64,4 +64,17 @@
             </div>
         @endforeach
     </div>
+@endsection
+@section('js')
+    <script>
+        $('.search-goods').click(function () {
+            var _this = $(this);
+            var keyword = _this.prev().val();
+            if (!keyword){
+                toastr.error('商品名称不能为空');
+                return ;
+            }
+            window.location.href = '{{ route('goods.index') }}' + '?keyword='+keyword;
+        })
+    </script>
 @endsection

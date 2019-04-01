@@ -6,13 +6,12 @@
     <link rel="stylesheet" href="/dist/css/goods.css">
 @endsection
 
-
 @section('content')
     <!-- 查找商品 -->
     <div class="container goods-search">
         <div class="search-wrapper">
-            <input type="text" class="col-lg-9 col-xs-9" placeholder="查找商品">
-            <div class="search">
+            <input type="text" class="col-lg-9 col-xs-9" placeholder="查找商品" value="{{ app('request')->input('keyword') }}">
+            <div class="search search-goods">
                 <span class="glyphicon glyphicon-search"></span>
             </div>
         </div>
@@ -233,6 +232,15 @@
         $('.ele-in').each(function (index, value) {
             overflow_deal($(value));
         });
+        $('.search-goods').click(function () {
+            var _this = $(this);
+            var keyword = _this.prev().val();
+            if (!keyword){
+                toastr.error('商品名称不能为空');
+                return ;
+            }
+            window.location.href = '{{ route('goods.index') }}' + '?keyword='+keyword;
+        })
         function overflow_deal(ele) {
             var ele_in = ele;
             if (ele_in.find('.active').length > 0 && ele_in.find('.active').offset().top != ele_in.offset().top){
