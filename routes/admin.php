@@ -24,15 +24,11 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     //反馈管理
     Route::get('feedback/index', ['as' => 'admin.feedback.index', 'uses' => 'FeedbackController@index']);
 
-    //普通用户管理
-    Route::get('member/index', ['as' => 'admin.member.index', 'uses' => 'MemberController@index']);
-    Route::get('member/{id}/show', ['as' => 'admin.member.show', 'uses' => 'MemberController@show']);
+
 
     //充值管理
     Route::get('payment/log/index', ['as' => 'admin.payment.log.index', 'uses' => 'PaymentLogController@index']);
 
-    //短信验证
-    Route::get('sms/log/index', ['as' => 'admin.sms.index', 'uses' => 'LaravelSmsController@index']);
 
     //start
     Route::get('index', ['as' => 'admin.index.index', 'uses' => 'IndexController@index']);
@@ -88,6 +84,16 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('category/{id}/update', ['as' => 'admin.category.update', 'uses' => 'GoodsController@categoryUpdate']);
     Route::post('category/save', ['as' => 'admin.category.save', 'uses' => 'GoodsController@categorySave']);
     Route::get('category/del/{id}', 'GoodsController@categoryDel')->name('admin.category.del');
+    //普通用户管理
+    Route::get('member/index', ['as' => 'admin.member.index', 'uses' => 'MemberController@index']);
+    Route::get('member/changestatus', 'MemberController@changeStatus')->name('admin.member.changestatus');
+    Route::get('member/{id}/edit', ['as' => 'admin.member.edit', 'uses' => 'MemberController@edit']);
+    Route::post('member/store', 'MemberController@store')->name('admin.member.store');
+    //短信验证
+    Route::get('member/sms', 'MemberController@sms')->name('admin.member.sms');
+    //用户回馈
+    Route::get('member/feedback', 'MemberController@feedback')->name('admin.member.feedback');
+    Route::post('member/feedbackstatus', 'MemberController@feedbackStatus')->name('admin.member.feedbackstatus');
 
 });
 

@@ -5,8 +5,6 @@ use App\Models\Sms;
 use Illuminate\Support\Facades\Log;
 use Mail;
 use AlibabaCloud\Client\AlibabaCloud;
-use AlibabaCloud\Client\Exception\ClientException;
-use AlibabaCloud\Client\Exception\ServerException;
 
 class SmsObserver
 {

@@ -12,4 +12,9 @@ class Feedback extends Model
     protected $table = 'feedbacks';
 
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
 }

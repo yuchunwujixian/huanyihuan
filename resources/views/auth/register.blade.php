@@ -47,7 +47,7 @@
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></div>
-                                        <input type="text" class="form-control" placeholder="手机号/邮箱" name="username"  value="{{ old('username') }}" autocomplete="off">
+                                        <input name="username" type="text" class="form-control" placeholder="手机号/邮箱"  value="{{ old('username') }}" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                                        <input type="password" class="form-control" placeholder="密码" name="password"  value="{{ old('password') }}" autocomplete="off">
+                                        <input type="password" class="form-control" placeholder="密码" name="password"  value="{{ old('password') }}" autocomplete="new-password">
                                         <div class="input-group-addon"><i class="glyphicon glyphicon-eye-close cursor password-eye"></i></div>
                                     </div>
                                 </div>

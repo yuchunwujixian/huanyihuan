@@ -6,7 +6,8 @@ use App\Models\Sides;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Feedback;
-use Toastr,Auth;
+use Toastr,Auth,Validator;
+use Illuminate\Support\Facades\Log;
 
 class AboutusController extends Controller
 {
@@ -24,26 +25,32 @@ class AboutusController extends Controller
 
     public function feedback(Request $request)
     {
-        $this->validate($request, [
-            'content' => 'required',
+        $validator = Validator::make($request->all(), [
+            'content' => 'required|max:500',
         ]);
-
+        if ($validator->fails()) {
+            Toastr::error($validator->errors()->first('content'));
+            return redirect()->back()->withInput();
+        }
+        $content = htmlspecialchars($request->input('content'));
         $user = Auth::user();
         $feedback = new Feedback();
-        $feedback->content = htmlspecialchars($request->input('content'));
+        $fails = ['content' => $content];
+        $feedback->content = $content;
         $feedback->created_at = date('Y-m-d H:i:s');
+        $feedback->status = 0;
         if ($user){
             $feedback->user_id = $user->id;
             //赠送积分
             User::giveIntegral($user->id, 3, 5, '意见反馈送');
+            $fails['user_id'] = $user->id;
         }
         $res =  $feedback->save();
-        if ($res) {
-            Toastr::success('操作成功');
-            return redirect()->back();
-        } else {
-            Toastr::error('操作失败');
-            return redirect()->back();
+        if (!$res) {
+            Log::useFiles(storage_path('logs/feedback.log'));
+            Log::error($fails);
         }
+        Toastr::success('感谢您的意见，我们会及时处理');
+        return redirect()->back();
     }
 }

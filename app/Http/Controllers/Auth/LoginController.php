@@ -113,6 +113,8 @@ class LoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
+            //赠送积分
+            User::giveIntegral($user->id, 2, 10, '登录送');
             return $this->sendLoginResponse($request);
         }
         $this->incrementLoginAttempts($request);

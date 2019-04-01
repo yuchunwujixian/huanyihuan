@@ -34,7 +34,6 @@ return [
         1 => [
             'name' => '注册送',//名称
             'frequency_type' => 'one',//频率类型 one一次性 day 相隔天数
-            'frequency_num' => 'one',//相隔值
         ],
         2 => [
             'name' => '登录送',
