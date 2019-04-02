@@ -10,6 +10,6 @@ class AboutUs extends Model
 {
     public $table='about_us';
     public $fillable = [
-        'description', 'meta_keywords', 'meta_description', 'policy'
+        'description', 'meta_keywords', 'meta_description', 'policy','logo',
     ];
 }

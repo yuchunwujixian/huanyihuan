@@ -1,8 +1,6 @@
 @extends('public.base')
 
 @section('title', $title)
-@section('css')
-@endsection
 
 @section('content')
     <div class="container">

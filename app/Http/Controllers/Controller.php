@@ -35,7 +35,7 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $this->base_config = AboutUs::select(['meta_keywords', 'meta_description'])->first();
+        $this->base_config = AboutUs::select(['meta_keywords', 'meta_description','logo'])->first();
         $this->tips = TipNews::where('status', 1)->orderBy('sort', 'asc')->get();
 
         $this->product_config = config('product');

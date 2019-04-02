@@ -14,10 +14,19 @@
                         <div class="panel-body">
                             @include('admin.partials.errors')
                             @include('admin.partials.success')
-                            <form class="form-horizontal" role="form" method="POST" action="{{route('admin.system.aboutus_store')}}">
+                            <form class="form-horizontal" role="form" method="POST" action="{{route('admin.system.aboutus_store')}}" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="id" value="{{ $about_us_info['id'] }}">
                                 <input type="hidden" name="needs" value="description,meta_keywords,meta_description">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">网站logo</label>
+                                    <div class="col-md-9" >
+                                        <input type="file"  class="form-controls" name="logo" value="{{ $about_us_info['logo'] }}">
+                                        @if($about_us_info['logo'])
+                                            <img class="img-responsive" src="{{asset('storage/'.$about_us_info['logo'])}}" style="max-width: 200px">
+                                        @endif
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">meta关键词</label>
                                     <div class="col-md-9" >

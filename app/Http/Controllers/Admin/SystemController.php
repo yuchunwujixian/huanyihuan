@@ -22,7 +22,7 @@ class SystemController extends Controller
     public function aboutUsIndex()
     {
         $this->title = '关于我们';
-        $about_us_info = AboutUs::select(['id','meta_keywords','meta_description','description'])->first();
+        $about_us_info = AboutUs::select(['id','meta_keywords','meta_description','description','logo'])->first();
         return $this->view('admin.system.aboutusindex', ['about_us_info' => $about_us_info]);
     }
 
@@ -46,7 +46,9 @@ class SystemController extends Controller
             $date[$v] = $input[$v];
         }
         $this->validate($request, $rules);
-
+        if ($request->hasFile('logo')){
+            $date['logo'] = $request->file('logo')->store('aboutus');
+        }
        if (!empty($input['id'])) {
            $date['id'] = intval($request->input('id'));
            $res = AboutUs::where('id', $date['id'])->update($date);
