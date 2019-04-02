@@ -17,23 +17,11 @@
                             <form class="form-horizontal" role="form" method="POST" action="{{route('admin.system.aboutus_store')}}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="id" value="{{ $about_us_info['id'] }}">
-                                <input type="hidden" name="needs" value="description,meta_keywords,meta_description">
+                                <input type="hidden" name="needs" value="policy">
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">meta关键词</label>
+                                    <label class="col-md-2 control-label">注册须知</label>
                                     <div class="col-md-9" >
-                                        <input type="text"  class="form-control" name="meta_keywords" value="{{ $about_us_info['meta_keywords'] }}">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">meta描述</label>
-                                    <div class="col-md-9" >
-                                        <input type="text"  class="form-control" name="meta_description" value="{{ $about_us_info['meta_description'] }}">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">关于我们</label>
-                                    <div class="col-md-9" >
-                                        <textarea  class="form-control" id="kind-editor" name="description">{{ $about_us_info['description'] }}</textarea>
+                                        <textarea  class="form-control" id="kind-editor" name="policy">{{ $about_us_info['policy'] }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">

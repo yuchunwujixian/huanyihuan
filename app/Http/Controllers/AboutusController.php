@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutUs;
 use App\Models\Sides;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class AboutusController extends Controller
         $this->title = '关于我们';
         //banner
         $banners = Sides::where('status', 1)->where('type', 2)->orderBy('sort', 'asc')->get();
-        return $this->view('aboutus.index', compact('banners'));
+        $base_config = AboutUs::select(['meta_keywords', 'meta_description','description'])->first();
+        return $this->view('aboutus.index', compact('banners', 'base_config'));
     }
 
 

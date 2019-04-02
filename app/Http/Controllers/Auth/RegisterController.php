@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\AboutUs;
 use App\Models\Sms;
 use App\Models\User;
 use Validator,Toastr;
@@ -48,11 +49,6 @@ class RegisterController extends Controller
     {
         $this->title = '注册';
         return $this->view('auth.register');
-    }
-    public function policy()
-    {
-        $this->title = '注册须知';
-        return $this->view('auth.policy');
     }
 
 
@@ -203,5 +199,15 @@ class RegisterController extends Controller
             $output['user'] = $user;
         }
         return $output;
+    }
+
+    /**注册须知
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function policy()
+    {
+        $this->title = '用户协议';
+        $policy = AboutUs::value('policy');
+        return $this->view('auth.policy', compact('policy'));
     }
 }

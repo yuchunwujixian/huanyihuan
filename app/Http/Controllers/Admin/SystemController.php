@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
+use Toastr;
 
 class SystemController extends Controller
 {
@@ -21,7 +22,7 @@ class SystemController extends Controller
     public function aboutUsIndex()
     {
         $this->title = '关于我们';
-        $about_us_info = AboutUs::first();
+        $about_us_info = AboutUs::select(['id','meta_keywords','meta_description','description'])->first();
         return $this->view('admin.system.aboutusindex', ['about_us_info' => $about_us_info]);
     }
 
@@ -35,34 +36,33 @@ class SystemController extends Controller
      */
     public function aboutUsStore(Request $request)
     {
-        $this->validate($request, [
-            'description' => 'required',
-            'meta_keywords' => 'required',
-            'meta_description' => 'required',
-        ]);
-
+        $needs = $request->input('needs');
+        $needs = explode(',', $needs);
+        $rules = [];
         $date = array();
-        $date['description'] = $request->input('description');
-        $date['meta_keywords'] = $request->input('meta_keywords');
-        $date['meta_description'] = $request->input('meta_description');
-       if ($request->input('id')) {
+        $input = $request->all();
+        foreach ($needs as $v){
+            $rules[$v] = 'required';
+            $date[$v] = $input[$v];
+        }
+        $this->validate($request, $rules);
+
+       if (!empty($input['id'])) {
            $date['id'] = intval($request->input('id'));
            $res = AboutUs::where('id', $date['id'])->update($date);
            $messge = "修该";
        } else {
            $aboutus=new AboutUs();
-           $aboutus->description = $date['description'];
-           $aboutus->meta_keywords = $date['meta_keywords'];
-           $aboutus->meta_description = $date['meta_description'];
+           $aboutus->fill($date);
            $res =  $aboutus->save();
            $messge = "添加";
        }
         if ($res) {
-            return redirect()->route('admin.system.aboutus_index')->withSuccess($messge . '成功！');
+            Toastr::success($messge . '成功！');
         } else {
-            return redirect()->route('admin.system.aboutus_index')->withErrors($messge . '失败！');
+            Toastr::error($messge . '失败！');
         }
-
+        return back();
     }
 
     /**
@@ -74,6 +74,17 @@ class SystemController extends Controller
         $path = $request->getSchemeAndHttpHost().'/storage/'.$path;
         $output = array('error' => 0, 'url' => $path);
         return $this->tojson($output);
+    }
+
+    public function policy()
+    {
+        $this->title = '注册须知';
+        $about_us_info = AboutUs::select(['id','policy'])->first();
+        if (empty($about_us_info)){
+            Toastr::error('请先编辑关于我们');
+            return redirect()->route('admin.system.aboutus_index');
+        }
+        return $this->view('admin.system.policy', ['about_us_info' => $about_us_info]);
     }
 
 }
