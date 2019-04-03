@@ -29,16 +29,11 @@ class Controller extends BaseController
 
     protected $area_config;
 
-    protected $company_config;
-
-    protected $product_config;
-
     public function __construct()
     {
         $this->base_config = AboutUs::select(['meta_keywords', 'meta_description','logo'])->first();
         $this->tips = TipNews::where('status', 1)->orderBy('sort', 'asc')->get();
 
-        $this->product_config = config('product');
         $this->province_config = json_decode(Redis::get('province_cache'), true);
         $this->city_config = json_decode(Redis::get('city_cache'), true);
         $this->area_config = json_decode(Redis::get('area_cache_part1'), true) + json_decode(Redis::get('area_cache_part2'), true);

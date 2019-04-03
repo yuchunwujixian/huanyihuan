@@ -5,14 +5,15 @@
     <title>@yield('title') | {{ config('config_base.site_name') }}</title>
     <meta name=keywords content="{{ $base_config?$base_config->meta_keywords:'' }}">
     <meta name=description content="{{ $base_config?$base_config->meta_description:'' }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name=robots content=all>
     <meta name=googlebot content=all>
     <meta name=baiduspider content=all>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/plugins/bootstrap-swiper/swiper-3.4.2.min.css" />
-    <link rel="stylesheet" href="/plugins/toastr/toastr.min.css" >
+    <link rel="stylesheet" href="/plugins/bootstrap-swiper/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
     <link rel="stylesheet" href="/dist/css/common.css">
     @yield('css')
 <!--[if lt IE 9]>
