@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Middleware\Authenticate as old_authe;
+use Toastr;
 
 class Authenticate extends old_authe
 {
@@ -34,6 +35,11 @@ class Authenticate extends old_authe
 					return redirect()->guest('/login');
 				}
             }
+        }
+        if ($guard != 'admin' && Auth::guard($guard)->user()->status != 1){
+            Toastr::error('账号被禁用，请联系客服解禁');
+            Auth::guard($guard)->logout();
+            return redirect()->guest('/login');
         }
         $this->authenticate($guards);
         return $next($request);

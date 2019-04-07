@@ -1,14 +1,4 @@
 <?php
-/**
- * -----------------------------------------
- * Desc: 用户中心-用户-基本资料
- * User: Jiafang.Wang
- * Date: 2017/3/24
- * Time: 13:56
- * File: InfoController.php
- * Project: DoctorVisit
- * -----------------------------------------
- */
 
 namespace App\Http\Controllers\Member;
 

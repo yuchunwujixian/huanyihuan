@@ -30,30 +30,6 @@ Route::get('/forget/password', 'Auth\ForgetPasswordController@index')->name('for
 Route::post('/forget/password/reset', 'Auth\RegisterController@forget')->name('forget.reset');//忘记密码
 //--end
 
-
-//---------------招聘---------------
-Route::get('job/{id}/show', 'JobController@show')->name('job.show');
-Route::get('job/index/{province_code?}/{category_id?}/{salary?}/{type?}/{time?}', 'JobController@index2')->name('job.index');
-
-//---------------公司---------------
-Route::get('company/index', 'CompanyController@index')->name('company.index');
-Route::get('company/{id}/show', 'CompanyController@show')->name('company.show');
-Route::get('company/search', 'CompanyController@lists')->name('company.search');
-
-
-
-//---------------游戏详情页---------------
-Route::get('game/{id}/show', 'GameController@show')->name('game.show');
-
-//---------------需求页页---------------
-Route::get('publishing/product/index/{period?}/{platform?}/{type?}/{game_type?}/{cooperation?}/{area?}/{province?}', 'ProductController@index')->name('publishing.product.index');
-Route::get('product/{id}/show', 'ProductController@show')->name('product.show');
-Route::get('publishing/issue/demand/index/{platform?}/{type?}/{game_type?}/{cooperation?}/{area?}/{province?}', 'IssueDemandController@index')->name('publishing.issue.demand.index');
-Route::get('publishing/channel/demand/index/{platform?}/{type?}/{game_type?}/{cooperation?}/{channel?}/{province?}', 'ChannelDemandController@index')->name('publishing.channel.demand.index');
-Route::get('publishing/outsource/index/{outsource?}/{precondition?}', 'OutsourceController@index')->name('publishing.outsource.index');
-Route::get('publishing/open/test/index', 'OpenTestController@index')->name('publishing.open.test.index');
-
-
 //---------------第三方登陆---------------
 Route::get('/login/qqlogin','LoginBandController@qqlogin');//qq回掉地址
 Route::get('/login/qq','LoginBandController@qq')->name('login.qq');

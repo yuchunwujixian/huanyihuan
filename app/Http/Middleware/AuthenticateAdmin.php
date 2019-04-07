@@ -36,9 +36,8 @@ class AuthenticateAdmin
         if (!Auth::guard('admin')->user()->hasPermission($routeName)) {
             if ($request->ajax() && ($request->getMethod() != 'GET')) {
                 return response()->json([
-                    'status' => -1,
-                    'code'   => 403,
-                    'msg'    => '您没有权限执行此操作',
+                    'status' => 0,
+                    'message'    => '您没有权限执行此操作',
                 ]);
             } else {
                 return response()->view('admin.errors.403', compact('previousUrl'));

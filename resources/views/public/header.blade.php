@@ -19,7 +19,7 @@
                 <li @if(strpos(Route::currentRouteName(), 'goods') === 0) class="active" @endif><a
                             href="{{route('goods.index')}}">商品列表</a></li>
                 <li @if(isset($current_controller_array) && $current_controller_array[0] == 'job') class="active" @endif>
-                    <a href="{{route('job.index')}}">游戏圈招聘</a></li>
+                    <a href="">游戏圈招聘</a></li>
                 <li @if(strpos(Route::currentRouteName(), 'aboutus') === 0) class="active" @endif><a
                             href="{{route('aboutus.index')}}">关于我们</a></li>
             </ul>
