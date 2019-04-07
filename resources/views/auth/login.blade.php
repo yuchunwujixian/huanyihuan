@@ -9,7 +9,7 @@
     <!-- 中部内容区域 -->
     <div class="container" style="background: url('/dist/img/accountbg.png') no-repeat left top;background-size: cover;">
         <div class="row margin-t-44">
-            <div class="col-sm-6 hidden-xs col-md-6">
+            <div class="col-sm-6 col-md-6 hidden-xs">
                 <div class="panel panel-default text-center">
                     <div class="panel-body">
                         开启美好生活

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Member;
 
+use App\Models\Sides;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Toastr;
@@ -11,10 +12,13 @@ use App\Models\CompanyPerson;
 
 class InfoController extends BaseController
 {
-    public function index(Request $request)
+    public function index()
     {
-        $data = User::find($request->user()->id);
-        return view('member.info.update', ['data' => $data]);
+        $this->uc_here = '基本资料';
+        $userInfo = Auth::guard()->user();
+        //banner
+        $banners = Sides::where('status', 1)->where('type', 2)->orderBy('sort', 'asc')->get();
+        return $this->view('member.info.update', compact('userInfo', 'banners'));
     }
 
     //保存个人资料

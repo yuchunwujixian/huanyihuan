@@ -42,7 +42,13 @@ Route::post('/login/login','LoginBandController@login')->name('login.login');
 //---------------用户中心-----------------
 Route::group(['namespace' => 'Member', 'prefix' => 'member', 'middleware' => ['auth']], function () {
 
-    Route::get('/', function(){return redirect('/member/info/index');})->name('member.index.index');
+    Route::get('/',  'InfoController@index')->name('member.info.index.index');
+    //---------------基本资料------------------
+    Route::get('info/index', 'InfoController@index')->name('member.info.index');
+    Route::post('info/store', 'InfoController@store')->name('member.info.store');
+    Route::post('info/company', 'InfoController@company')->name('member.info.company');
+
+
     //---------------招聘-----------------
     Route::get('job/index', 'JobController@index')->name('member.job.index');
     Route::get('job/create', 'JobController@create')->name('member.job.create');
@@ -60,10 +66,6 @@ Route::group(['namespace' => 'Member', 'prefix' => 'member', 'middleware' => ['a
     Route::get('company/apply/modify/info', 'CompanyController@applyModifyCompanyInfo')->name('member.company.apply.modify.info');
     Route::post('company/store/apply/modify/info', 'CompanyController@storeModifyCompanyInfo')->name('member.company.store.apply.modify.info');
     Route::post('company/destroy/company/environment', 'CompanyController@destroyCompanyEnvironment')->name('member.company.destroy_company_environment');
-    //---------------基本资料------------------
-    Route::get('info/index', 'InfoController@index')->name('member.info.index');
-    Route::post('info/store', 'InfoController@store')->name('member.info.store');
-    Route::post('info/company', 'InfoController@company')->name('member.info.company');
 
     //---------------积分----------------
     Route::get('integral/index', 'IntegralController@index')->name('member.integral.index');
