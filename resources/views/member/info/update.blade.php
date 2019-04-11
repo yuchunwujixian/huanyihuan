@@ -5,8 +5,7 @@
 @section('uc_here', $uc_here)
 
 @section('css')
-    <link rel="stylesheet" href="/dist/css/personal/personal.css">
-    <link rel="stylesheet" href="/dist/css/personal/basicinfo.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-fileinput/css/fileinput.min.css">
 @endsection
 
 @section('content')
@@ -18,163 +17,133 @@
             </div>
             <div class="col-xs-1 visible-xs"></div>
             <div class="col-xs-10 col-sm-8">
-                <ul class="list-group text-center">
-                    <li class="list-group-item thumbnail">
-                        <img class="img-thumbnail" src="{{ asset('storage/'.Auth::guard()->user()->avatar) }}" onerror="this.src='/img/default_avatar.png';this.onerror=null;">
-                    </li>
-                    <li class="list-group-item active disabled">免费域名注册</li>
-                    <li class="list-group-item">免费 Window 空间托管</li>
-                    <li class="list-group-item">图像的数量</li>
-                    <li class="list-group-item">24*7 支持</li>
-                    <li class="list-group-item">每年更新成本</li>
-                </ul>
-            </div>
-        </div>
-    <!-- 内容部分 -->
-        <div class="wrapper">
-            <div class="right-content">
-                <form action="{{route('member.info.store')}}" id="signupForm" method="post" class="user-info-input">
-                    {{csrf_field()}}
-                    <input type="hidden" value="{{$userInfo->id}}" name="id">
-                    <div class="input-content">
-
-                        <div class="form-item">
-                            <div class="left-form">头像</div>
-                            <div class="right-form">
-                                <input id="upload_photo" class="upload_button" type="button" value="本地上传"/>
-                                <input type="hidden" name="avatar_url">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form" id="form">
+                            {{ csrf_field() }}
+                            <input name="avatar" type="hidden"/>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">上传头像</label>
+                                <div class="col-sm-9">
+                                    <input id="upload_photo" class="form-control" type="file" value="本地上传" name="file"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-item">
-                            <div class="left-form">邮箱账号</div>
-                            <div class="right-form">
-                                <input class="user-phone" readonly type="text" value="{{$userInfo->email}}" />
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">昵称</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" placeholder="昵称" name="nickname" value="{{ $userInfo->nickname }}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-item">
-                            <div class="left-form">所在公司</div>
-                            <div class="right-form company">
-                                @if($userInfo->companyInfo)
-                                    {{$userInfo->companyInfo->title}}
-                                @else
-                                    <input name="company" type="text" placeholder="例如：北京炯米互联有限公司" style="width: 400px;display: inline-block"/>
-                                    <div style="width: 50px;text-align: center;display: inline-block;cursor: pointer" id="company_add">添加</div>
-                                @endif
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">真实姓名</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" placeholder="真实姓名" name="name" value="{{ $userInfo->name }}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-item">
-                            <div class="left-form">姓名</div>
-                            <div class="right-form">
-                                <input id="user_name" name="name" type="text" placeholder="例如：王震" value="{{$userInfo->name}}"/>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">手机号</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" placeholder="手机号" name="mobile" value="{{ $userInfo->mobile }}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-item">
-                            <div class="left-form">部门</div>
-                            <div class="right-form">
-                                <input id="user_department" name="department" type="text" placeholder="例如：策划部" value="{{$userInfo->department}}"/>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">邮箱</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" placeholder="邮箱" name="email" value="{{ $userInfo->email }}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-item">
-                            <div class="left-form">职务</div>
-                            <div class="right-form">
-                                <input id="user_duties" name="position" type="text" placeholder="例如：文案策划" value="{{$userInfo->position}}"/>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">个人等级</label>
+                                <div class="col-sm-9">
+                                    <p class="form-control-static">{{ $userInfo->level }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-item">
-                            <div class="left-form">负责区域</div>
-                            <div class="right-form">
-                                <input id="user_eare" name="manage_area" type="text" placeholder="例如：华东" value="{{$userInfo->manage_area}}"/>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">个人积分</label>
+                                <div class="col-sm-9">
+                                    <p class="form-control-static">{{ $userInfo->integral }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-item">
-                            <div class="left-form">负责事宜</div>
-                            <div class="right-form">
-                                <textarea id="user_thing" name="manage_matters" type="text" placeholder="说明一下自己的职责">{{$userInfo->manage_matters}}</textarea>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">个人说明</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" rows="3" placeholder="个人说明" name="description">{{ $userInfo->description }}</textarea>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-item">
-                            <div class="left-form">手机号</div>
-                            <div class="right-form">
-                                <input type="text" name="mobile" value="{{$userInfo->mobile}}" placeholder="请输入你的手机号" />
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-9 text-right">
+                                    <button type="button" class="btn btn-default save-data">保存</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-item">
-                            <div class="left-form">个人说明</div>
-                            <div class="right-form">
-                                <textarea name="description" placeholder="你的自我说明">{{$userInfo->description}}</textarea>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                    <input type="submit" class="save-btn" value="保存" />
-                </form>
+                </div>
             </div>
         </div>
     </div>
 @endsection
 
 @section('js')
-    <script src="/dist/js/personal/basicinfo.js"></script>
-    <link rel="stylesheet" type="text/css" href="/plugins/uploadify_3.2.1/uploadify.css">
-    <script type="text/javascript" src="/plugins/uploadify_3.2.1/jquery.uploadify.js"></script>
+    <script src="/plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script src="/plugins/bootstrap-fileinput/js/locales/zh.js"></script>
     <script>
-        var uploadify_onSelectError = function(file, errorCode, errorMsg) {
-            var msgText = "上传失败\n";
-            switch (errorCode) {
-                case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
-                    //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
-                    msgText += "每次最多上传 " + this.settings.uploadLimit + "个文件";
-                    break;
-                default:
-                    msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        var avatar = '';
+        setTimeout(function () {
+            avatar = $('.member-avatar').attr('src');
+        }, 500);
+        $("#upload_photo").fileinput({
+            language: 'zh', //设置语言
+            uploadUrl:'{{ route('member.upload.images') }}',
+            enctype: 'multipart/form-data',
+            allowedFileExtensions : ['jpg', 'png','bmp','jpeg'],//接收的文件后缀
+            showUpload: true, //是否显示上传按钮
+            showPreview: false, //展前预览
+            showCaption: true,//是否显示标题
+            maxFileSize : 10000,//上传文件最大的尺寸
+            maxFileCount: 1,
+            buttonLabelClass: '',
+            browseClass: "btn btn-primary", //按钮样式
+            uploadAsync: true,
+            allowedPreviewTypes: ['image'],
+            uploadExtraData:function (previewId, index) {
+                //向后台传递type,nameStr作为额外参数
+                var obj = {};
+                obj.path = "member";
+                obj.type = "avatar";
+                return obj;
             }
-            alert(msgText);
-        };
-        $("#upload_photo").uploadify({
-            'formData': {
-                'target' : 'avatar',    //上传至public/uploads目录下的子目录
-                '_token'     : "{{csrf_token()}}"
-            },
-            'buttonClass'        :    'upload',
-            'fileSizeLimit'        :    '2MB',
-            'fileTypeDesc'        :     '选择图片',
-            'fileTypeExts'         :     '*.jpg;*.png',
-            'height'            :    '30',
-            'width'                :    '100',
-            'method'            :    'post',
-            'multi'                :     false,
-            'swf'                :    '/plugins/uploadify_3.2.1/uploadify.swf',
-            'uploader'            :    "{{route('upload.images')}}",
-            'uploadLimit'        :  1,
-            'buttonText'        :    '上传头像',
-            'onUploadSuccess'    :    function(file, data){
-                $('#user_avatar').html('<img src="'+ data +'" />');
-                $("input[name='avatar_url']").val(data);
-            },
-            'overrideEvents' : [ 'onUploadProgress', 'onUploadComplete', 'onSelect', 'onDialogClose', 'onUploadSuccess', 'onUploadError', 'onSelectError' ],
-            'onSelectError' : uploadify_onSelectError
+        }).on('fileerror', function(event, data, msg) {  //一个文件上传失败
+            toastr.error('文件上传失败！'+msg);
+        }).on("fileuploaded", function(event, data, previewId, index) {
+            data = data.response;
+            if (data.status == 1){
+                $('.member-avatar').attr('src', '/storage/' + data.path);
+                $('input[name=avatar]').val(data.path);
+            }else{
+                toastr.error(data.message);
+            }
+        }).on('fileclear', function (event, previewId) {
+            $('.member-avatar').attr('src', avatar);
+            $('input[name=avatar]').val('');
         });
-    </script>
-    <script>
-        $('#company_add').click(function(){
-            var company = $("input[name='company']").val();
+        $('.save-data').click(function () {
             $.ajax({
-                type : "POST",
-                url : '{{route('member.info.company')}}',
-                dataType : 'json',
-                data:{"company" : company,  '_token' : "{{csrf_token()}}"},
-                success : function(data) {
-                    console.log(data)
-                    if (data.code == 0) {
-                        toastr.success(data.message,'');
-                        $('.company').html(company)
-                    } else {
-                        toastr.error(data.message,'');
-                        $('.company').html(company);
-                        window.location.href="{{ route('member.company.index') }}"
+                url:'{{ route('member.info.store') }}',
+                data:$('#form').serialize(),
+                dataType: 'JSON',
+                'type':'POST',
+                success: function (data) {
+
+                    if (data.status == 1){
+                        toastr.success(data.message);
+                    }else{
+                        toastr.error(data.message);
                     }
+                },
+                error:function (xhr) {
+                    toastr.error('系统繁忙，请重试');
                 }
             })
         })
     </script>
-
 @endsection

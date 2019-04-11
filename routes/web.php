@@ -23,7 +23,6 @@ Route::get('aboutus/index', 'AboutusController@index')->name('aboutus.index');
 Route::post('aboutus/feedback', 'AboutusController@feedback')->name('aboutus.feedback');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 //---------------注册-----------------
-
 Route::get('/register/policy', 'Auth\RegisterController@policy')->name('register.policy');//注册须知
 Route::post('/sms/send', 'SmsController@send')->name('sms.send');//发送验证码
 Route::get('/forget/password', 'Auth\ForgetPasswordController@index')->name('forget.index');//忘记密码
@@ -47,7 +46,8 @@ Route::group(['namespace' => 'Member', 'prefix' => 'member', 'middleware' => ['a
     Route::get('info/index', 'InfoController@index')->name('member.info.index');
     Route::post('info/store', 'InfoController@store')->name('member.info.store');
     Route::post('info/company', 'InfoController@company')->name('member.info.company');
-
+    //图片上传
+    Route::post('upload/images', 'UploadController@uploadImages')->name('member.upload.images');
 
     //---------------招聘-----------------
     Route::get('job/index', 'JobController@index')->name('member.job.index');
@@ -130,6 +130,3 @@ Route::group(['namespace' => 'Member', 'prefix' => 'member', 'middleware' => ['a
     Route::post('publishing/open/test/product/info', 'OpenTestController@productInfo')->name('member.publishing.openTest.productInfo');
 
 });
-
-
-Route::post('upload/images', 'UploadController@uploadImages')->name('upload.images');

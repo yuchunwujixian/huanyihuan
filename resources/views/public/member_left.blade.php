@@ -1,6 +1,6 @@
 <div class="list-group text-center">
     <a class="list-group-item thumbnail">
-        <img class="img-thumbnail" src="{{ asset('storage/'.Auth::guard()->user()->avatar) }}" onerror="this.src='/img/default_avatar.png';this.onerror=null;">
+        <img class="img-thumbnail member-avatar" width="150px" src="{{ asset('storage/'.Auth::guard()->user()->avatar) }}" onerror="this.src='/img/default_avatar.png';this.onerror=null;">
         {{Auth::user()->nickname}}
     </a>
     @if(strpos(Route::currentRouteName(), 'info') !== false)

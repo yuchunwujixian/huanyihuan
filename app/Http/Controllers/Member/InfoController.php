@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Member;
 use App\Models\Sides;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Toastr;
-use Auth;
-use App\Models\Company;
-use App\Models\CompanyPerson;
+use Illuminate\Support\Facades\Storage;
+use Auth,Validator;
 
 class InfoController extends BaseController
 {
@@ -24,71 +22,43 @@ class InfoController extends BaseController
     //保存个人资料
     public function store(Request $request)
     {
-//        $this->validate($request, [
-//            'department' => 'required',
-//            'manage_area' => 'required|max:200',
-//            'manage_matters' => 'required|max:200',
-//            'position' => 'required|max:200',
-//            'description' => 'required|max:200',
-//        ]);
-
-        $update_data = [
-            'name' => $request->input('name'),
-            'avatar' => $request->input('avatar_url'),
-            'department' => $request->input('department'),
-            'position' => $request->input('position'),
-            'manage_area' => $request->input('manage_area'),
-            'manage_matters' => $request->input('manage_matters'),
-            'mobile' => $request->input('mobile'),
-            'description' => $request->input('description'),
+        $output = ['status' => 0, 'message' => '系统繁忙，请重试'];
+        $input = $request->only(['avatar','nickname','name','description']);
+        $rules = [
+            'nickname' => 'required|max:12',
+            'name' => 'required|max:4',
+            'description' => 'max:255',
         ];
-        $affect_rows = User::where('id', $request->input('id'))->update($update_data);
-        if ($request->user()->company_id) {
-            $res = CompanyPerson::where('user_id', $request->user()->id)->first();
-            if (!$res) {
-                $company_person_data = [
-                    'user_id' => $request->user()->id,
-                    'company_id' => $request->user()->company_id,
-                    'name' => $request->user()->name,
-                    'manage_position' => $request->input('position'),
-                    'manage_area' => $request->input('manage_area'),
-                    'manage_matters' => $request->input('manage_matters'),
-                    'telephone' => $request->input('mobile'),
-                ];
-                CompanyPerson::insert($company_person_data);
+        $messages = [
+            'nickname.required' => '昵称不能为空',
+            'nickname.max' => '昵称不能超过12个字符',
+            'name.required' => '真实姓名不能为空',
+            'name.max' => '真实姓名不能超过4个字符',
+            'description.max' => '个人说明不能超过4个字符',
+        ];
+        $validator = Validator::make($input, $rules, $messages);
+        if ($validator->fails()){
+            $output['message'] = $validator->errors()->all()[0];
+            return $this->tojson($output);
+        }
+        //头像处理
+        $old_avatar = '';
+        if ($input['avatar']){
+            if ($request->user()->avatar && $input['avatar'] != $request->user()->avatar){
+                $old_avatar = $request->user()->avatar;
             }
+        }else{
+            unset($input['avatar']);
         }
-        if($affect_rows) {
-            Toastr::success('更新成功');
-            return redirect()->back();
-        }
-    }
-
-    public function company(Request $request)
-    {
-        $company = $request->input('company');
-        $companyInfo = Company::where('title', $company)->first();
-        if ($companyInfo) {
-            User::where('id', $request->user()->id)->update(['company_id' => $companyInfo->id]);
-            if ($request->user()->mobile) {
-                $company_person_data = [
-                    'user_id' => $request->user()->id,
-                    'company_id' => $companyInfo->id,
-                    'name' => $request->user()->name,
-                    'manage_position' => $request->user()->position,
-                    'manage_area' => $request->user()->manage_area,
-                    'manage_matters' => $request->user()->manage_matters,
-                    'telephone' => $request->user()->mobile,
-                ];
-                CompanyPerson::insert($company_person_data);
+        $res = User::where('id', $request->user()->id)->update($input);
+        if ($res) {
+            if ($old_avatar){
+                //可以清除旧的
+//                Storage::delete($old_avatar);
             }
-            $data['code'] = 0;
-            $data['message'] = "添加成功";
-            return $data;
-        } else {
-            $data['code'] = 1;
-            $data['message'] = "该公司不存在，请先填写公司信息";
-            return $data;
+            $output['status'] = 1;
+            $output['message'] = '操作成功';
         }
+        return $this->tojson($output);
     }
 }
