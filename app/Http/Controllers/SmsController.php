@@ -13,7 +13,7 @@ class SmsController extends Controller
     public  function send(Request $request)
     {
         $output = ['status' => 0, 'message' => ''];
-        $type = $request->input('type');//1注册 2找回密码
+        $type = $request->input('type');//1注册 2找回密码 3绑定账号
         $username = $request->input('username');
         $code = rand(100000, 999999);
         //判断账号是否已注册
@@ -35,6 +35,9 @@ class SmsController extends Controller
             return $this->tojson($output);
         }elseif ($type == 2 && empty($user)){
             $output['message'] = "该账号未注册，请去注册账号";
+            return $this->tojson($output);
+        }elseif ($type == 3 && $user){
+            $output['message'] = "该账号已经绑定，请切换其他账号";
             return $this->tojson($output);
         }
 

@@ -16,10 +16,10 @@
                 个人中心
             </a>
         </li>
-        <li class="active">
-            <a class="active" href="javascript:;">
+        <li>
+            <span>
                 @yield('uc_here')
-            </a>
+            </span>
         </li>
     </ol>
 </div>

@@ -56,6 +56,11 @@ class SmsObserver
                             $message->to($sms->username)->subject('重置密码');
                         });
                         break;
+                    case 3:
+                        Mail::send('email.band',['code'=>$sms->code],function($message)use($sms){
+                            $message->to($sms->username)->subject('账号绑定');
+                        });
+                        break;
 
                 }
                 Sms::where('id', $sms->id)->update([

@@ -9,15 +9,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Auth,Validator;
 
-class InfoController extends BaseController
+class GoodsController extends BaseController
 {
     public function index()
     {
-        $this->uc_here = '基本资料';
+        $this->uc_here = '商品列表';
         $userInfo = Auth::guard()->user();
         //banner
         $banners = Sides::where('status', 1)->where('type', 2)->orderBy('sort', 'asc')->get();
-        return $this->view('member.info.update', compact('userInfo', 'banners'));
+        return $this->view('member.goods.index', compact('userInfo', 'banners'));
     }
 
     //保存个人资料

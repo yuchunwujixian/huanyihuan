@@ -11,6 +11,6 @@
     @if(strpos(Route::currentRouteName(), 'goods') !== false)
         <a class="list-group-item active disabled" href="javascript:;">我的商品</a>
     @else
-        <a class="list-group-item cursor" href="{{ route('member.info.index') }}">我的商品</a>
+        <a class="list-group-item cursor" href="{{ route('member.goods.index') }}">我的商品</a>
     @endif
 </div>

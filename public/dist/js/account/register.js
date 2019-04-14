@@ -27,7 +27,7 @@ $(function(){
         if(mobile_reg.test(username) || email_reg.test(username)) {
             isTiming = true;
         }else{
-            alert('请输入有效的账号');
+            toastr.error('请输入有效的账号');
             return false;
         }
         if (isTiming) {
