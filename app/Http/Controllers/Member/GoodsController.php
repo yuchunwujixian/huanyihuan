@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Member;
 
+use App\Models\Goods;
 use App\Models\Sides;
 use App\Models\Sms;
 use App\Models\User;
@@ -14,10 +15,12 @@ class GoodsController extends BaseController
     public function index()
     {
         $this->uc_here = '商品列表';
-        $userInfo = Auth::guard()->user();
         //banner
-        $banners = Sides::where('status', 1)->where('type', 2)->orderBy('sort', 'asc')->get();
-        return $this->view('member.goods.index', compact('userInfo', 'banners'));
+        $banners = Sides::where('status', 1)->where('type', 3)->orderBy('sort', 'asc')->get();
+        $goods = Goods::where('user_id', Auth::guard()->user()->id)
+            ->whereIn('status', [-1, 0, 1])
+            ->paginate(24);
+        return $this->view('member.goods.index', compact('goods', 'banners'));
     }
 
     //保存个人资料

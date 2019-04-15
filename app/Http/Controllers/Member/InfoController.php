@@ -16,7 +16,7 @@ class InfoController extends BaseController
         $this->uc_here = '基本资料';
         $userInfo = Auth::guard()->user();
         //banner
-        $banners = Sides::where('status', 1)->where('type', 2)->orderBy('sort', 'asc')->get();
+        $banners = Sides::where('status', 1)->where('type', 3)->orderBy('sort', 'asc')->get();
         return $this->view('member.info.update', compact('userInfo', 'banners'));
     }
 

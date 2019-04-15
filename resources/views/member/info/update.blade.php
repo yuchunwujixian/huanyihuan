@@ -37,7 +37,12 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">真实姓名</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="真实姓名" name="name" value="{{ $userInfo->name }}">
+                                    @if($userInfo->name)
+                                        <p class="form-control-static">{{ $userInfo->name }}</p>
+                                        <input type="hidden" name="name" value="{{ $userInfo->name }}">
+                                    @else
+                                        <input type="text" class="form-control" placeholder="真实姓名" name="name">
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
@@ -182,7 +187,6 @@
                 dataType: 'JSON',
                 'type':'POST',
                 success: function (data) {
-
                     if (data.status == 1){
                         toastr.success(data.message);
                     }else{
@@ -268,7 +272,9 @@
                     success : function (data) {
                         if (data.status == 1) {
                             toastr.success(data.message);
-                            window.location.reload();
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 1000)
                         } else {
                             toastr.error(data.message);
                         }
