@@ -50,6 +50,7 @@ Route::group(['namespace' => 'Member', 'prefix' => 'member', 'middleware' => ['a
     Route::post('upload/images', 'UploadController@uploadImages')->name('member.upload.images');
     //我的商品
     Route::get('goods/index', 'GoodsController@index')->name('member.goods.index');
+    Route::get('goods/create', 'GoodsController@create')->name('member.goods.create');
 
 
 

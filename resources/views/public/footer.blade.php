@@ -66,7 +66,7 @@
         </div>
         <hr>
         <div class="row">
-            <p class="text-center">Copyright &copy; 2016-2017 北京炯米互联有限公司 沪ICP备17004141号-1 沪公网安备 400256413845号</p>
+            <p class="text-center">Copyright &copy; 2016-2017 换一换有限公司 沪ICP备17004141号-1 沪公网安备 400256413845号</p>
         </div>
     </div>
 </footer>

@@ -12,11 +12,11 @@
     @include('public.member_header')
     <div class="container">
         <div class="row">
-            <div class="col-sm-4 hidden-xs">
+            <div class="col-sm-3 hidden-xs">
                 @include('public.member_left')
             </div>
             <div class="col-xs-1 visible-xs"></div>
-            <div class="col-xs-10 col-sm-8">
+            <div class="col-xs-10 col-sm-9">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" id="form">

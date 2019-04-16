@@ -31,3 +31,14 @@ if($(".same-height").length > 0) {
 $.ajaxSetup({
     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
 });
+
+//select美化
+$('.selectpicker').selectpicker({
+    wiidth : 'auto'
+});
+
+$('input:not(.origin)').iCheck({
+    checkboxClass: 'icheckbox_square-blue',
+    radioClass: 'iradio_square-blue',
+    increaseArea: '10%' // optional
+});
