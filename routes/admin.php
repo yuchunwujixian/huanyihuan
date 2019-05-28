@@ -73,8 +73,6 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('aboutus/index', ['as' => 'admin.system.aboutus_index', 'uses' => 'SystemController@aboutUsIndex']);
     Route::post('aboutus/store', ['as' => 'admin.system.aboutus_store', 'uses' => 'SystemController@aboutUsStore']);
     Route::get('policy/index', ['as' => 'admin.policy.index', 'uses' => 'SystemController@policy']);
-    //图片上传地址
-    Route::post('system/upload', ['as' => 'admin.system.upload', 'uses' => 'SystemController@upload']);
     //商品管理
     Route::get('goods/index', ['as' => 'admin.goods.index', 'uses' => 'GoodsController@index']);
     Route::get('goods/{id}/update', ['as' => 'admin.goods.update', 'uses' => 'GoodsController@update']);

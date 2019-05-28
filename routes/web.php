@@ -46,8 +46,6 @@ Route::group(['namespace' => 'Member', 'prefix' => 'member', 'middleware' => ['a
     Route::get('info/index', 'InfoController@index')->name('member.info.index');
     Route::post('info/store', 'InfoController@store')->name('member.info.store');
     Route::post('info/bandusername', 'InfoController@bandusername')->name('member.info.bandusername');
-    //图片上传
-    Route::post('upload/images', 'UploadController@uploadImages')->name('member.upload.images');
     //我的商品
     Route::get('goods/index', 'GoodsController@index')->name('member.goods.index');
     Route::get('goods/create', 'GoodsController@create')->name('member.goods.create');
@@ -65,3 +63,7 @@ Route::group(['namespace' => 'Member', 'prefix' => 'member', 'middleware' => ['a
     Route::get('payment/index', 'IntegralController@index')->name('member.payment.index');
 
 });
+
+
+//图片上传
+Route::post('upload/file', 'UploadController@upload')->name('upload.file');

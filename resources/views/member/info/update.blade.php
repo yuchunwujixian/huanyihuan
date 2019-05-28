@@ -147,36 +147,37 @@
         }, 500);
         $("#upload_photo").fileinput({
             language: 'zh', //设置语言
-            uploadUrl:'{{ route('member.upload.images') }}',
+            uploadUrl:'{{ route('upload.file') }}',
             enctype: 'multipart/form-data',
             allowedFileExtensions : ['jpg', 'png','bmp','jpeg'],//接收的文件后缀
-            showUpload: true, //是否显示上传按钮
+            showUpload: false, //是否显示上传按钮
             showPreview: false, //展前预览
             showCaption: true,//是否显示标题
             maxFileSize : 10000,//上传文件最大的尺寸
             maxFileCount: 1,
-            buttonLabelClass: '',
             browseClass: "btn btn-primary", //按钮样式
             uploadAsync: true,
             allowedPreviewTypes: ['image'],
-            uploadExtraData:function (previewId, index) {
-                //向后台传递type,nameStr作为额外参数
-                var obj = {};
-                obj.path = "member";
-                obj.type = "avatar";
-                return obj;
-            }
+            uploadExtraData:{target:'member'}
         }).on('fileerror', function(event, data, msg) {  //一个文件上传失败
             toastr.error('文件上传失败！'+msg);
         }).on("fileuploaded", function(event, data, previewId, index) {
             data = data.response;
             if (data.status == 1){
-                $('.member-avatar').attr('src', '/storage/' + data.path);
+                $('.member-avatar').attr('src', data.path);
                 $('input[name=avatar]').val(data.path);
             }else{
                 toastr.error(data.message);
             }
         }).on('fileclear', function (event, previewId) {
+            $('.member-avatar').attr('src', avatar);
+            $('input[name=avatar]').val('');
+        }).on('filebatchselected', function (event, files) {//选中文件事件
+            $(this).fileinput("upload");
+        }).on("filecleared",function(event, data, msg){
+            $('.member-avatar').attr('src', avatar);
+            $('input[name=avatar]').val('');
+        }).on('filedeleted', function(event, key) {
             $('.member-avatar').attr('src', avatar);
             $('input[name=avatar]').val('');
         });

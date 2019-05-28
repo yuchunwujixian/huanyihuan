@@ -13,6 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         '/member/notify',
-        'notify'
+        'notify',
+        'upload/file',
     ];
 }

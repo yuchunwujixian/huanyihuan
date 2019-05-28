@@ -67,17 +67,6 @@ class SystemController extends Controller
         return back();
     }
 
-    /**
-     * 上传文件
-     */
-    public function upload(Request $request)
-    {
-        $path = $request->file('imgFile')->store($request->input('img_path'));
-        $path = $request->getSchemeAndHttpHost().'/storage/'.$path;
-        $output = array('error' => 0, 'url' => $path);
-        return $this->tojson($output);
-    }
-
     public function policy()
     {
         $this->title = '注册须知';

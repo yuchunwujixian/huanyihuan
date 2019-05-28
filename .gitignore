@@ -10,3 +10,4 @@ Homestead.yaml
 /config/toastr.php
 /resources/views/vendor/UEditor
 /resources/views/vendor/toastr
+/storage

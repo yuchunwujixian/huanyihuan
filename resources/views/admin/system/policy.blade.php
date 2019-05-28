@@ -48,8 +48,9 @@
             window.editor = K.create('#kind-editor',{
                 width:'100%',//宽
                 height:'800px',//高
-                uploadJson:"{{ route('admin.system.upload') }}",//图片上传地址
-                extraFileUploadParams : {"img_path" : 'aboutus', '_token' : "{{csrf_token()}}"},//额外参数
+                filePostName:'file',//高
+                uploadJson:"{{ route('upload.file') }}",//图片上传地址
+                extraFileUploadParams : {target : "keditor",type:"keditor"},//额外参数
             });
         });
     </script>
