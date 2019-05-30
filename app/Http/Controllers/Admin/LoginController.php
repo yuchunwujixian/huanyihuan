@@ -47,7 +47,8 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('admin.auth.login');
+        $this->title = '登陆';
+        return $this->view('admin.auth.login');
     }
     /**
      * 自定义认证驱动
