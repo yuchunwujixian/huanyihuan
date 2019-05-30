@@ -37,7 +37,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link href="/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet">
 
     {{--loding--}}
-    <link href="/dist/css/load/load.css" rel="stylesheet">
     <link href="/plugins/bootstrap-select-1.13.2/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <!-- iCheck -->
     <link rel="stylesheet" href="/plugins/iCheck/square/blue.css">
