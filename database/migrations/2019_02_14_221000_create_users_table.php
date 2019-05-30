@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('description')->nullable()->comment('个人说明');
             $table->unsignedTinyInteger('level')->default(1)->comment('等级');
+            $table->integer('integral')->default(0)->comment('用户积分');
             $table->string('avatar')->nullable()->comment('用户头像地址');
             $table->boolean('status')->default(1)->comment('状态 0禁用 1正常');
             $table->rememberToken();
