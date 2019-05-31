@@ -62,7 +62,6 @@
         </form>
         <!-- /.social-auth-links -->
         {{--<a href="#">我忘了密码</a><br>--}}
-        {{--<a href="#" class="text-center">新注册用户</a>--}}
 
     </div>
     <!-- /.login-box-body -->
