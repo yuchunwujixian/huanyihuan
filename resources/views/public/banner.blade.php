@@ -1,4 +1,4 @@
-@if(!empty($banners))
+@if(!empty($banners) && $banners->count() > 0)
     <div class="carousel slide" data-ride="carousel"  data-interval="3000">
         <div class="carousel-inner" role="listbox">
             @foreach($banners as $v)

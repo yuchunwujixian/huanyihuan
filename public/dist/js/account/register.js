@@ -11,12 +11,11 @@ $(function(){
         }
     });
     //注册同意注册须知
-    $('input[name=allow_register]').click(function () {
-        if ($(this).prop('checked')){
-            $('.register-button').removeClass('disabled').attr('type', 'submit');
-        }else{
-            $('.register-button').addClass('disabled').attr('type', 'button');
-        }
+    $("input[name='allow_register']").on('ifClicked',function () {
+        $('.register-button').removeClass('disabled').attr('type', 'submit');
+    });
+    $("input[name='allow_register']").on('ifUnchecked',function () {
+        $('.register-button').addClass('disabled').attr('type', 'button');
     });
     //点击获取验证码进入倒计时
     var isTiming = false;

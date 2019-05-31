@@ -1,4 +1,4 @@
-@if(!empty($tips))
+@if(!empty($tips) && $tips->count() > 0)
     <div class="tips">
         <div class="carousel slide" data-ride="carousel"  data-interval="3000">
             <div class="carousel-inner" role="listbox">
