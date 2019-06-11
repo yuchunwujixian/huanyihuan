@@ -89,10 +89,10 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('member/{id}/edit', ['as' => 'admin.member.edit', 'uses' => 'MemberController@edit']);
     Route::post('member/store', 'MemberController@store')->name('admin.member.store');
     //短信验证
-    Route::get('member/sms', 'MemberController@sms')->name('admin.member.sms');
+    Route::get('member/sms', 'MemberController@sms')->name('admin.sms.index');
     //用户回馈
-    Route::get('member/feedback', 'MemberController@feedback')->name('admin.member.feedback');
-    Route::post('member/feedbackstatus', 'MemberController@feedbackStatus')->name('admin.member.feedbackstatus');
+    Route::get('member/feedback', 'MemberController@feedback')->name('admin.feedback.index');
+    Route::post('member/feedbackstatus', 'MemberController@feedbackStatus')->name('admin.feedback.status');
 
 });
 

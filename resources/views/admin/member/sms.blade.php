@@ -28,7 +28,7 @@
                             </select>
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
-                        <a href="{{ route('admin.member.sms') }}" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重置</a>
+                        <a href="{{ route('admin.sms.index') }}" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重置</a>
                     </form>
                 </div>
             </div>

@@ -13,7 +13,7 @@
                             </select>
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
-                        <a href="{{ route('admin.member.feedback') }}" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重置</a>
+                        <a href="{{ route('admin.feedback.index') }}" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重置</a>
                     </form>
                 </div>
             </div>
@@ -118,7 +118,7 @@
         function feedback(id){
             $.ajax({
                 type : 'POST',
-                url : "{{ route('admin.member.feedbackstatus') }}",
+                url : "{{ route('admin.feedback.status') }}",
                 data : { id : id},
                 dataType : 'json',
                 success : function (json) {

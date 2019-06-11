@@ -61,7 +61,9 @@
                             <div class="form-group">
                                 <label class="col-md-3 text-right">头像</label>
                                 <div class="col-md-6">
-                                    <img src="{{ asset('storage/'.$user->avatar) }}" class="img-rounded" style="max-width: 100px;max-height: 100px;">
+                                    @if($user->avatar)
+                                        <img src="{{ $user->third_avatar }}" class="img-rounded" style="max-width: 100px;max-height: 100px;">
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
