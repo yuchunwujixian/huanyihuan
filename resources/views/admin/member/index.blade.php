@@ -103,7 +103,7 @@
                                     <td>{{$v->email}}</td>
                                     <td>{{$v->integral}}</td>
                                     <td>{{$v->level}}</td>
-                                    <td><img  src="{{asset('storage/'.$v->avatar)}}" class="img-rounded" style="max-width: 100px;max-height: 100px;"></td>
+                                    <td>@if($v->avatar)<img  src="{{ $v->third_avatar }}" class="img-rounded" style="max-width: 100px;max-height: 100px;">@endif</td>
                                     <td>
                                         <div class="switch">
                                             <input class="origin" type="checkbox" data-id="{{ $v->id }}" name="my-checkbox" @if($v->status) checked @endif>

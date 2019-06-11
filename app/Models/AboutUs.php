@@ -12,4 +12,11 @@ class AboutUs extends Model
     public $fillable = [
         'description', 'meta_keywords', 'meta_description', 'policy','logo',
     ];
+    protected $appends = ['third_logo'];
+
+    //图片地址
+    public function getThirdLogoAttribute()
+    {
+        return env('THIRD_HOST', '').'/storage/public/'.$this->logo;
+    }
 }

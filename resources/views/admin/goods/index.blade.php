@@ -85,7 +85,7 @@
                                 <td>{{$v->category->title}}</td>
                                 <td>{{$v->num}}</td>
                                 <td><span class="text-danger">¥<strong>{{ $v->price }}</strong></span></td>
-                                <td><img  src="{{asset('storage/'.$v->img_url)}}" class="img-rounded" style="max-width: 100px;max-height: 100px;"></td>
+                                <td><img  src="{{ $v->third_img_url }}" class="img-rounded" style="max-width: 100px;max-height: 100px;"></td>
                                 <td>{{$goods_status[$v->status]}}</td>
                                 <td>
                                     <a style="margin:3px;"  href="{{ route('admin.goods.update', ['id' => $v->id]) }}" class="X-Small btn-xs text-success "><i class="fa fa-edit"></i>修改</a>

@@ -43,7 +43,7 @@
                     <div class="col-sm-6 col-md-4 col-lg-3 margin-t-8">
                         <div class="thumbnail">
                             <a href="http://www.youzhan.org/" title="{{ $good->title }}" target="_blank">
-                                <img class="lazy" src="{{asset('storage/'.$good->img_url)}}" data-src="{{asset('storage/'.$good->img_url)}}" alt="{{ $good->title }}" data-img-default="/img/default_cover.png">
+                                <img class="lazy" src="{{ $good->third_img_url }}" data-src="{{ $good->third_img_url }}" alt="{{ $good->title }}" data-img-default="/img/default_cover.png">
                             </a>
                             <div class="caption">
                                 <h3>

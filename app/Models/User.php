@@ -27,7 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    protected $appends = ['third_avatar'];
 
+    //图片地址
+    public function getThirdAvatarAttribute()
+    {
+        return env('THIRD_HOST', '').'/storage/public/'.$this->avatar;
+    }
     /**
      * @desc 收藏的帖子
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

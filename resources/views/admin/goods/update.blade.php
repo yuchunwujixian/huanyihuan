@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">主图片地址</label>
                                 <div class="col-md-8">
-                                    <img src="{{ asset('storage/'.$data->img_url) }}" class="img-rounded" style="max-width: 100px;max-height: 100px;">
+                                    <img src="{{ $data->third_img_url }}" class="img-rounded" style="max-width: 100px;max-height: 100px;">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -71,7 +71,7 @@
                                             @foreach ($data->imgs->chunk(4) as $chunks)
                                                 <div class="item @if($loop->index == 0) active @endif">
                                                     @foreach ($chunks as $value)
-                                                    <img class="img-responsive" src="{{ asset('storage/'.$value->img_url) }}">
+                                                    <img class="img-responsive" src="{{ asset('storage/'.$value->third_img_url) }}">
                                                     @endforeach
                                                 </div>
                                             @endforeach

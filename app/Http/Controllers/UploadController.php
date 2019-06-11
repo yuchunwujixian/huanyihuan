@@ -31,10 +31,11 @@ class UploadController extends Controller
         if ($path){
             $output['status'] = 1;
             $output['message'] = '上传成功';
-            $output['path'] = '/storage/public/'.$path;
+            $output['path'] = $path;
+            $output['host'] = env('THIRD_HOST', '');
             if ($type == 'keditor'){
                 $output['error'] = 0;
-                $output['url'] = $request->getSchemeAndHttpHost().$output['path'];
+                $output['url'] = env('THIRD_HOST', '').'/storage/public/'.$output['path'];
             }
         }
         return $this->tojson($output);

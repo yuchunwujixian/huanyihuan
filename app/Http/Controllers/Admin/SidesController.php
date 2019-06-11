@@ -1,11 +1,11 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Sides;
 use Illuminate\Support\Facades\Storage;
+use Toastr;
 
 class SidesController extends Controller
 {
@@ -72,7 +72,7 @@ class SidesController extends Controller
             if ($request->hasFile('file')) {//修改图片
                 $info = Sides::find($date['id']);
                 $old_img = $info['img_url'];
-                $date['img_url'] = $request->file('file')->store('sides/'.$date['type']);
+                $date['img_url'] = $request->file('file')->store('sides/'.$date['type'], 'public');
                 Storage::delete($old_img);
             }
             $res = Sides::where('id', $date['id'])->update($date);
@@ -82,17 +82,17 @@ class SidesController extends Controller
             $this->validate($request, [
                 'file' => 'required|image',
             ]);
-            $date['img_url'] = $request->file('file')->store('sides/'.$date['type']);
+            $date['img_url'] = $request->file('file')->store('sides/'.$date['type'], 'public');
             $tip = new Sides();
             $res =  $tip->fill($date)->save();
             $messge = "添加";
         }
         if ($res) {
-            return redirect()->route('admin.sides.index')->withSuccess($messge . '成功！');
+            Toastr::success($messge . '成功！');
         } else {
-            return redirect()->route('admin.sides.index')->withErrors($messge . '失败！');
+            Toastr::error($messge . '失败！');
         }
-
+        return redirect()->route('admin.sides.index');
     }
 
 
@@ -132,10 +132,11 @@ class SidesController extends Controller
         Storage::delete($old_img);
         $res = $info->delete($id);
         if ($res) {
-            return redirect()->route('admin.sides.index')->withSuccess( '删除成功！');
+            Toastr::success('删除成功！');
         } else {
-            return redirect()->route('admin.sides.index')->withErrors( '删除失败！');
+            Toastr::error('删除失败！');
         }
+        return redirect()->route('admin.sides.index');
     }
 
     /**

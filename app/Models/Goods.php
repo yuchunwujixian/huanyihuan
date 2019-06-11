@@ -18,7 +18,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Goods extends Model
 {
     use SoftDeletes;
+
     protected $table = 'goods';
+
+    protected $appends = ['third_img_url'];
+
+    //图片地址
+    public function getThirdImgUrlAttribute()
+    {
+        return env('THIRD_HOST', '').'/storage/public/'.$this->img_url;
+    }
+
     //用户
     public function user()
     {

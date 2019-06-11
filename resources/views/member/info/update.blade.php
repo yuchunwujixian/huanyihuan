@@ -158,13 +158,14 @@
             browseClass: "btn btn-primary", //按钮样式
             uploadAsync: true,
             allowedPreviewTypes: ['image'],
-            uploadExtraData:{target:'member'}
+            uploadExtraData:{target:'member/avatar'}
         }).on('fileerror', function(event, data, msg) {  //一个文件上传失败
             toastr.error('文件上传失败！'+msg);
         }).on("fileuploaded", function(event, data, previewId, index) {
             data = data.response;
             if (data.status == 1){
-                $('.member-avatar').attr('src', data.path);
+                var path = data.host + '/storage/public/'+ data.path;
+                $('.member-avatar').attr('src', path);
                 $('input[name=avatar]').val(data.path);
             }else{
                 toastr.error(data.message);

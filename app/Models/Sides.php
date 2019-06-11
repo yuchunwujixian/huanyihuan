@@ -15,6 +15,15 @@ class Sides extends Model
         'type',
         'p_id',
     ];
+    protected $appends = ['third_img_url'];
+
+    //图片地址
+    public function getThirdImgUrlAttribute()
+    {
+        return env('THIRD_HOST', '').'/storage/public/'.$this->img_url;
+    }
+
+    //获得分类下幻灯片
     public static function getData($type)
     {
         $data = [];

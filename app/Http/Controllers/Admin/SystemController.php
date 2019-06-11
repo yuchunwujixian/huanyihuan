@@ -47,7 +47,7 @@ class SystemController extends Controller
         }
         $this->validate($request, $rules);
         if ($request->hasFile('logo')){
-            $date['logo'] = $request->file('logo')->store('aboutus');
+            $date['logo'] = $request->file('logo')->store('aboutus/logo', 'public');
         }
        if (!empty($input['id'])) {
            $date['id'] = intval($request->input('id'));
