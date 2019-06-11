@@ -21,8 +21,8 @@ if($(".same-height").length > 0) {
     $('.same-height').each(function(index,value){
         var _this = $(value);
         var arr = new Array();
-        _this.children('div').each(function(i){
-            arr[i] = $(this).outerHeight();
+        _this.children('div').each(function(i,s){
+            arr[i] = $(s).outerHeight();
         });
         _this.children('div').css('min-height', Math.max.apply(null,arr));
     });
