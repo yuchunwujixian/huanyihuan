@@ -29,6 +29,7 @@ class CreatePermissionsCache extends Command
      */
     public function handle()
     {
+        Cache::store('file')->forget('menus');
         //清除权限表数据
         Permission::truncate();
         //插入新的数据
