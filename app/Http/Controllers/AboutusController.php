@@ -20,7 +20,7 @@ class AboutusController extends Controller
         $this->title = '关于我们';
         //banner
         $banners = Sides::where('status', 1)->where('type', 2)->orderBy('sort', 'asc')->get();
-        $base_config = AboutUs::select(['meta_keywords', 'meta_description','description'])->first();
+        $base_config = AboutUs::select(['meta_keywords', 'meta_description','description','logo'])->first();
         return $this->view('aboutus.index', compact('banners', 'base_config'));
     }
 
