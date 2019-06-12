@@ -164,7 +164,7 @@
         }).on("fileuploaded", function(event, data, previewId, index) {
             data = data.response;
             if (data.status == 1){
-                var path = data.host + '/storage/public/'+ data.path;
+                var path = data.host + '/storage/'+ data.path;
                 $('.member-avatar').attr('src', path);
                 $('input[name=avatar]').val(data.path);
             }else{

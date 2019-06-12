@@ -17,6 +17,6 @@ class AboutUs extends Model
     //图片地址
     public function getThirdLogoAttribute()
     {
-        return env('THIRD_HOST', '').'/storage/public/'.$this->logo;
+        return env('THIRD_HOST', '').'/storage/'.$this->logo;
     }
 }

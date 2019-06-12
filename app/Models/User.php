@@ -32,7 +32,7 @@ class User extends Authenticatable
     //图片地址
     public function getThirdAvatarAttribute()
     {
-        return env('THIRD_HOST', '').'/storage/public/'.$this->avatar;
+        return env('THIRD_HOST', '').'/storage/'.$this->avatar;
     }
     /**
      * @desc 收藏的帖子

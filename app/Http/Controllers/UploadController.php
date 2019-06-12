@@ -35,7 +35,7 @@ class UploadController extends Controller
             $output['host'] = env('THIRD_HOST', '');
             if ($type == 'keditor'){
                 $output['error'] = 0;
-                $output['url'] = env('THIRD_HOST', '').'/storage/public/'.$output['path'];
+                $output['url'] = env('THIRD_HOST', '').'/storage/'.$output['path'];
             }
         }
         return $this->tojson($output);

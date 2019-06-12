@@ -26,7 +26,7 @@ class Goods extends Model
     //图片地址
     public function getThirdImgUrlAttribute()
     {
-        return env('THIRD_HOST', '').'/storage/public/'.$this->img_url;
+        return env('THIRD_HOST', '').'/storage/'.$this->img_url;
     }
 
     //用户
