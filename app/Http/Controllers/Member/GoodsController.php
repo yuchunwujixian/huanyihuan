@@ -16,10 +16,11 @@ class GoodsController extends BaseController
         $this->uc_here = '商品列表';
         //banner
         $banners = Sides::where('status', 1)->where('type', 3)->orderBy('sort', 'asc')->get();
+        $goods_status = config('config_base.goods_status');
         $goods = Goods::where('user_id', Auth::guard()->user()->id)
             ->whereIn('status', [-1, 0, 1])
             ->paginate(24);
-        return $this->view('member.goods.index', compact('goods', 'banners'));
+        return $this->view('member.goods.index', compact('goods', 'banners', 'goods_status'));
     }
 
     public function create()

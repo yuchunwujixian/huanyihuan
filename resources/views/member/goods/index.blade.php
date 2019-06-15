@@ -17,8 +17,25 @@
             <div class="col-xs-1 visible-xs"></div>
             <div class="col-xs-10 col-sm-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-right">
-                        <a class="cursor text-primary" href="{{ route('member.goods.create') }}">新增商品</a>
+                    <div class="panel-heading">
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <label>商品状态</label>
+                                <select class="form-control selectpicker"  name="status">
+                                    <option @if(app('request')->get('status') === null) selected @endif>全部</option>
+                                @foreach($goods_status as $key => $v)
+                                        <option value="{{ $key }}" @if(app('request')->get('status') == $key) selected @endif>{{ $v }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            &nbsp;&nbsp;
+                            <div class="form-group">
+                                <label>商品名称</label>
+                                <input type="text" class="form-control" name="search_title" value="{{ app('request')->get('search_title') }}" placeholder="商品名称，模糊查询">
+                            </div>
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
+                            <a class="cursor text-primary" href="{{ route('member.goods.create') }}">新增商品</a>
+                        </form>
                     </div>
                     <div class="panel-body">
                         @if($goods && count($goods))
