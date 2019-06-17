@@ -18,17 +18,17 @@ $('img:not(.origin)').on('error', function(){
 //设置子元素中的高度相等 要用定时跑，因为是异步执行的，或者用div=table样式
 if($(".same-height").length > 0) {
     setTimeout(function () {
-            //元素存在时执行的代码
-            $('.same-height').each(function(index,value){
-                var _this = $(value);
-                var arr = new Array();
-                _this.children('div').each(function(i,s){
-                    arr[i] = $(s).outerHeight();
-                });
-                // console.log(arr);
-                _this.children('div').css('min-height', Math.max.apply(null,arr) + 1);
+        //元素存在时执行的代码
+        $('.same-height').each(function(index,value){
+            var _this = $(value);
+            var arr = new Array();
+            _this.children('div').each(function(i,s){
+                arr[i] = $(s).outerHeight();
             });
-    }, 500);
+            // console.log(arr);
+            _this.children('div').css('min-height', Math.max.apply(null,arr) + 1);
+        });
+    }, 600);
 }
 //提交headers中增加 X-CSRF-TOKEN
 $.ajaxSetup({
