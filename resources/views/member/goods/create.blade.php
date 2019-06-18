@@ -6,6 +6,18 @@
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-fileinput/css/fileinput.min.css">
+    <link rel="stylesheet" href="/dist/css/member/common.css">
+    <style>
+        .price{
+            position: relative;
+        }
+        .price:after{
+            position: absolute;
+            top: 0;
+            content:"aaaa";
+            right: 18px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -22,14 +34,20 @@
                         <form class="form-horizontal" role="form" id="form">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">商品名称</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-2 control-label">商品名称</label>
+                                <div class="col-sm-10">
                                     <input type="text" class="form-control" placeholder="商品名称" name="title" value="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">商品分类</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-2 control-label">商品标题</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="商品名称" name="long_title" value="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">商品分类</label>
+                                <div class="col-sm-10">
                                     <select class="form-control selectpicker" name="category_id" data-width="false">
                                         <option value="0">--请选择--</option>
                                         @foreach($categories as $v)
@@ -44,45 +62,32 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">上传头像</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-2 control-label">商品主图</label>
+                                <div class="col-sm-10">
                                     <input id="upload_photo" class="form-control" type="file" value="本地上传" name="file"/>
+                                    <input type="hidden" name="img_url"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">真实姓名</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="真实姓名" name="name">
+                                <label class="col-sm-2 control-label">商品数量</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" placeholder="商品数量" name="num">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">手机号</label>
-                                <div class="col-sm-9">
-                                    <p class="form-control-static">
-                                        尚未绑定，<a href="javascript:;" class="text-primary cursor modal-btn" data-name="手机号" data-sms-type="1">点击绑定</a>
-                                    </p>
+                                <label class="col-sm-2 control-label">商品价值</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control price" placeholder="商品价值" name="price">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">个人等级</label>
-                                <div class="col-sm-9">
-                                    <p class="form-control-static"></p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">个人积分</label>
-                                <div class="col-sm-9">
-                                    <p class="form-control-static"></p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">个人说明</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-2 control-label">个人说明</label>
+                                <div class="col-sm-10">
                                     <textarea class="form-control" rows="3" placeholder="个人说明" name="description"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-9 text-right">
+                                <div class="col-sm-offset-2 col-sm-10 text-right">
                                     <button type="button" class="btn btn-default save-data">保存</button>
                                 </div>
                             </div>
@@ -98,10 +103,6 @@
     <script src="/plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
     <script src="/plugins/bootstrap-fileinput/js/locales/zh.js"></script>
     <script>
-        var avatar = '';
-        setTimeout(function () {
-            avatar = $('.member-avatar').attr('src');
-        }, 500);
         $("#upload_photo").fileinput({
             language: 'zh', //设置语言
             uploadUrl:'{{ route('upload.file') }}',

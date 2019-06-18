@@ -6,6 +6,7 @@
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-fileinput/css/fileinput.min.css">
+    <link rel="stylesheet" href="/dist/css/member/common.css">
 @endsection
 
 @section('content')

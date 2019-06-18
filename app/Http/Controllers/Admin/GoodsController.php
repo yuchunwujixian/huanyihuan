@@ -45,13 +45,15 @@ class GoodsController extends Controller
         $lists = Goods::withTrashed()->where('status', $status);
         //商品名称
         if ($search){
-            $lists = $lists->where('title', 'like', '%'.$search.'%')->orWhere('long_title', 'like', '%'.$search.'%');
+            $lists = $lists->where((function ($query) use($search) {
+                $query->where('title', 'like', '%'.$search.'%')->orWhere('long_title', 'like', '%'.$search.'%');
+            }));;
         }
         //商品分类
         if ($category_id){
             $lists = $lists->where('category_id', $category_id);
         }
-        $lists = $lists->orderBy('id', 'asc')->paginate(30);
+        $lists = $lists->orderBy('id', 'desc')->paginate(30);
         $goods_status = $this->goods_status;
         $categories = GoodsCategory::orderBy('lft')->get();
         return $this->view('admin.goods.index', compact('lists', 'goods_status', 'categories', 'param'));

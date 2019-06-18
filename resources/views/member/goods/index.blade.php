@@ -5,6 +5,8 @@
 @section('uc_here', $uc_here)
 
 @section('css')
+    <link rel="stylesheet" href="/dist/css/member/common.css">
+    <link rel="stylesheet" href="/dist/css/member/goods.css">
 @endsection
 
 @section('content')
@@ -21,20 +23,22 @@
                         <form class="form-inline" role="form">
                             <div class="form-group">
                                 <label>商品状态</label>
-                                <select class="form-control selectpicker"  name="status">
-                                    <option @if(app('request')->get('status') === null) selected @endif>全部</option>
-                                @foreach($goods_status as $key => $v)
-                                        <option value="{{ $key }}" @if(app('request')->get('status') == $key) selected @endif>{{ $v }}</option>
+                                <select class="form-control"  name="status">
+                                    <option @if($inputs['status'] == 'all') selected @endif value="all">全部</option>
+                                    @foreach($goods_status as $key => $v)
+                                        <option value="{{ $key }}" @if($inputs['status'] === "$key") selected @endif>{{ $v }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             &nbsp;&nbsp;
                             <div class="form-group">
                                 <label>商品名称</label>
-                                <input type="text" class="form-control" name="search_title" value="{{ app('request')->get('search_title') }}" placeholder="商品名称，模糊查询">
+                                <input type="text" class="form-control" name="search_title" value="{{ $inputs['search_title'] }}" placeholder="商品名称，模糊查询">
                             </div>
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
-                            <a class="cursor text-primary" href="{{ route('member.goods.create') }}">新增商品</a>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
+                                <a class="cursor text-primary btn btn-default" href="{{ route('member.goods.create') }}"><i class="glyphicon glyphicon-plus"></i>新增商品</a>
+                            </div>
                         </form>
                     </div>
                     <div class="panel-body">

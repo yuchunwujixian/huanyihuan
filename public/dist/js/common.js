@@ -36,9 +36,9 @@ $.ajaxSetup({
 });
 
 //select美化
-$('.selectpicker').selectpicker({
-    wiidth : 'auto'
-});
+// $('.selectpicker').selectpicker({
+//     wiidth : 'auto'
+// });
 
 $('input:not(.origin)').iCheck({
     checkboxClass: 'icheckbox_square-blue',

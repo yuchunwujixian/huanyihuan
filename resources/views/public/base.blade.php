@@ -12,8 +12,8 @@
     <meta name=baiduspider content=all>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/plugins/bootstrap-swiper/swiper-3.4.2.min.css"/>
-    <link href="/plugins/bootstrap-select-1.13.2/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    {{--<link rel="stylesheet" href="/plugins/bootstrap-swiper/swiper-3.4.2.min.css"/>--}}
+    {{--<link href="/plugins/bootstrap-select-1.13.2/dist/css/bootstrap-select.min.css" rel="stylesheet">--}}
     <!-- iCheck -->
     <link rel="stylesheet" href="/plugins/iCheck/square/blue.css">
     <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
@@ -39,9 +39,9 @@
 <script src="/js/jquery-2.0.0/jquery.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="/plugins/jquery-validator/jquery-validator-1.14.0.js"></script>
-<script src="/plugins/bootstrap-swiper/swiper-3.4.2.jquery.min.js"></script>
-<script src="/plugins/bootstrap-select-1.13.2/dist/js/bootstrap-select.min.js"></script>
+{{--<script src="/plugins/jquery-validator/jquery-validator-1.14.0.js"></script>--}}
+{{--<script src="/plugins/bootstrap-swiper/swiper-3.4.2.jquery.min.js"></script>--}}
+{{--<script src="/plugins/bootstrap-select-1.13.2/dist/js/bootstrap-select.min.js"></script>--}}
 <!-- iCheck -->
 <script src="/plugins/iCheck/icheck.min.js"></script>
 <script src="/plugins/toastr/toastr.min.js"></script>
