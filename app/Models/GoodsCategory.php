@@ -10,6 +10,15 @@ class GoodsCategory extends Node
 {
     protected $table ='goods_categories';
 
+    // 'parent_id' column name
+    protected $parentColumn = 'parent_id';
+    // 'lft' column name
+    protected $leftColumn = 'lft';
+    // 'rgt' column name
+    protected $rightColumn = 'rgt';
+    // 'depth' column name
+    protected $depthColumn = 'depth';
+
     public function goods()
     {
         return $this->hasMany('App\Models\Goods', 'category_id', 'id');

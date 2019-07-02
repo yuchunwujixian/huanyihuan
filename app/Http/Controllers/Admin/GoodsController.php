@@ -178,8 +178,16 @@ class GoodsController extends Controller
             'status' => $request->input('status'),
             'sort' => $request->input('sort'),
         ];
+        if (!$request->input('parent_id')){
+            $update_data['depth'] = 0;
+        }
         if ($request->has('id')) {
             GoodsCategory::where('id', $request->input('id'))->update($update_data);
+            if($request->input("parent_id")){
+                GoodsCategory::where("id","=",$request->input('id'))->first()->makeChildOf($request->input("parent_id"));
+            }else{
+                GoodsCategory::rebuild(true);
+            }
         } else {
             if ($request->input('parent_id') == 0) {
                 GoodsCategory::create($update_data);
@@ -214,6 +222,7 @@ class GoodsController extends Controller
         $jobs = $category->goods->toArray();
         if(empty($jobs)) {
             $category->destroy($id);
+            GoodsCategory::rebuild(true);
             return redirect()->route('admin.category.index')->withSuccess( '操作成功');
         } else {
             return redirect()->route('admin.category.index')->withErrors( '该分类下存在商品');
