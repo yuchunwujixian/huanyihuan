@@ -7,6 +7,8 @@ use App\Models\TopicGoods;
 use Illuminate\Http\Request;
 use App\Models\Goods;
 use DB;
+use Illuminate\Support\Facades\Validator;
+use Yuansir\Toastr\Facades\Toastr;
 
 class GoodsController extends Controller
 {
@@ -167,11 +169,22 @@ class GoodsController extends Controller
 
     public function categorySave(Request $request)
     {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'parent_id' => 'required',
             'title' => 'required|min:2',
             'sort' => 'numeric',
+        ], [
+            'title.required' => '分类名称不能为空',
+            'sort.numeric' => '排序必须为数字',
         ]);
+        if ($validator->fails()) {
+            Toastr::error($validator->errors()->first());
+            return back();
+        }
+        if ($request->input('id') && $request->input('parent_id') == $request->input('id')){
+            Toastr::error('请选择其他分类');
+            return back();
+        }
         $update_data = [
             'title' => $request->input('title'),
             'parent_id' => $request->input('parent_id'),
